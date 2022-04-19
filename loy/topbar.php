@@ -5,7 +5,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <?php
-                    $last_date= get_trend('date_last',$_GET['text_sku_search']); 
+                    $last_date= get_trend('date_last'); 
                     //echo $last_date;
                     ?>
 
