@@ -1,0 +1,20 @@
+[08-Aug-2021 01:53:28 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Token' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Comment.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Comment.php on line 6
+[08-Aug-2021 01:53:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Token_Tag' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Empty.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Empty.php on line 6
+[08-Aug-2021 01:53:33 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Token_Tag' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/End.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/End.php on line 10
+[08-Aug-2021 01:53:37 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Token' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Tag.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Tag.php on line 6
+[08-Aug-2021 01:53:37 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Token' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Text.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Token/Text.php on line 12

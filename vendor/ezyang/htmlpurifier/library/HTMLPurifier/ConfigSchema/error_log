@@ -1,0 +1,4 @@
+[08-Aug-2021 01:48:43 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Exception' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ConfigSchema/Exception.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ConfigSchema/Exception.php on line 6

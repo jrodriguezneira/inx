@@ -1,0 +1,16 @@
+[08-Aug-2021 01:30:54 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Stream' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/DeflateStream.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/DeflateStream.php on line 6
+[08-Aug-2021 01:31:08 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'Psr\Http\Message\StreamInterface' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Stream.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Stream.php on line 16
+[05-Sep-2021 17:36:57 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Stream' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/DeflateStream.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/DeflateStream.php on line 6
+[05-Sep-2021 17:36:58 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Stream' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/DeflateStream.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/DeflateStream.php on line 6

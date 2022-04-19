@@ -1,0 +1,4 @@
+[08-Aug-2021 01:58:33 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'Psr\SimpleCache\CacheInterface' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Collection/Memory.php:13
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Collection/Memory.php on line 13

@@ -1,0 +1,76 @@
+[08-Aug-2021 02:05:13 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef_CSS_Number' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/AlphaValue.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/AlphaValue.php on line 3
+[08-Aug-2021 02:05:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/BackgroundPosition.php:44
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/BackgroundPosition.php on line 44
+[08-Aug-2021 02:05:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Background.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Background.php on line 7
+[08-Aug-2021 02:05:19 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Color.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Color.php on line 6
+[08-Aug-2021 02:05:22 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Border.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Border.php on line 6
+[08-Aug-2021 02:05:23 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Composite.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Composite.php on line 12
+[08-Aug-2021 02:05:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/DenyElementDecorator.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/DenyElementDecorator.php on line 6
+[08-Aug-2021 02:05:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Font.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Font.php on line 6
+[08-Aug-2021 02:05:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Filter.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Filter.php on line 8
+[08-Aug-2021 02:05:26 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/FontFamily.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/FontFamily.php on line 6
+[08-Aug-2021 02:05:26 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/ImportantDecorator.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/ImportantDecorator.php on line 6
+[08-Aug-2021 02:05:26 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Ident.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Ident.php on line 6
+[08-Aug-2021 02:05:27 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Length.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Length.php on line 6
+[08-Aug-2021 02:05:28 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/ListStyle.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/ListStyle.php on line 7
+[08-Aug-2021 02:05:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Multiple.php:14
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Multiple.php on line 14
+[08-Aug-2021 02:05:34 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/TextDecoration.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/TextDecoration.php on line 8
+[08-Aug-2021 02:05:37 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Number.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Number.php on line 6
+[08-Aug-2021 02:05:43 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef_URI' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/URI.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/URI.php on line 12
+[08-Aug-2021 02:05:56 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Percentage.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Percentage.php on line 6

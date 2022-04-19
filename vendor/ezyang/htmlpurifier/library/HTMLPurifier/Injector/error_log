@@ -1,0 +1,28 @@
+[08-Aug-2021 01:51:08 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/AutoParagraph.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/AutoParagraph.php on line 9
+[08-Aug-2021 01:51:10 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/DisplayLinkURI.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/DisplayLinkURI.php on line 6
+[08-Aug-2021 01:51:13 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/Linkify.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/Linkify.php on line 6
+[08-Aug-2021 01:51:15 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/RemoveEmpty.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/RemoveEmpty.php on line 3
+[08-Aug-2021 01:51:16 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/PurifierLinkify.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/PurifierLinkify.php on line 7
+[08-Aug-2021 01:51:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/RemoveSpansWithoutAttributes.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/RemoveSpansWithoutAttributes.php on line 6
+[08-Aug-2021 01:51:22 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Injector' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/SafeObject.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Injector/SafeObject.php on line 7

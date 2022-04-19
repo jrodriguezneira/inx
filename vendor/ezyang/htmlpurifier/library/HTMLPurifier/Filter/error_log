@@ -1,0 +1,8 @@
+[08-Aug-2021 01:49:37 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Filter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/ExtractStyleBlocks.php:25
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/ExtractStyleBlocks.php on line 25
+[08-Aug-2021 01:49:40 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Filter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/YouTube.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Filter/YouTube.php on line 3

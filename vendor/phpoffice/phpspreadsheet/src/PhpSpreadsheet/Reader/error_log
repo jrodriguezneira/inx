@@ -1,0 +1,44 @@
+[08-Aug-2021 01:59:26 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'PhpOffice\PhpSpreadsheet\Reader\IReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/BaseReader.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/BaseReader.php on line 9
+[08-Aug-2021 01:59:30 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Csv.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Csv.php on line 11
+[08-Aug-2021 01:59:32 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Exception' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Exception.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Exception.php on line 7
+[08-Aug-2021 01:59:34 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Gnumeric.php:21
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Gnumeric.php on line 21
+[08-Aug-2021 01:59:38 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'PhpOffice\PhpSpreadsheet\Reader\IReadFilter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/DefaultReadFilter.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/DefaultReadFilter.php on line 5
+[08-Aug-2021 01:59:39 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Html.php:22
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Html.php on line 22
+[08-Aug-2021 01:59:46 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods.php:29
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods.php on line 29
+[08-Aug-2021 01:59:53 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Slk.php:14
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Slk.php on line 14
+[08-Aug-2021 01:59:56 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls.php:62
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls.php on line 62
+[08-Aug-2021 01:59:58 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx.php:41
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx.php on line 41
+[08-Aug-2021 02:00:00 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Reader\BaseReader' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xml.php:26
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xml.php on line 26

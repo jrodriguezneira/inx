@@ -1,0 +1,12 @@
+[08-Aug-2021 01:41:54 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'PhpOffice\PhpSpreadsheet\IComparable' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Comment.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Comment.php on line 7
+[08-Aug-2021 01:42:10 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\DefinedName' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/NamedFormula.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/NamedFormula.php on line 7
+[08-Aug-2021 01:42:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\DefinedName' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/NamedRange.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/NamedRange.php on line 8

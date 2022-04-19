@@ -1,0 +1,12 @@
+[08-Aug-2021 01:35:11 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'Psr\Http\Message\MessageInterface' not found in /home2/stagierv/public_html/insights/vendor/psr/http-message/src/RequestInterface.php:24
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/psr/http-message/src/RequestInterface.php on line 24
+[08-Aug-2021 01:35:16 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'Psr\Http\Message\MessageInterface' not found in /home2/stagierv/public_html/insights/vendor/psr/http-message/src/ResponseInterface.php:20
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/psr/http-message/src/ResponseInterface.php on line 20
+[08-Aug-2021 01:35:19 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'Psr\Http\Message\RequestInterface' not found in /home2/stagierv/public_html/insights/vendor/psr/http-message/src/ServerRequestInterface.php:43
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/psr/http-message/src/ServerRequestInterface.php on line 43

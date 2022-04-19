@@ -1,0 +1,27 @@
+{
+    "remotePath": "./",
+    "host": "ftp.loyaltyshop.online",
+    "username": "loyalty@loyaltyshop.online",
+    "password": "Metropolis123",
+    "port": 22,
+    "secure": true,
+    "protocol": "ftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": true,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ""
+        ],
+        "path": ""
+    }
+}

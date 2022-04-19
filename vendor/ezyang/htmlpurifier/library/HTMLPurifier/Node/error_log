@@ -1,0 +1,12 @@
+[08-Aug-2021 01:52:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Node' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Node/Element.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Node/Element.php on line 6
+[08-Aug-2021 01:52:16 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Node' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Node/Text.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Node/Text.php on line 12
+[08-Aug-2021 01:52:17 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Node' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Node/Comment.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Node/Comment.php on line 6

@@ -1,0 +1,4 @@
+[08-Aug-2021 01:57:21 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Exception' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Exception.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Exception.php on line 7

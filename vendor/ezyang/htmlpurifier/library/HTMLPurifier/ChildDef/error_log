@@ -1,0 +1,32 @@
+[08-Aug-2021 01:48:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Chameleon.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Chameleon.php on line 12
+[08-Aug-2021 01:48:19 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Custom.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Custom.php on line 9
+[08-Aug-2021 01:48:21 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Empty.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Empty.php on line 10
+[08-Aug-2021 01:48:23 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/List.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/List.php on line 12
+[08-Aug-2021 01:48:23 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef_Required' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Optional.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Optional.php on line 10
+[08-Aug-2021 01:48:24 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Required.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Required.php on line 6
+[08-Aug-2021 01:48:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef_Required' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/StrictBlockquote.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/StrictBlockquote.php on line 6
+[08-Aug-2021 01:48:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_ChildDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Table.php:32
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/ChildDef/Table.php on line 32

@@ -1,0 +1,4 @@
+[08-Aug-2021 01:33:11 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Bootstrap' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier.autoload.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier.autoload.php on line 11

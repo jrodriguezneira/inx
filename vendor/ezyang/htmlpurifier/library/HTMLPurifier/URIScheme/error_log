@@ -1,0 +1,36 @@
+[08-Aug-2021 01:53:44 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/data.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/data.php on line 6
+[08-Aug-2021 01:53:46 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/file.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/file.php on line 6
+[08-Aug-2021 01:53:47 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/ftp.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/ftp.php on line 6
+[08-Aug-2021 01:53:47 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/http.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/http.php on line 6
+[08-Aug-2021 01:53:50 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme_http' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/https.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/https.php on line 6
+[08-Aug-2021 01:53:54 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/mailto.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/mailto.php on line 12
+[08-Aug-2021 01:53:56 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/news.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/news.php on line 6
+[08-Aug-2021 01:53:57 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/nntp.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/nntp.php on line 6
+[08-Aug-2021 01:54:01 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIScheme' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/tel.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIScheme/tel.php on line 12

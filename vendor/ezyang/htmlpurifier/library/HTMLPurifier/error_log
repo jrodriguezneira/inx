@@ -1,0 +1,16 @@
+[08-Aug-2021 01:38:49 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Definition' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/CSSDefinition.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/CSSDefinition.php on line 7
+[08-Aug-2021 01:39:44 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Definition' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLDefinition.php:26
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLDefinition.php on line 26
+[08-Aug-2021 01:41:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Definition' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIDefinition.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIDefinition.php on line 3
+[08-Aug-2021 01:41:24 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Exception' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/VarParserException.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/VarParserException.php on line 6

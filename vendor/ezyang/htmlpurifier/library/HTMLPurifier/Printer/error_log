@@ -1,0 +1,12 @@
+[08-Aug-2021 01:52:33 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Printer' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Printer/CSSDefinition.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Printer/CSSDefinition.php on line 3
+[08-Aug-2021 01:52:39 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Printer' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Printer/HTMLDefinition.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Printer/HTMLDefinition.php on line 3
+[08-Aug-2021 01:52:46 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Printer' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Printer/ConfigForm.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Printer/ConfigForm.php on line 6

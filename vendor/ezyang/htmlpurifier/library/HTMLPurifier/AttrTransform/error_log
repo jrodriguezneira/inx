@@ -1,0 +1,88 @@
+[08-Aug-2021 01:47:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Background.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Background.php on line 6
+[08-Aug-2021 01:47:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/BdoDir.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/BdoDir.php on line 8
+[08-Aug-2021 01:47:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/BgColor.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/BgColor.php on line 6
+[08-Aug-2021 01:47:30 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/BoolToCSS.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/BoolToCSS.php on line 6
+[08-Aug-2021 01:47:32 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Border.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Border.php on line 6
+[08-Aug-2021 01:47:37 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/EnumToCSS.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/EnumToCSS.php on line 7
+[08-Aug-2021 01:47:39 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/ImgSpace.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/ImgSpace.php on line 6
+[08-Aug-2021 01:47:41 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/ImgRequired.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/ImgRequired.php on line 11
+[08-Aug-2021 01:47:41 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Input.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Input.php on line 7
+[08-Aug-2021 01:47:42 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Lang.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Lang.php on line 8
+[08-Aug-2021 01:47:43 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Length.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Length.php on line 6
+[08-Aug-2021 01:47:46 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Name.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Name.php on line 6
+[08-Aug-2021 01:47:48 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/NameSync.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/NameSync.php on line 8
+[08-Aug-2021 01:47:51 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Nofollow.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Nofollow.php on line 9
+[08-Aug-2021 01:47:53 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeEmbed.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeEmbed.php on line 3
+[08-Aug-2021 01:47:54 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeObject.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeObject.php on line 6
+[08-Aug-2021 01:47:55 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeParam.php:15
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeParam.php on line 15
+[08-Aug-2021 01:47:58 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/ScriptRequired.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/ScriptRequired.php on line 6
+[08-Aug-2021 01:48:04 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/TargetBlank.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/TargetBlank.php on line 10
+[08-Aug-2021 01:48:06 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/TargetNoopener.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/TargetNoopener.php on line 12
+[08-Aug-2021 01:48:08 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/TargetNoreferrer.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/TargetNoreferrer.php on line 12
+[08-Aug-2021 01:48:09 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Textarea.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrTransform/Textarea.php on line 6

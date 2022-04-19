@@ -1,0 +1,116 @@
+[08-Aug-2021 01:49:53 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/CommonAttributes.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/CommonAttributes.php on line 3
+[08-Aug-2021 01:49:54 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Edit.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Edit.php on line 7
+[08-Aug-2021 01:49:55 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Forms.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Forms.php on line 6
+[08-Aug-2021 01:49:57 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Hypertext.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Hypertext.php on line 6
+[08-Aug-2021 01:49:58 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Bdo.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Bdo.php on line 7
+[08-Aug-2021 01:50:01 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Iframe.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Iframe.php on line 10
+[08-Aug-2021 01:50:06 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Image.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Image.php on line 8
+[08-Aug-2021 01:50:09 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Legacy.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Legacy.php on line 19
+[08-Aug-2021 01:50:11 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/List.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/List.php on line 6
+[08-Aug-2021 01:50:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Name.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Name.php on line 3
+[08-Aug-2021 01:50:15 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Nofollow.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Nofollow.php on line 7
+[08-Aug-2021 01:50:16 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Object.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Object.php on line 8
+[08-Aug-2021 01:50:17 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Presentation.php:13
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Presentation.php on line 13
+[08-Aug-2021 01:50:17 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/NonXMLCommonAttributes.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/NonXMLCommonAttributes.php on line 3
+[08-Aug-2021 01:50:20 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Proprietary.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Proprietary.php on line 7
+[08-Aug-2021 01:50:22 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Ruby.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Ruby.php on line 7
+[08-Aug-2021 01:50:23 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeEmbed.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeEmbed.php on line 6
+[08-Aug-2021 01:50:26 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeObject.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeObject.php on line 9
+[08-Aug-2021 01:50:28 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeScripting.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeScripting.php on line 7
+[08-Aug-2021 01:50:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Scripting.php:16
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Scripting.php on line 16
+[08-Aug-2021 01:50:29 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/StyleAttribute.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/StyleAttribute.php on line 7
+[08-Aug-2021 01:50:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Tables.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Tables.php on line 6
+[08-Aug-2021 01:50:33 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Target.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Target.php on line 6
+[08-Aug-2021 01:50:36 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/TargetBlank.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/TargetBlank.php on line 7
+[08-Aug-2021 01:50:40 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/TargetNoopener.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/TargetNoopener.php on line 7
+[08-Aug-2021 01:50:41 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Text.php:15
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Text.php on line 15
+[08-Aug-2021 01:50:43 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/TargetNoreferrer.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/TargetNoreferrer.php on line 7
+[08-Aug-2021 01:50:45 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy.php on line 8
+[08-Aug-2021 01:50:52 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_HTMLModule' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/XMLCommonAttributes.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/HTMLModule/XMLCommonAttributes.php on line 3

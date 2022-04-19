@@ -1,0 +1,8 @@
+[08-Aug-2021 01:36:43 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'MyCLabs\Enum\Enum' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Option/Method.php:15
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Option/Method.php on line 15
+[08-Aug-2021 01:36:48 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'MyCLabs\Enum\Enum' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Option/Version.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Option/Version.php on line 17

@@ -1,0 +1,28 @@
+[08-Aug-2021 01:54:30 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/DisableExternal.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/DisableExternal.php on line 3
+[08-Aug-2021 01:54:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter_DisableExternal' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/DisableExternalResources.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/DisableExternalResources.php on line 3
+[08-Aug-2021 01:54:41 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/DisableResources.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/DisableResources.php on line 3
+[08-Aug-2021 01:54:44 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/HostBlacklist.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/HostBlacklist.php on line 7
+[08-Aug-2021 01:54:49 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/MakeAbsolute.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/MakeAbsolute.php on line 5
+[08-Aug-2021 01:54:53 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/Munge.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/Munge.php on line 3
+[08-Aug-2021 01:54:55 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_URIFilter' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/SafeIframe.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/URIFilter/SafeIframe.php on line 9

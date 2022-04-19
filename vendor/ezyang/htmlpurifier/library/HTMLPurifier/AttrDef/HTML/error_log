@@ -1,0 +1,40 @@
+[08-Aug-2021 02:06:06 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Bool.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Bool.php on line 6
+[08-Aug-2021 02:06:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef_HTML_Nmtokens' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Class.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Class.php on line 6
+[08-Aug-2021 02:06:14 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Color.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Color.php on line 6
+[08-Aug-2021 02:06:20 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef_Enum' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/FrameTarget.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/FrameTarget.php on line 6
+[08-Aug-2021 02:06:21 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef_HTML_Pixels' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Length.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Length.php on line 10
+[08-Aug-2021 02:06:21 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/ID.php:12
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/ID.php on line 12
+[08-Aug-2021 02:06:22 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/LinkTypes.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/LinkTypes.php on line 9
+[08-Aug-2021 02:06:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef_HTML_Length' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/MultiLength.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/MultiLength.php on line 9
+[08-Aug-2021 02:06:25 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Nmtokens.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Nmtokens.php on line 6
+[08-Aug-2021 02:06:31 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_AttrDef' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Pixels.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Pixels.php on line 6

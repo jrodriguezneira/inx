@@ -1,0 +1,12 @@
+[08-Aug-2021 02:01:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\RichText\TextElement' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/RichText/Run.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/RichText/Run.php on line 7
+[08-Aug-2021 02:01:13 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'PhpOffice\PhpSpreadsheet\IComparable' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/RichText/RichText.php:9
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/RichText/RichText.php on line 9
+[08-Aug-2021 02:01:17 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'PhpOffice\PhpSpreadsheet\RichText\ITextElement' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/RichText/TextElement.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/RichText/TextElement.php on line 5

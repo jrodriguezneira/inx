@@ -1,0 +1,24 @@
+[08-Aug-2021 01:36:10 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Exception' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/EncodingException.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/EncodingException.php on line 11
+[08-Aug-2021 01:36:10 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Exception' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/FileNotFoundException.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/FileNotFoundException.php on line 11
+[08-Aug-2021 01:36:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Exception' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/FileNotReadableException.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/FileNotReadableException.php on line 11
+[08-Aug-2021 01:36:18 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Exception' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/IncompatibleOptionsException.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/IncompatibleOptionsException.php on line 11
+[08-Aug-2021 01:36:23 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Exception' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/OverflowException.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/OverflowException.php on line 11
+[08-Aug-2021 01:36:26 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'ZipStream\Exception' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/StreamNotReadableException.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/src/Exception/StreamNotReadableException.php on line 11

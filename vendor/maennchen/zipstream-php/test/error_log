@@ -1,0 +1,17 @@
+[08-Aug-2021 01:31:24 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PHPUnit\Framework\TestCase' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/BigintTest.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/BigintTest.php on line 10
+[08-Aug-2021 06:31:26 UTC] PHP Warning:  require(/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php): failed to open stream: No such file or directory in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[08-Aug-2021 06:31:26 UTC] PHP Warning:  require(/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php): failed to open stream: No such file or directory in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[08-Aug-2021 06:31:26 UTC] PHP Fatal error:  require(): Failed opening required '/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[08-Aug-2021 01:31:27 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PHPUnit\Framework\TestCase' not found in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/ZipStreamTest.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/ZipStreamTest.php on line 18
+[05-Sep-2021 22:35:57 UTC] PHP Warning:  require(/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php): failed to open stream: No such file or directory in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[05-Sep-2021 22:35:57 UTC] PHP Warning:  require(/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php): failed to open stream: No such file or directory in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[05-Sep-2021 22:35:57 UTC] PHP Fatal error:  require(): Failed opening required '/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[05-Sep-2021 22:35:57 UTC] PHP Warning:  require(/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php): failed to open stream: No such file or directory in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[05-Sep-2021 22:35:57 UTC] PHP Warning:  require(/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php): failed to open stream: No such file or directory in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6
+[05-Sep-2021 22:35:57 UTC] PHP Fatal error:  require(): Failed opening required '/home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home2/stagierv/public_html/insights/vendor/maennchen/zipstream-php/test/bootstrap.php on line 6

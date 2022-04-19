@@ -1,0 +1,8 @@
+[08-Aug-2021 01:53:11 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_TagTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/TagTransform/Font.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/TagTransform/Font.php on line 18
+[08-Aug-2021 01:53:16 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_TagTransform' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/TagTransform/Simple.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/TagTransform/Simple.php on line 8

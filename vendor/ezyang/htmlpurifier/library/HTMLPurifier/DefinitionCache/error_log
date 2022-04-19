@@ -1,0 +1,12 @@
+[08-Aug-2021 01:49:07 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_DefinitionCache' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Decorator.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Decorator.php on line 3
+[08-Aug-2021 01:49:08 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_DefinitionCache' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Null.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Null.php on line 6
+[08-Aug-2021 01:49:15 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_DefinitionCache' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer.php on line 3

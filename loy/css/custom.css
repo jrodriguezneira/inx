@@ -1,0 +1,146 @@
+.cell_price{
+padding-right: 5px;
+padding-left:5px;
+text-align: right;
+}
+.cell_price input {
+  /*  border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;*/
+    border-color: #eee;
+}
+.family{
+width:70%;
+}
+.offer{
+color:#e74a3b !important;    
+}
+.price{
+color:#1cc88a !important;
+}
+/*
+td.details-control {
+    text-align:center;
+    color:forestgreen;
+cursor: pointer;
+}
+tr.shown td.details-control {
+text-align:center; 
+color:red;
+}
+*/
+td.details-control {
+    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+    width: 30px;
+
+  }
+  
+  tr.shown td.details-control {
+    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
+  }
+  
+.spacer{
+margin-left: 20px;
+  }
+.box_link{
+color: white !important;
+}
+.oos{
+color:#eb2c4f !important;
+}
+.mobiles{
+color:#f6c23e !important;
+}
+.gaming{
+color:lime !important;
+}
+.txt_pri{
+width:80px;
+height:22px !important;
+
+}
+.date_pick{
+font-size: 13px;
+margin-left: 10px;
+color:gray;
+}
+#ro_offer{
+width: 50px;
+float: right;
+margin-left: 50px;
+margin-top: 3px;
+margin-bottom: 10px;
+}
+#rrp_update{
+    width: 50px;
+    float: left;
+    margin-left: 2px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    }
+.bg-login-image-2 {
+    background: url("https://staging-sr9-loy-ing-awsserv.site/inx/img/tesltra-rewards-400.jpg") !important;
+    background-position: center;
+    background-size: cover;
+}
+.tb_copy{
+    background: url("https://staging-sr9-loy-ing-awsserv.site/inx/loy/img/clipboard-data.svg") !important;
+    background-size: 16px;
+    height:16px;
+    width: 16px;
+    float: left;
+    margin-right:5px;
+
+}
+.tb_paste{
+    background: url("https://staging-sr9-loy-ing-awsserv.site/inx/loy/img/clipboard.svg") !important;
+    background-size: 20px;
+    height:16px;
+    width: 16px;
+    float:right;
+
+}
+.copy_paste{
+float:right;
+}
+.glyphicon-pencil{
+    background: url("https://staging-sr9-loy-ing-awsserv.site/inx/loy/img/pen.svg") !important;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased; 
+    height:16px;
+    width: 16px;
+    opacity: 0.4;
+}
+.tabledit-delete-button{
+visibility: hidden;
+}
+.cell_new_price{
+width:100px;
+height:22px;
+}
+.cell_new_price_name{
+    width:380px;
+    height:22px;
+}
+.help-block{
+color:#eb2c4f;    
+}
+.offer_text{
+float: left;
+margin-right: 10px !important;
+margin-top: 5px !important;
+}
+.txt_new_rrp{
+float: left;
+}
+.chk_rrp{
+float: left;   
+}

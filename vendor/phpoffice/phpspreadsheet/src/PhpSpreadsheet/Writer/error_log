@@ -1,0 +1,32 @@
+[08-Aug-2021 02:02:36 America/Chicago] PHP Fatal error:  Uncaught Error: Interface 'PhpOffice\PhpSpreadsheet\Writer\IWriter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/BaseWriter.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/BaseWriter.php on line 5
+[08-Aug-2021 02:02:43 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Writer\BaseWriter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Csv.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Csv.php on line 8
+[08-Aug-2021 02:02:44 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Exception' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Exception.php:7
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Exception.php on line 7
+[08-Aug-2021 02:02:46 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Writer\BaseWriter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Html.php:28
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Html.php on line 28
+[08-Aug-2021 02:02:50 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Writer\BaseWriter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Ods.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Ods.php on line 18
+[08-Aug-2021 02:02:56 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Writer\Html' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Pdf.php:10
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Pdf.php on line 10
+[08-Aug-2021 02:02:56 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Writer\BaseWriter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls.php:30
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls.php on line 30
+[08-Aug-2021 02:03:03 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'PhpOffice\PhpSpreadsheet\Writer\BaseWriter' not found in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx.php:36
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx.php on line 36

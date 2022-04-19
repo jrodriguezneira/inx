@@ -1,0 +1,12 @@
+[08-Aug-2021 01:51:45 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Lexer' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Lexer/DOMLex.php:27
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Lexer/DOMLex.php on line 27
+[08-Aug-2021 01:51:52 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Lexer' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Lexer/DirectLex.php:13
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Lexer/DirectLex.php on line 13
+[08-Aug-2021 01:51:57 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_Lexer_DOMLex' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Lexer/PH5P.php:13
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/Lexer/PH5P.php on line 13

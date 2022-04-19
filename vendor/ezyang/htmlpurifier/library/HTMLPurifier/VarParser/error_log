@@ -1,0 +1,8 @@
+[08-Aug-2021 01:54:11 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_VarParser' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/VarParser/Flexible.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/VarParser/Flexible.php on line 8
+[08-Aug-2021 01:54:12 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'HTMLPurifier_VarParser' not found in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/VarParser/Native.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/stagierv/public_html/insights/vendor/ezyang/htmlpurifier/library/HTMLPurifier/VarParser/Native.php on line 8
