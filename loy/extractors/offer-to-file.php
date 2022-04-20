@@ -80,7 +80,7 @@ $sheet = $spreadsheet->getActiveSheet();
 
     ];
     //////Format fot table headers /////////////////////////////////////////
-
+   
     //Divide received array to loop through each sku
     $skus=explode('&',$prod);
     // Count the skus
@@ -214,22 +214,25 @@ $writer = new Xlsx($spreadsheet);
 // Save .xlsx file to the files directory 
 $filename="offer.xlsx";
 $writer->save($filename);  
-
+echo "test";
 ?>
 <script>
 //Obtain filename
 var flname="<?php echo $filename;?>";
 //Set filepath
 var url = "<?php echo $_SERVER['HTTP_HOST']; ?>";
-var urlx= 'https://' + url + '/stge/loy/' + flname;
+var urlx= 'http://' + url + '/inx/loy/' + flname;
 console.log(urlx);
 //Function to download the file
 download(urlx , flname);
 </script>
 
 <?php
-echo $_SERVER['PHP_SELF'];
-}
+ 
+echo $_SERVER['PHP_SELF'] . "<br>";
+echo $_SERVER['HTTP_HOST']. "<br>";
+echo $_SERVER["DOCUMENT_ROOT"]; 
+//echo dirname($_SERVER['PHP_SELF']);
 // End Function to create sales format file ////////////////////////////////////
 
 
