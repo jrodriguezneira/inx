@@ -220,12 +220,13 @@ $writer->save($filename);
 //Obtain filename
 var flname="<?php echo $filename;?>";
 //Set filepath
-var urlx= 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/' + flname;
+var urlx= "<?php echo $_SERVER['HTTP_HOST'];?>" + flname;
 //Function to download the file
 download(urlx , flname);
 </script>
 
 <?php
+echo $_SERVER['HTTP_HOST'];
 }
 // End Function to create sales format file ////////////////////////////////////
 
