@@ -101,7 +101,7 @@
                 $prod .= $skus;
                 }
                 //Temporary display the array 
-              // echo '<br>Prod'. $prod. "<br><br><br>";
+               echo '<br>Prod'. $prod. "<br><br><br>";
                
 
 
