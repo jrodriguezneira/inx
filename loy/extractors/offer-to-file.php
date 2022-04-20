@@ -228,7 +228,7 @@ download(urlx , flname);
 </script>
 
 <?php
-echo $_SERVER['HTTP_HOST'];
+echo $_SERVER['PHP_SELF'];
 }
 // End Function to create sales format file ////////////////////////////////////
 
