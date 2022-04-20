@@ -220,7 +220,8 @@ $writer->save($filename);
 //Obtain filename
 var flname="<?php echo $filename;?>";
 //Set filepath
-var urlx= 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/' + flname;
+var urlx= 'http://localhost/inx/loy/' + flname;
+console.log(urlx);
 //Function to download the file
 download(urlx , flname);
 </script>
