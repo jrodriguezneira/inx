@@ -1,4 +1,4 @@
-<?
+<?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
 $sql="select sku,name,category,rrp,stock,price from products_last where  segment='LOYALTY_CON' order by rrp,category;";

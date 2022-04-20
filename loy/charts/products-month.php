@@ -10,6 +10,7 @@ $stats.=$row['total'].",";
 $months.="\"".$row['months']."\",";
 }
 $cat=substr($stats, 0, -1); 
+echo $cat;
 $mon=substr($months, 0, -1); 
 ?>
 

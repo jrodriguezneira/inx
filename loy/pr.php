@@ -261,9 +261,9 @@
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
                                             <?php 
-                                            echo "<a class='dropdown-item' href=\"https://staging-sr9-loy-ing-awsserv.site/inx/loy/pr.php?text_sku_search=".$sku."&flag=loy_points_history\">History</a>";
+                                            echo "<a class='dropdown-item' href=\"pr.php?text_sku_search=".$sku."&flag=loy_points_history\">History</a>";
                                             
-                                            echo "<a class='dropdown-item' href=\"https://staging-sr9-loy-ing-awsserv.site/inx/loy/pr.php?text_sku_search=".$sku."&flag=close&history=enabled\">Export</a>";
+                                            echo "<a class='dropdown-item' href=\"pr.php?text_sku_search=".$sku."&flag=close&history=enabled\">Export</a>";
                                             ?>
                                             
                                             </div>
@@ -316,7 +316,7 @@
                                            else{
                                             echo $stock;
                                            }
-                                            echo "<a class='box_link' href=\"https://staging-sr9-loy-ing-awsserv.site/inx/loy/pr.php?text_sku_search=".$sku."&flag=stock\"> (History)</a>";
+                                            echo "<a class='box_link' href=\"pr.php?text_sku_search=".$sku."&flag=stock\"> (History)</a>";
                                             ?> 
                                             
                                             <div class="text-black-50 small">

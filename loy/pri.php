@@ -190,7 +190,7 @@ function format(d) {
 
 $(document).ready(function() {
   var table = $('#example').DataTable({
-    'ajax': 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/price_json.php',
+    'ajax': 'price_json.php',
     'columns': [{
         'className': 'details-control',
         'orderable': false,

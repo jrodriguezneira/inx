@@ -185,7 +185,7 @@ function format(d) {
 
 $(document).ready(function() {
   var table = $('#example').DataTable({
-    'ajax': 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/cat_json.php',
+    'ajax': 'cat_json.php',
     'columns': [{
         'className': 'details-control',
         'orderable': false,

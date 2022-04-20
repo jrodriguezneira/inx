@@ -126,16 +126,16 @@ echo "<table border=0 cellpadding=3 cellspacing=3>";
     $product = explode('*',$element);
         switch($type){
             case "results":
-            echo "<td><a href='https://staging-sr9-loy-ing-awsserv.site/inx/loy/pr.php?text_sku_search=$product[0]&flag=close'>".$product[1]."</a></td>";
+            echo "<td><a href='pr.php?text_sku_search=$product[0]&flag=close'>".$product[1]."</a></td>";
             break;
             case "loy_points_history":
             echo "<td><p><a href='#' class='tooltip-test' title=\"$product[1]\">$product[0]</a></td>";
             break;
             case "stocks":
-            echo "<td><a href='https://staging-sr9-loy-ing-awsserv.site/inx/loy/pr.php?text_sku_search=$product[0]&flag=close'>".$product[0]." ".$product[1]."</a></td>";
+            echo "<td><a href='pr.php?text_sku_search=$product[0]&flag=close'>".$product[0]." ".$product[1]."</a></td>";
             break;
             default:
-            echo "<td><a href='https://staging-sr9-loy-ing-awsserv.site/inx/loy/pr.php?text_sku_search=$product[0]&flag=close'>".$product[1]."</a></td>";
+            echo "<td><a href='pr.php?text_sku_search=$product[0]&flag=close'>".$product[1]."</a></td>";
             break;
         }      
     echo "</tr>";     

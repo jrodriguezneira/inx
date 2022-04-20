@@ -59,7 +59,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><b>Products</b> </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> <?php echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
+                                class="fas fa-download fa-sm text-white-50"></i> <?php echo get_trend('date_last'); ?></a>
                     </div>
 
                     <!-- Content Row -->
@@ -196,7 +196,7 @@ function format(d) {
 
 $(document).ready(function() {
   var table = $('#example').DataTable({
-    'ajax': 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/pro_json.php',
+    'ajax': 'pro_json.php',
     'columns': [{
         'className': 'select-checkbox',
         'orderable': false,
@@ -246,7 +246,7 @@ $(document).ready(function() {
        skus += 'sku' + order_array.indexOf(table.rows('.selected').data()[i].sku) + '=' + table.rows('.selected').data()[i].sku + '*' + table.rows('.selected').data()[i].stock + '&';
     }
     
-    var url = 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/off-cr.php?' + skus + 'q=' + table.rows('.selected').data().length;
+    var url = 'off-cr.php?' + skus + 'q=' + table.rows('.selected').data().length;
     console.log( url ); 
     window.location.href = url;
   } );

@@ -1,4 +1,4 @@
-<?
+<?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
 $sql=" select distinct category,name FROM products_last where name <> 'Delivery Fee' order by category;";

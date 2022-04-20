@@ -15,7 +15,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <a class="nav-link" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/dh.php">
+    <a class="nav-link" href="dh.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -39,9 +39,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Products:</h6>
-                        <a class="collapse-item" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/pro.php">Products</a>
-                        <a class="collapse-item" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/newpro.php">New products</a>
-                        <a class="collapse-item" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/pro_pri.php">Product Pricing</a> 
+                        <a class="collapse-item" href="pro.php">Products</a>
+                        <a class="collapse-item" href="newpro.php">New products</a>
+                        <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
                     </div>
                 </div>
             </li>
@@ -50,13 +50,13 @@
 
 
 <li class="nav-item active">
-    <a class="nav-link" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/cat.php">
+    <a class="nav-link" href="cat.php">
     <i class="fas fa-fw fa-chart-area"></i>
         <span>Categories</span></a>
 </li>
 
 <li class="nav-item active">
-    <a class="nav-link" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/fam.php">
+    <a class="nav-link" href="fam.php">
     <i class="fas fa-fw fa-wrench"></i>
         <span>Families</span></a>
 </li>
@@ -73,7 +73,7 @@
 
 
 <li class="nav-item active">
-    <a class="nav-link" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/stk.php">
+    <a class="nav-link" href="stk.php">
     <i class="fas fa-fw fa-folder"></i>
         <span>Stocks</span></a>
 </li>
@@ -82,13 +82,13 @@
 
 
 <li class="nav-item active">
-    <a class="nav-link" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/off.php">
+    <a class="nav-link" href="off.php">
     <i class="fas fa-fw fa-chart-area"></i>
         <span>Offers</span></a>
 </li>
 
 <li class="nav-item active">
-    <a class="nav-link" href="https://staging-sr9-loy-ing-awsserv.site/inx/loy/pri.php">
+    <a class="nav-link" href="pri.php">
     <i class="fas fa-fw fa-table"></i>
         <span>Prices</span></a>
 </li>

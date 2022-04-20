@@ -334,7 +334,7 @@ function Create_File(target){
       } 
     // Append number of skus to offer URL (skus array) and export file type(target)
     prod= 'i=' + i + '&' + prod;
-    var url = 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/off-cr1.php?' + prod + 'target=' + target;
+    var url = 'off-cr1.php?' + prod + 'target=' + target;
     console.log("Prod" + prod);
     console.log("target" + target);
     window.open(url, '_blank'); 

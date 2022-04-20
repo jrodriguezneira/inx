@@ -8,7 +8,7 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_products="select count(sku) from products_last where segment='LOYALTY_CON'";
     $sql_prod_dv="select sku from products_last where segment='LOYALTY_DV' and sku=$sku limit 1";
     $sql_prod_smb="select sku from products_last where segment='LOYALTY_SMB' and sku=$sku limit 1";
-    $sql_offer_oos ="select sku from products_last where segment = 'LOYALTY_CON' and offer ='Hot Offer' and stock ='Out Of Stock';";
+    $sql_offer_oos ="select count(sku) from products_last where segment = 'LOYALTY_CON' and offer ='Hot Offer' and stock ='Out Of Stock';";
     $sql_offers="select count(sku) from products_last where offer = 'Hot Offer' and segment='LOYALTY_CON';";
     $sql_ro="select count(sku) from products_last where ro <> '[]' and segment='LOYALTY_CON';";
     $sql_oos="select count(sku) from products_last where stock = 'Out of Stock' and segment='LOYALTY_CON';";

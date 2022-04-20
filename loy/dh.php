@@ -303,11 +303,9 @@
                                 <div class="card-body">
 
                                 <?php
-                                $off_oos=get_trend("offer_oos","","");
-                                if(!empty($off_oos)){
-                                $of_os=explode("*",$off_oos);
-                                $count= count($of_os) -1;
-                                echo "<p>There are <a style='color=red; 'href='https://staging-sr9-loy-ing-awsserv.site/inx/loy/off.php'>". $count. " </a> offers with no stock </p>";
+                                $off_oos=get_trend("offer_oos");
+                                if($off_oos>0){                    
+                                echo "<p>There are <a style='color=red; 'href='https://staging-sr9-loy-ing-awsserv.site/inx/loy/off.php'>". $off_oos. " </a> offers with no stock </p>";
                                 }
                                 ?>
                                     
