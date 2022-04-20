@@ -4,19 +4,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
-<<<<<<< HEAD
-echo "test"  asdasdasd
-if
-=======
 
-//Crate URL for current directory
-$prot= $_SERVER['HTTP_REFERER'];
-$prot1= explode(":",$prot);
-$dir=  $_SERVER['PHP_SELF'];
-$dir1=explode("/",$dir);
-$url= $prot1[0]."://". $_SERVER['HTTP_HOST']."/".$dir1[1]."/".$dir1[2]."/";
-
->>>>>>> local
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
     
@@ -221,11 +209,7 @@ $sheet = $spreadsheet->getActiveSheet();
     //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
     $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
     }
-<<<<<<< HEAD
-    
-=======
-    //echo "test";  
->>>>>>> local
+
 // Write an .xlsx file  
 $writer = new Xlsx($spreadsheet); 
 // Save .xlsx file to the files directory 
@@ -237,12 +221,7 @@ echo $url;
 //Obtain filename
 var flname="<?php echo $filename;?>";
 //Set filepath
-<<<<<<< HEAD
-var url = "<?php echo $_SERVER['HTTP_HOST']; ?>";
-var urlx= 'http://' + url + '/inx/loy/' + flname;
-=======
 var urlx= flname;
->>>>>>> local
 console.log(urlx);
 //Function to download the file
 download(urlx , flname);
