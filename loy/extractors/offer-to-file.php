@@ -4,10 +4,11 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
-
+echo "test" ;
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
-    echo "test";
+    
+   
 // Creates New Spreadsheet 
 $spreadsheet = new Spreadsheet(); 
   
@@ -229,8 +230,8 @@ download(urlx , flname);
 
 <?php
  
-echo $_SERVER['PHP_SELF'] . "<br>";
-echo $_SERVER['HTTP_HOST']. "<br>";
+//echo $_SERVER['PHP_SELF'] . "<br>";
+//echo $_SERVER['HTTP_HOST']. "<br>";
 //echo $_SERVER["DOCUMENT_ROOT"]; 
 //echo dirname($_SERVER['PHP_SELF']);
 // End Function to create sales format file ////////////////////////////////////

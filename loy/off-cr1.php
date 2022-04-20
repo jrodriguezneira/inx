@@ -1,6 +1,7 @@
 <?php include 'business/trends.php'; ?>
 <?php include 'business/read_trends.php'; ?>
 <?php include 'business/create_trends.php'; ?>
+<?php //include 'extractors/offer-to-file.php'; ?>
 
 
 <head>
@@ -103,9 +104,10 @@
                 //Temporary display the array 
               echo '<br>Prod'. $prod. "<br><br><br>";
                
+              //echo "test";
 
-
-                include 'extractors/offer-to-file.php'; 
+              include 'extractors/offer-to-file.php';
+                
 
                 switch ($target) {
                     case offer:
