@@ -4,7 +4,8 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
-echo "test" ;
+echo "test"  asdasdasd
+if
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
     
