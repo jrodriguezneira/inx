@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
-
+    echo "test";
 // Creates New Spreadsheet 
 $spreadsheet = new Spreadsheet(); 
   
@@ -208,13 +208,13 @@ $sheet = $spreadsheet->getActiveSheet();
     //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
     $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
     }
-
+    
 // Write an .xlsx file  
 $writer = new Xlsx($spreadsheet); 
 // Save .xlsx file to the files directory 
 $filename="offer.xlsx";
 $writer->save($filename);  
-echo "test";
+
 ?>
 <script>
 //Obtain filename
@@ -231,7 +231,7 @@ download(urlx , flname);
  
 echo $_SERVER['PHP_SELF'] . "<br>";
 echo $_SERVER['HTTP_HOST']. "<br>";
-echo $_SERVER["DOCUMENT_ROOT"]; 
+//echo $_SERVER["DOCUMENT_ROOT"]; 
 //echo dirname($_SERVER['PHP_SELF']);
 // End Function to create sales format file ////////////////////////////////////
 
