@@ -220,7 +220,7 @@ $writer->save($filename);
 //Obtain filename
 var flname="<?php echo $filename;?>";
 //Set filepath
-var urlx= "<?php echo $_SERVER['HTTP_HOST'];?>" + '/inx/loy/' + flname;
+var urlx= 'localhost/inx/loy/' + flname
 //Function to download the file
 download(urlx , flname);
 </script>
