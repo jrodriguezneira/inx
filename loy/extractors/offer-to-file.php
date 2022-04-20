@@ -221,7 +221,7 @@ $writer->save($filename);
 var flname="<?php echo $filename;?>";
 //Set filepath
 var url = "<?php echo $_SERVER['HTTP_HOST']; ?>";
-var urlx= url + '/stg/loy/' + flname;
+var urlx= 'https://' + url + '/stge/loy/' + flname;
 console.log(urlx);
 //Function to download the file
 download(urlx , flname);
