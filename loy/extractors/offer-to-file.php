@@ -5,6 +5,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
+//Crate URL for current directory
+$prot= $_SERVER['HTTP_REFERER'];
+$prot1= explode(":",$prot);
+$dir=  $_SERVER['PHP_SELF'];
+$dir1=explode("/",$dir);
+$url= $prot1[0]."://". $_SERVER['HTTP_HOST']."/".$dir1[1]."/".$dir1[2]."/";
+
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
 
@@ -214,13 +221,13 @@ $writer = new Xlsx($spreadsheet);
 // Save .xlsx file to the files directory 
 $filename="offer.xlsx";
 $writer->save($filename);  
-
+echo $url;
 ?>
 <script>
 //Obtain filename
 var flname="<?php echo $filename;?>";
 //Set filepath
-var urlx= 'http://localhost/inx/loy/' + flname;
+var urlx= flname;
 console.log(urlx);
 //Function to download the file
 download(urlx , flname);
@@ -303,7 +310,7 @@ function create_shop_file($prod){
         //Obtain filename
         var flname="<?php echo $filename;?>";
         //Set filepath
-        var urlx= 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/' + flname;
+        var urlx= flname;
         //Function to download the file
         download(urlx , flname);
         </script>
@@ -359,7 +366,7 @@ function create_stock_file($prod){
         //Obtain filename
         var flname="<?php echo $filename;?>";
         //Set filepath
-        var urlx= 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/' + flname;
+        var urlx= flname;
         //Function to download the file
         download(urlx , flname);
         </script>
@@ -531,7 +538,7 @@ function create_product_file($prod){
     //Obtain filename
     var flname="<?php echo $filename;?>";
     //Set filepath
-    var urlx= 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/' + flname;
+    var urlx= flname;
     //Function to download the file
     download(urlx , flname);
     </script>
