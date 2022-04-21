@@ -544,20 +544,7 @@ function create_product_file($prod){
     <?php
     }
     // End Function to create sales format file ////////////////////////////////////
-
-
-
 ?>
-
-
-
-
-
-
-
-
-
-
 <script>
 //Function to create a temporary link, click it download the file and remove the link //////////////////////
 const download = (path, filename) => {
@@ -574,10 +561,3 @@ const download = (path, filename) => {
 }; 
 // End Function to create a temporary link, click it download the file and remove the link ////////////////////
 </script>
-
-
-
-
-
-
-
