@@ -537,7 +537,7 @@ function create_product_file($prod){
     var flname="<?php echo $filename;?>";
     //Set filepath
     var urlx= flname;
-    //Function to download the file
+    //Function to download the file 
     download(urlx , flname);
     </script>
     
