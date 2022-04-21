@@ -209,7 +209,7 @@ $sheet = $spreadsheet->getActiveSheet();
     //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
     $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
     }
-    echo $url;
+
 // Write an .xlsx file  
 $writer = new Xlsx($spreadsheet); 
 // Save .xlsx file to the files directory 
