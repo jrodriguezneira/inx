@@ -232,7 +232,6 @@ download(urlx , flname);
 </script>
 
 <?php
-<<<<<<< HEAD
  
 // Function to create shop format file ////////////////////////////////////
 function create_shop_file($prod){
@@ -542,13 +541,6 @@ function create_product_file($prod){
     <?php
     }
     // End Function to create sales format file ////////////////////////////////////
-=======
-}
-// End Function to create sales format file ////////////////////////////////////
-
-
-
->>>>>>> local
 ?>
 <script>
 //Function to create a temporary link, click it download the file and remove the link //////////////////////
