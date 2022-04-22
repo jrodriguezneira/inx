@@ -5,16 +5,16 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 //Crate URL for current directory
-echo "hola";
+
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
     
    
-// Creates New Spreadsheet  
-$spreadsheet = new Spreadsheet(); 
-  
-// Retrieve the current active worksheet 
-$sheet = $spreadsheet->getActiveSheet(); 
+    // Creates New Spreadsheet  
+    $spreadsheet = new Spreadsheet(); 
+    
+    // Retrieve the current active worksheet 
+    $sheet = $spreadsheet->getActiveSheet(); 
 
     //Format for table headers ///////
     $tablehead= [
@@ -92,55 +92,55 @@ $sheet = $spreadsheet->getActiveSheet();
     //Loop through skus
     for ($i = 0; $i < $z; $i++) {
 
-    //Obtain details for each sku
-    $tier = explode('*',$skus[$i]);
+        //Obtain details for each sku
+        $tier = explode('*',$skus[$i]);
 
-    //Set Name
-    $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[9]);
-    $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[9]);
-    $sheet->getColumnDimension('B')->setWidth(50);
-    //Set SKU
-    $sheet->setCellValueByColumnAndRow(3,$tot_tiers+1,"Inventory ID");
-    $sheet->setCellValueByColumnAndRow(3,$tot_tiers+2,$tier[0]);
-    $sheet->getColumnDimension('C')->setWidth(15);
-    //Set RRP
-    $sheet->setCellValueByColumnAndRow(4,$tot_tiers+1,"RRP(Inc GST)");
-    $sheet->setCellValueByColumnAndRow(4,$tot_tiers+2,$tier[1]);
-    $sheet->getColumnDimension('D')->setWidth(15);
-    // Pricing Type
-    $sheet->setCellValueByColumnAndRow(5,$tot_tiers+1,"Pricing Type");
-    $sheet->setCellValueByColumnAndRow(5,$tot_tiers+2,"Persistant");
-    $sheet->getColumnDimension('E')->setWidth(15);
-    // Pricing 
-    $sheet->setCellValueByColumnAndRow(6,$tot_tiers+1,"Points");
-    $sheet->setCellValueByColumnAndRow(7,$tot_tiers+1,"Pay(inc GST)");
-    $sheet->getColumnDimension('F')->setWidth(15);
-    $sheet->getColumnDimension('G')->setWidth(15);
-    //Apply format to header for each sku
-    $header1="B" . strval($tot_tiers+1) . ':J' . strval($tot_tiers+1);
-    $header2="L" . strval($tot_tiers+1) . ':N' . strval($tot_tiers+1);
-    $sheet->getStyle("$header1")->applyFromArray($tablehead);
-    $sheet->getStyle("$header2")->applyFromArray($tablehead2);
-    //Get RO options
-    $ro= $tier[11];
-    if($ro==1){
-        $ro_des="Yes";
-    }else{
-        $ro_12_mon="-";
-        $ro_24_mon="-";
-        $ro_des="No"; 
-    }
-    //Set RRP
-    $rrp_old= $tier[6];
-    if($rrp_old =="false"){
-        $rrp = $tier[10];
+        //Set Name
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[9]);
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[9]);
+        $sheet->getColumnDimension('B')->setWidth(50);
+        //Set SKU
+        $sheet->setCellValueByColumnAndRow(3,$tot_tiers+1,"Inventory ID");
+        $sheet->setCellValueByColumnAndRow(3,$tot_tiers+2,$tier[0]);
+        $sheet->getColumnDimension('C')->setWidth(15);
+        //Set RRP
+        $sheet->setCellValueByColumnAndRow(4,$tot_tiers+1,"RRP(Inc GST)");
+        $sheet->setCellValueByColumnAndRow(4,$tot_tiers+2,$tier[1]);
+        $sheet->getColumnDimension('D')->setWidth(15);
+        // Pricing Type
+        $sheet->setCellValueByColumnAndRow(5,$tot_tiers+1,"Pricing Type");
+        $sheet->setCellValueByColumnAndRow(5,$tot_tiers+2,"Persistant");
+        $sheet->getColumnDimension('E')->setWidth(15);
+        // Pricing 
+        $sheet->setCellValueByColumnAndRow(6,$tot_tiers+1,"Points");
+        $sheet->setCellValueByColumnAndRow(7,$tot_tiers+1,"Pay(inc GST)");
+        $sheet->getColumnDimension('F')->setWidth(15);
+        $sheet->getColumnDimension('G')->setWidth(15);
+        //Apply format to header for each sku
+        $header1="B" . strval($tot_tiers+1) . ':J' . strval($tot_tiers+1);
+        $header2="L" . strval($tot_tiers+1) . ':N' . strval($tot_tiers+1);
+        $sheet->getStyle("$header1")->applyFromArray($tablehead);
+        $sheet->getStyle("$header2")->applyFromArray($tablehead2);
+        //Get RO options
+        $ro= $tier[11];
+        if($ro==1){
+            $ro_des="Yes";
         }else{
-        $rrp = $tier[1];
-    }
+            $ro_12_mon="-";
+            $ro_24_mon="-";
+            $ro_des="No"; 
+        }
+        //Set RRP
+        $rrp_old= $tier[6];
+        if($rrp_old =="false"){
+            $rrp = $tier[10];
+            }else{
+            $rrp = $tier[1];
+        }
       
           // Obtain points and tiers from current pricing array
           $tier1 = explode(',',$tier[8]);        
-          foreach( $tier1 as $key=>$element) {     
+        foreach( $tier1 as $key=>$element) {     
               
             //Repeat Name
             $sheet->setCellValueByColumnAndRow(2,$tot_tiers+$key+2,$tier[9]);
@@ -175,59 +175,58 @@ $sheet = $spreadsheet->getActiveSheet();
             else{$header_color=$tablehead3;}  
             $sheet->getStyle("$cell_ro")->applyFromArray($header_color);
             $sheet->getStyle("$cell_ro")->getAlignment()->setHorizontal('center');
-
-
-
-
-          }
-      //Set 12 and 24 months values
-      $dates = explode(',',$tier[4]);
-      $sheet->setCellValueByColumnAndRow(8,$tot_tiers+1,"12mth price");
-      $sheet->getColumnDimension('H')->setWidth(15);
-      $sheet->setCellValueByColumnAndRow(9,$tot_tiers+1,"24mth price");
-      $sheet->getColumnDimension('I')->setWidth(15);
-      //Set HRO
-      $sheet->setCellValueByColumnAndRow(10,$tot_tiers+1,"HRO");
-      $sheet->getColumnDimension('J')->setWidth(15);
-      //Set New RRP
-      $sheet->setCellValueByColumnAndRow(12,$tot_tiers+1,"RRP");
-      $sheet->getColumnDimension('L')->setWidth(15);
-      //Set New Pricing
-      $sheet->setCellValueByColumnAndRow(13,$tot_tiers+1,"Points");
-      $sheet->setCellValueByColumnAndRow(14,$tot_tiers+1,"Pay");
+        }
+        //Set 12 and 24 months values
+        $dates = explode(',',$tier[4]);
+        $sheet->setCellValueByColumnAndRow(8,$tot_tiers+1,"12mth price");
+        $sheet->getColumnDimension('H')->setWidth(15);
+        $sheet->setCellValueByColumnAndRow(9,$tot_tiers+1,"24mth price");
+        $sheet->getColumnDimension('I')->setWidth(15);
+        //Set HRO
+        $sheet->setCellValueByColumnAndRow(10,$tot_tiers+1,"HRO");
+        $sheet->getColumnDimension('J')->setWidth(15);
+        //Set New RRP
+        $sheet->setCellValueByColumnAndRow(12,$tot_tiers+1,"RRP");
+        $sheet->getColumnDimension('L')->setWidth(15);
+        //Set New Pricing
+        $sheet->setCellValueByColumnAndRow(13,$tot_tiers+1,"Points");
+        $sheet->setCellValueByColumnAndRow(14,$tot_tiers+1,"Pay");
         // Obtain points and tiers from new pricing array
         $tier2 = explode(',',$tier[3]);
         foreach( $tier2 as $key=>$element) {
 
-        //Repeat new or old RRP depending on checkbox selection
-        $sheet->setCellValueByColumnAndRow(12,$tot_tiers+$key+2,$rrp);
-        //Set points and pay
-        $j=13; // Column Start
-        $tier_price = explode('-',$element);
-        $sheet->setCellValueByColumnAndRow($j,$tot_tiers + $key+2,(int)$tier_price[0]);
-        $sheet->setCellValueByColumnAndRow($j+1,$tot_tiers + $key+2,(int)$tier_price[1]);
+            //Repeat new or old RRP depending on checkbox selection
+            $sheet->setCellValueByColumnAndRow(12,$tot_tiers+$key+2,$rrp);
+            //Set points and pay
+            $j=13; // Column Start
+            $tier_price = explode('-',$element);
+            $sheet->setCellValueByColumnAndRow($j,$tot_tiers + $key+2,(int)$tier_price[0]);
+            $sheet->setCellValueByColumnAndRow($j+1,$tot_tiers + $key+2,(int)$tier_price[1]);
         }
-    //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
-    $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
+        //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
+        $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
     }
-// Write an .xlsx file  
-$writer = new Xlsx($spreadsheet); 
-// Save .xlsx file to the files directory 
-$filename="offer.xlsx";
-$writer->save($filename);  
 
-?>
-<script>
-//Obtain filename
-var flname="<?php echo $filename;?>";
-//Set filepath
-var urlx= flname;
-console.log(urlx);
-//Function to download the file
-download(urlx , flname);
-</script>
+    // Write an .xlsx file  
+    $writer = new Xlsx($spreadsheet); 
+    // Save .xlsx file to the files directory 
+    $filename="offer.xlsx";
+    $writer->save($filename);  
+
+    ?>
+    <script>
+    //Obtain filename
+    var flname="<?php echo $filename;?>";
+    //Set filepath
+    var urlx= flname;
+    console.log(urlx);
+    //Function to download the file
+    download(urlx , flname);
+    </script>
 
 <?php
+}
+//End Function
  
 // Function to create shop format file ////////////////////////////////////
 function create_shop_file($prod){
@@ -366,7 +365,7 @@ function create_stock_file($prod){
 //  End Function to create stock format file ////////////////////////////////////
 
 
-// Function to create sales format file ////////////////////////////////////
+// Function to create new product format file ////////////////////////////////////
 function create_product_file($prod){ 
 
     // Creates New Spreadsheet 
