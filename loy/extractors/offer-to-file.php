@@ -5,11 +5,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 //Crate URL for current directory
-$prot= $_SERVER['HTTP_REFERER'];
-$prot1= explode(":",$prot);
-$dir=  $_SERVER['PHP_SELF'];
-$dir1=explode("/",$dir);
-$url= $prot1[0]."://". $_SERVER['HTTP_HOST']."/".$dir1[1]."/".$dir1[2]."/";
+echo "hola";
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
     
