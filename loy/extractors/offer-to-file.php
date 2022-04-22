@@ -4,12 +4,17 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
-
+//Crate URL for current directory
+$prot= $_SERVER['HTTP_REFERER'];
+$prot1= explode(":",$prot);
+$dir=  $_SERVER['PHP_SELF'];
+$dir1=explode("/",$dir);
+$url= $prot1[0]."://". $_SERVER['HTTP_HOST']."/".$dir1[1]."/".$dir1[2]."/";
 // Function to create sales format file ////////////////////////////////////
 function create_offer_file($prod){ 
     
    
-// Creates New Spreadsheet 
+// Creates New Spreadsheet  
 $spreadsheet = new Spreadsheet(); 
   
 // Retrieve the current active worksheet 
@@ -227,6 +232,7 @@ download(urlx , flname);
 </script>
 
 <?php
+<<<<<<< HEAD
  
 // Function to create shop format file ////////////////////////////////////
 function create_shop_file($prod){
@@ -536,6 +542,13 @@ function create_product_file($prod){
     <?php
     }
     // End Function to create sales format file ////////////////////////////////////
+=======
+}
+// End Function to create sales format file ////////////////////////////////////
+
+
+
+>>>>>>> local
 ?>
 <script>
 //Function to create a temporary link, click it download the file and remove the link //////////////////////
