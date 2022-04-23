@@ -152,46 +152,24 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
      var tiersdiv= tiers-3;   
      var tier_change;
      var tier_gap;
-     var tier;
+     var tier_array=[];
+     var tier_change=[];
       //Temporary fixer for increment of 2500 or even number of tiers?
       var fix=0;
       if(inc==2500){fix=inc;}
-      //Calculator for different tier change combinations (to be replaced with arrays)
-      var tier_gap_0 = top_tier- ((((inc/2)*tiersdiv) + (bottom_tier*2)));
-      tier_change_0= (inc/2) + "-" + (tiers-2);
-
-      var tier_gap_1 = top_tier- (((inc*tiersdiv) + (bottom_tier*2)));
-      tier_change_1= inc + "-" + (tiers-2);
-   
-      var tier_gap_2 = top_tier- ((((inc*2) * 2) + (inc* (tiersdiv-2))));
-      tier_change_2= (inc*2) + "-" + 2 + "," + inc + "-" + (tiers-2);
-
-      var tier_gap_3 = top_tier- ( ((inc*2)* 3) + (inc* (tiersdiv-3)) + fix );
-      tier_change_3= (inc*2) + "-" + 3 + "," + inc + "-" + (tiersdiv-3);
-      
-      var tier_gap_4 = top_tier- ( ((inc*2)* 4) + (inc* (tiersdiv-4)) + fix );
-      tier_change_4= (inc*2) + "-" + 4 + "," + inc + "-" + (tiersdiv-4);
-
-      var tier_gap_5 = top_tier- ( ((inc*2)* 5) + (inc* (tiersdiv-5)) + fix );
-      tier_change_5= (inc*2) + "-" + 5 + "," + inc + "-" + (tiersdiv-5);
-
-      var tier_gap_6 = top_tier- ( ((inc*2)* 6) + (inc* (tiersdiv-6)) + fix );
-      tier_change_6= (inc*2) + "-" + 6 + "," + inc + "-" + (tiersdiv-6);
-
-      var tier_gap_7 = top_tier- ( ((inc*2)* 7) + (inc* (tiersdiv-7)) + fix );
-      tier_change_7= (inc*2) + "-" + 7 + "," + inc + "-" + (tiersdiv-7);
-
-      var tier_gap_8 = top_tier- ( ((inc*2)* 8) + (inc* (tiersdiv-8)) + fix );
-      tier_change_8= (inc*2) + "-" + 8 + "," + inc + "-" + (tiersdiv-8);
-
-      var tier_gap_9 = top_tier- ( ((inc*2)* 9) + (inc* (tiersdiv-9)) + fix );
-      tier_change_9= (inc*2) + "-" + 9 + "," + inc + "-" + (tiersdiv-9);
-
-      var tier_gap_10 = top_tier- ( ((inc*2)* 10) + (inc* (tiersdiv-10)) + fix );
-      tier_change_10= (inc*2) + "-" + 10 + "," + inc + "-" + (tiersdiv-10);
-  
-   //Array containing tier combinations to fulfill points pricing 
-   var tier_array = [tier_gap_0,tier_gap_1, tier_gap_2, tier_gap_3,tier_gap_4,tier_gap_5,tier_gap_6,tier_gap_7,tier_gap_8,tier_gap_9,tier_gap_10];
+      //Tier gap and filling 
+      tier_array[0] = top_tier- ((((inc/2)*tiersdiv) + (bottom_tier*2)));
+      tier_change[0]= (inc/2) + "-" + (tiers-2);
+      //Tier gap and filling for initial increment with no tier increment changes
+      tier_array[1] = top_tier- (((inc*tiersdiv) + (bottom_tier*2)));
+      tier_change[1]= inc + "-" + (tiers-2);
+      // Calculate top gap and tier filling with different variations ( making the tier increment change on different positions)
+      for (var w = 2; w < 11; w++) {
+        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))));
+        tier_change[w]= (inc*2) + "-" + w + "," + inc + "-" + (tiers-w);
+      } 
+   //Select base gap with initial increment to define 
+    var tier_gap_1 = tier_array[1];
    
    //Filter undefined and tier changes with less than 0 gap and select the lowest tier gap between top tier and second top tier ( Mostly aplicable to low prices )
    var filtered = tier_array.filter(function(x) {
@@ -212,14 +190,14 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
    }
     // Select the tier change with closest tier gap value to the highest increment or the tier change with the lowest tier gap ( Indicated above when to choose the closest or lowest tier gap)
     for (var i = 0; i < 11; i++) {
-       tier = "tier_gap_" + i;   
-        if(eval(tier)== low){
-            tier_change= eval("tier_change_" + i);
-            tier_gap= eval("tier_gap_" + i);
+       //tier = "tier_gap_" + i;   
+        if(tier_array[i]== low){
+            tier_change= tier_array[i];
+            tier_gap= tier_gap[i];
             break;
         }
     }
-//Bottom tier to be added to tiers array
+//Bottom tier to be added to tiers array asdasdasdasdasdasdasdasdasdas
 bot_tier= inc + "-" + (tiers-1);
 // Return the tier increment changes to fill the pricing points and tier gap to fulfill the difference 
 return tier_change + "," + bot_tier + "," + tier_gap ;
