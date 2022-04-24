@@ -132,6 +132,7 @@ function Add_Boxes(sku){
 ////////////////////// End Add boxes to offer table////////////////////////////
 
 
+
 ////////////////////// Remove boxes to offer table ////////////////////////////
 function Remove_Boxes(sku){ 
     var tableid = sku + '_tab_offer';
@@ -140,11 +141,10 @@ function Remove_Boxes(sku){
     table.deleteRow(rowCount -1);
     var tiers= document.getElementById(sku + '_hid_tie').value;
     document.getElementById(sku + '_hid_tie').value= Number(tiers) - 1;
-
-    // Verify boxes name array goes here
-        
+ 
     }
 ////////////////////// End remove boxes to offer table////////////////////////////
+
 
 
 ////////////////////// Remove boxes to offer table ////////////////////////////
@@ -159,46 +159,57 @@ function Paste_Offer(sku){
         var tiers = excel.split("\n");
 
             for (var i = 0; i < tiers.length-1; i++) {
-
-            var points= sku + '_txt_poi_' + i;
-            var pay= sku + '_txt_pay_' + i;
-
-            var pointspay = tiers[i].split("\t");
-            var stdpoints = pointspay[0].split(',').join('');
-            var stdpay = pointspay[1].trim().substring(1);
-            stdpay = stdpay.split(',').join('');
-            console.log(stdpoints + " -" + stdpay);
-            if(i===0){
-            stdpay=0;
-            } 
-            document.getElementById(points).value=Number(stdpoints);
-            document.getElementById(pay).value=Math.trunc(stdpay);
-            Check_Price(sku,i);
+                var points= sku + '_txt_poi_' + i;
+                var pay= sku + '_txt_pay_' + i;
+                var pointspay = tiers[i].split("\t");
+                var stdpoints = pointspay[0].split(',').join('');
+                var stdpay = pointspay[1].trim().substring(1);
+                stdpay = stdpay.split(',').join('');
+                console.log(stdpoints + " -" + stdpay);
+                if(i===0){
+                stdpay=0;
+                } 
+                document.getElementById(points).value=Number(stdpoints);
+                document.getElementById(pay).value=Math.trunc(stdpay);
+                Check_Price(sku,i);
             }
 
         event.preventDefault();
-    
 
-    input.oncut = input.oncopy = function(event) {
+        input.oncut = input.oncopy = function(event) {
         alert(event.type + '-' + document.getSelection());
         event.preventDefault();
-    };
-
-        
-    }
+    };        
+    var points= sku + '_txt_poi_' + i;
+    var pay= sku + '_txt_pay_' + i;
+    var pointspay = tiers[i].split("\t");
+    var stdpoints = pointspay[0].split(',').join('');
+    var stdpay = pointspay[1].trim().substring(1);
+    stdpay = stdpay.split(',').join('');
+    console.log(stdpoints + " -" + stdpay);
+    if(i===0){
+    stdpay=0;
+    } 
+    document.getElementById(points).value=Number(stdpoints);
+    document.getElementById(pay).value=Math.trunc(stdpay);
+    Check_Price(sku,i);
+}
 ////////////////////// End remove boxes to offer table////////////////////////////
 
 
-////////////////////// Remove boxes to offer table ////////////////////////////
-function Paste_Products(){ 
-      
-            
-        console.log(event.clipboardData.getData('text/plain'));
-        var excel= event.clipboardData.getData('text/plain');
-        var tiers = excel.split("\n");
-        console.log(tiers.lenght);
 
-            for (var i = 0; i < tiers.length-1; i++) {
+////////////////////// Remove boxes to offer table ////////////////////////////
+function Paste_Products(){        
+    console.log(event.clipboardData.getData('text/plain'));
+    var excel= event.clipboardData.getData('text/plain');
+     
+    var tiers = excel.split("\n");
+    console.log("tiers lenght" + tiers.length);
+    if (tiers.length > 1){
+    //if(tiers){
+      //  console.log(tiers.lenght);
+        
+        for (var i = 0; i < tiers.length-1; i++) {
 
             var orin= 'orin_' + i;
             var solomon= 'solomon_' + i;
@@ -220,8 +231,7 @@ function Paste_Products(){
             var rrpex_val = fields[6];
             var rebate_val = fields[7];
             var launch_val = fields[8];
-         
-                
+                 
             if(i>0){
             Add_Pricing_Boxes(i);
             }
@@ -235,18 +245,19 @@ function Paste_Products(){
                 document.getElementById(rebate).value=rebate_val;
                 document.getElementById(launch).value=launch_val;
             }
+            event.preventDefault();
+            input.oncut = input.oncopy = function(event) {
+            alert(event.type + '-' + document.getSelection());
+            event.preventDefault();
+        };
 
-        event.preventDefault();
-    
-
-    input.oncut = input.oncopy = function(event) {
-        alert(event.type + '-' + document.getSelection());
-        event.preventDefault();
-    };
-
-        
+    }else{
+    document.getElementById(orin_0).value=excel;    
     }
+}
 ////////////////////// End remove boxes to offer table////////////////////////////
+
+
 
 ////////////////////// Add boxes to offer table ////////////////////////////
 function Add_Pricing_Boxes(row){ 
@@ -257,35 +268,28 @@ function Add_Pricing_Boxes(row){
     var newCell=[];
 
     for (var i = 0; i < 9; i++) {
-    newCell[i] = newRow.insertCell();
-    newCell[i].className="cell_new_price";
-    if(i==2){newCell[i].className="cell_new_price_name";}
+        newCell[i] = newRow.insertCell();
+        newCell[i].className="cell_new_price";
+    if(i==2)
+    {newCell[i].className="cell_new_price_name";}
     }
 
     var newinputbox=[];
-
+    
     var cells =["orin","solomon","name","invoice","dbp","rrpinc","rrpex","rebate","launch"];
 
     for (var i = 0; i < 9; i++) {
-     //Append text box for points  to table
-     newinputbox[i] = document.createElement("input");
-     newinputbox[i].setAttribute("type", "text");
-     newinputbox[i].setAttribute("id", cells[i] + "_" + row);
-     if(i!=2){newinputbox[i].style.width='100px';}
-     if(i==2){newinputbox[i].style.width='380px';}
-     newinputbox[i].style.height='22px'; 
-
-
+        //Append text box for points  to table
+        newinputbox[i] = document.createElement("input");
+        newinputbox[i].setAttribute("type", "text");
+        newinputbox[i].setAttribute("id", cells[i] + "_" + row);
+        if(i!=2){newinputbox[i].style.width='100px';}
+        if(i==2){newinputbox[i].style.width='380px';}
+        newinputbox[i].style.height='22px'; 
     }
     for (var i = 0; i < 9; i++) {
-
-        newCell[i].appendChild(newinputbox[i]);
+    newCell[i].appendChild(newinputbox[i]);
     }
-    
-
-
-
     // Verify boxes name array goes here
-        
-    }
+}
 ////////////////////// End Add boxes to offer table////////////////////////////
