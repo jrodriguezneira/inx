@@ -165,7 +165,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
       tier_change[1]= inc + "-" + (tiers-2);
       // Calculate top gap and tier filling with different variations ( making the tier increment change on different positions)
       for (var w = 2; w < 11; w++) {
-        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))));
+        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))) + fix);
         tier_change[w]= (inc*2) + "-" + w + "," + inc + "-" + (tiers-w);
       } 
    //Select base gap with initial increment to define 
@@ -178,6 +178,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
    tier_array = tier_array.sort(function (a, b) {  return a - b;  });
    var lower_tier = tier_array.slice(0,1).toString(); 
    var low= lower_tier.split(",").join('');
+   console.log(low);
 
    //If initial increment is too small, instead of choosing the smallest gap we need to find the closest gap to highest increment (Mostly aplicable to products with price between 100 and 500 and higher)
    if(tier_gap_1 > (inc*2)){
@@ -192,8 +193,8 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
     for (var i = 0; i < 11; i++) {
        //tier = "tier_gap_" + i;   
         if(tier_array[i]== low){
-            tier_change= tier_array[i];
-            tier_gap= tier_gap[i];
+            tier_change= tier_change[i];
+            tier_gap= tier_array[i];
             break;
         }
     }
