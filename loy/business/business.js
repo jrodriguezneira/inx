@@ -165,7 +165,10 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
       tier_change[1]= inc + "-" + (tiers-2);
       // Calculate top gap and tier filling with different variations ( making the tier increment change on different positions)
       for (var w = 2; w < 11; w++) {
-        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))) + fix);
+        if(w==2){
+        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))));
+        }else{
+        tier_array[w] = top_tier- ( ((inc*2)* w) + (inc* (tiersdiv-w)) + fix );}
         tier_change[w]= (inc*2) + "-" + w + "," + inc + "-" + (tiers-w);
       } 
    //Select base gap with initial increment to define 
