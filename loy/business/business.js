@@ -217,6 +217,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         if(eval(tier)== low){
             tier_change= eval("tier_change_" + i);
             tier_gap= eval("tier_gap_" + i);
+            console.log("i=" + i);
             break;
         }
     }
