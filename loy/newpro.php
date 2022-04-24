@@ -334,12 +334,16 @@
 
             var orin_val = document.getElementById(orin).value;
             var solomon_val = document.getElementById(solomon).value;
+            if(solomon_val=="" || solomon_val=="undefined"){solomon_val=0;}
             var name_val = document.getElementById(name).value;
             var invoice_val = document.getElementById(invoice).value;
             var dbp_val = document.getElementById(dbp).value;
+            if(dbp_val=="" || dbp_val=="undefined"){dbp_val=0;}
             var rrpinc_val = document.getElementById(rrpinc).value;
             var rrpex_val = document.getElementById(rrpex).value;
+            if(rrpex_val=="" || rrpex_val=="undefined"){rrpex_val=0;}
             var rebate_val = document.getElementById(rebate).value;
+            if(rebate_val=="" || rebate_val=="undefined"){rebate_val=0;}
             var launch_val = document.getElementById(launch).value;
 
         // Create URL with information required to create the excel offer file
@@ -348,7 +352,7 @@
       } 
     // Append number of skus to offer URL (skus array) and export file type(target)
     row= 'i=' + i + '&' + row;
-    var url = 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/newpro.php?' + row;
+    var url = 'newpro.php?' + row;
     console.log("row" + row);
     window.open(url, '_self'); 
 
@@ -439,7 +443,7 @@ $('#export2').click( function () {
        //alert( table.rows('.selected').data()[i].sku);
     }
     
-    var url = 'https://staging-sr9-loy-ing-awsserv.site/inx/loy/off-cr.php?' + skus + 'q=' + dataTable.rows('.selected').data().length + '&a=new';
+    var url = 'off-cr.php?' + skus + 'q=' + dataTable.rows('.selected').data().length + '&a=new';
     console.log( url ); 
     window.location.href = url;
   } );
