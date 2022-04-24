@@ -200,6 +200,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
    tier_array = tier_array.sort(function (a, b) {  return a - b;  });
    var lower_tier = tier_array.slice(0,1).toString(); 
    var low= lower_tier.split(",").join('');
+   console.log(low);
 
    //If initial increment is too small, instead of choosing the smallest gap we need to find the closest gap to highest increment (Mostly aplicable to products with price between 100 and 500 and higher)
    if(tier_gap_1 > (inc*2)){
