@@ -198,6 +198,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         if(tier_array[i]== low){
             tier_change= tier_change[i];
             tier_gap= tier_array[i];
+            console.log("i=" + i);
             break;
         }
     }
