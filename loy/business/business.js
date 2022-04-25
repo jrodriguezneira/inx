@@ -219,7 +219,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
     });
     low = closest;
     console.log("tier_gap_0 closest " + closest);
-}
+    }
     // Select the tier change with closest tier gap value to the highest increment or the tier change with the lowest tier gap ( Indicated above when to choose the closest or lowest tier gap)
     for (var i = 0; i < 15; i++) {
        //tier = "tier_gap_" + i;   
@@ -230,7 +230,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
             break;
         }
     }
-//Bottom tier to be added to tiers array asdasdasdasdasdasdasdasdasdas
+//Bottom tier to be added to tiers array 
 bot_tier= inc + "-" + (tiers-1);
 // Return the tier increment changes to fill the pricing points and tier gap to fulfill the difference 
 return tier_change + "," + bot_tier + "," + tier_gap ;
@@ -388,7 +388,7 @@ function Paste_Tiers(sku){
             document.getElementById(poi_nam).value=parseInt(points);
             document.getElementById(pay_nam).value=parseInt(pay);
         }
-    }
+}
 /////////////////////  End function to paste tiers from UI ( same number of tiers)
 
 
@@ -409,9 +409,9 @@ function Check_Rebate(sku){
     // Get the rebate value from UI and update wac and fwac values
     var rebate= sku + '_txt_reb';
     var reb= document.getElementById(rebate).value;
-    var newreb = document.getElementById(sku + '_wac').innerHTML - reb;
-    document.getElementById(sku + '_wac').innerHTML= newreb;
-    document.getElementById(sku + '_fwac').innerHTML=newreb;  
+    var newreb = (document.getElementById(sku + '_wac').innerHTML - reb).toFixed(2);
+    document.getElementById(sku + '_wac').innerHTML= Number(newreb).toFixed(2);
+    document.getElementById(sku + '_fwac').innerHTML=Number(newreb).toFixed(2);
 }
 ///////////////////// End function to verify rebate value and update pricing details
 
