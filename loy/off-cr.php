@@ -217,6 +217,7 @@ error_reporting(0);
                                             $pre=extract_pricing($previous_offer);
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Previous Offer</a>"; 
                                             }
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Clear_Offer(".$sku.")'>Clear Offer</a>";
                                             ?>
                                             
                                             </div>
