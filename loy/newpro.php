@@ -187,12 +187,12 @@
                                     <thead>
                                         <tr>
                                    
-                                        <th>orin</th>
-                                        <th>solomon</th>
-                                        <th>Name</th>
-                                        <th>Invoice(ex GST)</th>
+                                        <th title="Required">Orin *</th>
+                                        <th>Solomon</th>
+                                        <th title="Required">Name *</th>
+                                        <th title="Required">Invoice(ex GST) *</th>
                                         <th>DBP(ex GST)</th>
-                                        <th>STD RRP(inc GST)</th>
+                                        <th title="Required">STD RRP(inc GST) *</th>
                                         <th>STD RRP(ex GST)</th>
                                         <th>Rebate</th>     
                                         <th>Launch Date</th>                                                               
