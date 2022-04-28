@@ -71,7 +71,8 @@ function multi_pricing($price,$sku=null,$new=null){
                 case 7: $ext = $pri; break;
             }
         }
-        $fwac= $invp +($rrpex-$dbp)*$ext;
+        $fwac= $inv +(($rrpex-$dbp)*$ext);
+        //echo "fwac= ". $fwac . " invp= " . $invp ." rrpex= ". $rrpex. " dbp=  " . $dbp . " ext= " . $ext;
     
     echo "<table width='100%'><tr><td>";
         echo "<table>";
@@ -80,8 +81,8 @@ function multi_pricing($price,$sku=null,$new=null){
                 echo "<tr><td>Invoice Price (ex GST)</td><td>$inv </td></tr>";
                 echo "<tr><td>Dealer Buy Price (ex GST)</td><td> $dbp </td></tr>";
                 echo "<tr><td>Supplier Investment (ex GST)</td><td> <input onchange='javascript:Check_Rebate(".$sku.")' id='".$sku."_txt_reb' style='width:70px;height:22px;' type='text' value='".$reb."'></td></tr>";  
-                echo "<tr><td>WAC</td><td id='".$sku."_wac'> $invp </td></tr>";
-                echo "<tr><td>Fully Loaded WAC</td><td id='".$sku."_fwac' title='(Invoice Price + (RRPexGST-DBP)*Ext)'>$fwac </td></tr>";                  
+                echo "<tr><td>WAC</td><td id='".$sku."_wac'> $inv </td></tr>";
+                echo "<tr><td>Fully Loaded WAC</td><td title='(Invoice Price(ex GST) + (RRPexGST-DBP)*Ext)'><input id='".$sku."_fwac' style='width:70px;height:22px;' type='text' value='".$fwac."'> </td></tr>";                  
         echo "</table>";
     echo "</td><td>";
      

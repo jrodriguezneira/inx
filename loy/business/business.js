@@ -119,8 +119,8 @@ function Check_Price(sku,key){
     // Get pay,points,rrp and wac values
     var points= document.getElementById(poi_nam).value;
     var pay= document.getElementById(pay_nam).value;
-    var newrrp = document.getElementById(sku + '_txt_new_rrp').value;
-    var wac = document.getElementById(sku + '_fwac').innerHTML; 
+    var rrp = document.getElementById(sku + '_rrp').innerHTML;
+    var wac = document.getElementById(sku + '_fwac').value; 
     //If RO option is selected 
     var chk_ro = document.getElementById(sku + '_chk_ro').checked;
     if(chk_ro){
@@ -137,9 +137,10 @@ function Check_Price(sku,key){
     // Calculate pricing margins
     var valu = ((points*0.0025) + (pay/1.1)).toFixed(2);
     var mar = (valu - wac).toFixed(2);
-    var per =((((newrrp/1.1)-pay)/points)/(1.1)).toFixed(5);
+    var per =(((rrp-pay)/points)/(1.1)).toFixed(5);
     //Set pricing margin values
     document.getElementById(valu_nam).value= valu;
+    document.getElementById(valu_nam).setAttribute("Title", valu*1.1.toFixed(2));
     document.getElementById(mar_nam).value= mar;
     document.getElementById(per_nam).value=per;      
 }
@@ -449,7 +450,7 @@ function Check_Rebate(sku){
     var reb= document.getElementById(rebate).value;
     var newreb = (document.getElementById(sku + '_wac').innerHTML - reb).toFixed(2);
     document.getElementById(sku + '_wac').innerHTML= Number(newreb).toFixed(2);
-    document.getElementById(sku + '_fwac').innerHTML=Number(newreb).toFixed(2);
+    document.getElementById(sku + '_fwac').value=Number(newreb).toFixed(2);
 }
 ///////////////////// End function to verify rebate value and update pricing details
 

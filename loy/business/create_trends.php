@@ -20,7 +20,7 @@ function multi_boxes($price,$sku){
         <td class='mb_header'></td>
         <td class='mb_header' title='(Points * 0.0025) + (Pay/1.1)'>Value</td>
         <td class='mb_header' title='(Value - fwac)'>Margin</td>
-        <td class='mb_header' title='((New RRP - Pay)/Points)/1.1'>Pvpp</td>
+        <td class='mb_header' title='((RRP - Pay)/Points)/1.1'>Pvpp</td>
         </tr>
         <?php
         foreach( $tier as $key=>$element) {
