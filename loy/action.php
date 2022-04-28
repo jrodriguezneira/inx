@@ -28,7 +28,7 @@ if($_POST['action'] == 'edit')
  <script>
      console.log(<? echo $query;?>);
  </script>
- <?
+ <?php
  //echo $query;
  $statement = $connect->prepare($query);
  $statement->execute($data);

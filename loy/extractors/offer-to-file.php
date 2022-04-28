@@ -365,7 +365,7 @@ function create_stock_file($prod){
 //  End Function to create stock format file ////////////////////////////////////
 
 
-// Function to create new product format file ////////////////////////////////////
+// Function to create new format file ////////////////////////////////////
 function create_product_file($prod){ 
 
     // Creates New Spreadsheet 

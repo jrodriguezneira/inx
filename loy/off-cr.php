@@ -2,6 +2,7 @@
 <?php include 'business/read_trends.php'; ?>
 <?php include 'business/create_trends.php'; 
 error_reporting(E_ERROR | E_WARNING | E_PARSE); 
+error_reporting(0);
 ?>
 
 
@@ -216,6 +217,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
                                             $pre=extract_pricing($previous_offer);
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Previous Offer</a>"; 
                                             }
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Clear_Offer(".$sku.")'>Clear Offer</a>";
                                             ?>
                                             
                                             </div>

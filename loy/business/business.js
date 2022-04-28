@@ -152,47 +152,53 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
      var tiersdiv= tiers-3;   
      var tier_change;
      var tier_gap;
-     var tier;
+     var tier_array=[];
+     var tier_change=[];
+     var tiers_arr="";
+     var tiers_arr_1="";
+
       //Temporary fixer for increment of 2500 or even number of tiers?
       var fix=0;
+      var fixer=0;
       if(inc==2500){fix=inc;}
-      //Calculator for different tier change combinations (to be replaced with arrays)
-      var tier_gap_0 = top_tier- ((((inc/2)*tiersdiv) + (bottom_tier*2)));
-      tier_change_0= (inc/2) + "-" + (tiers-2);
+      if(inc==1000){fix=inc*2;}
+      if(inc==2000 || inc==1000){fixer=inc/2;}
+      //Tier gap and filling for low prices with long range tiers
+      for (var z = 2; z < 6; z++) {
+      y=z+9;
+      tier_array[y] = top_tier- ((((inc) * z) + ((inc/2)* (tiersdiv-z))) + (inc*2) + fixer);
+      tier_change[y]= (inc) + "-" + z + "," + inc/2 + "-" + (tiers-z);
+      tiers_arr += "Tier_gap_" + y + " = " + tier_array[y] + ", ";
+      }
+      //Tier gap and filling for half increment ( low prices)
+      tier_array[0] = top_tier- ((((inc/2)*tiersdiv) + (bottom_tier*2)));
+      tier_change[0]= (inc/2) + "-" + (tiers-2);
+      //Tier gap and filling for initial increment with no tier increment changes
+      tier_array[1] = top_tier- (((inc*tiersdiv) + (bottom_tier*2)));
+      tier_change[1]= inc + "-" + (tiers-2);
 
-      var tier_gap_1 = top_tier- (((inc*tiersdiv) + (bottom_tier*2)));
-      tier_change_1= inc + "-" + (tiers-2);
-   
-      var tier_gap_2 = top_tier- ((((inc*2) * 2) + (inc* (tiersdiv-2))));
-      tier_change_2= (inc*2) + "-" + 2 + "," + inc + "-" + (tiers-2);
+      // Calculate top gap and tier filling with different variations ( making the tier increment change on different positions)
+      for (var w = 2; w < 11; w++) {
+        if(w==2){
+        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))));
+        }else{
+        tier_array[w] = top_tier- ( ((inc*2)* w) + (inc* (tiersdiv-w)) + fix );}
+        tier_change[w]= (inc*2) + "-" + w + "," + inc + "-" + (tiers-w);
+        tiers_arr_1 += "Tier_gap_" + w + " = " + tier_array[w] + ", ";
+        }
+        
+ 
+    //Select base gap with initial increment to define 
+        var tier_gap_0 = tier_array[0];
+        var tier_gap_1 = tier_array[1];
+    //Print gap variables to confirm results
+    console.log("Tier_gap_0 = " + tier_array[0]);
+    console.log("Tier_gap_1 = " + tier_array[1]);
+    console.log(tiers_arr_1);
+    console.log(tiers_arr);
+    //Duplicate tier array to store original array order( Ascendent by gap)
+    let new_tier_array = tier_array.slice();
 
-      var tier_gap_3 = top_tier- ( ((inc*2)* 3) + (inc* (tiersdiv-3)) + fix );
-      tier_change_3= (inc*2) + "-" + 3 + "," + inc + "-" + (tiersdiv-3);
-      
-      var tier_gap_4 = top_tier- ( ((inc*2)* 4) + (inc* (tiersdiv-4)) + fix );
-      tier_change_4= (inc*2) + "-" + 4 + "," + inc + "-" + (tiersdiv-4);
-
-      var tier_gap_5 = top_tier- ( ((inc*2)* 5) + (inc* (tiersdiv-5)) + fix );
-      tier_change_5= (inc*2) + "-" + 5 + "," + inc + "-" + (tiersdiv-5);
-
-      var tier_gap_6 = top_tier- ( ((inc*2)* 6) + (inc* (tiersdiv-6)) + fix );
-      tier_change_6= (inc*2) + "-" + 6 + "," + inc + "-" + (tiersdiv-6);
-
-      var tier_gap_7 = top_tier- ( ((inc*2)* 7) + (inc* (tiersdiv-7)) + fix );
-      tier_change_7= (inc*2) + "-" + 7 + "," + inc + "-" + (tiersdiv-7);
-
-      var tier_gap_8 = top_tier- ( ((inc*2)* 8) + (inc* (tiersdiv-8)) + fix );
-      tier_change_8= (inc*2) + "-" + 8 + "," + inc + "-" + (tiersdiv-8);
-
-      var tier_gap_9 = top_tier- ( ((inc*2)* 9) + (inc* (tiersdiv-9)) + fix );
-      tier_change_9= (inc*2) + "-" + 9 + "," + inc + "-" + (tiersdiv-9);
-
-      var tier_gap_10 = top_tier- ( ((inc*2)* 10) + (inc* (tiersdiv-10)) + fix );
-      tier_change_10= (inc*2) + "-" + 10 + "," + inc + "-" + (tiersdiv-10);
-  
-   //Array containing tier combinations to fulfill points pricing 
-   var tier_array = [tier_gap_0,tier_gap_1, tier_gap_2, tier_gap_3,tier_gap_4,tier_gap_5,tier_gap_6,tier_gap_7,tier_gap_8,tier_gap_9,tier_gap_10];
-   
    //Filter undefined and tier changes with less than 0 gap and select the lowest tier gap between top tier and second top tier ( Mostly aplicable to low prices )
    var filtered = tier_array.filter(function(x) {
    return x !== undefined;});
@@ -200,7 +206,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
    tier_array = tier_array.sort(function (a, b) {  return a - b;  });
    var lower_tier = tier_array.slice(0,1).toString(); 
    var low= lower_tier.split(",").join('');
-   console.log(low);
+   console.log("Initial lowest tier gap(bysort) " + low);
 
    //If initial increment is too small, instead of choosing the smallest gap we need to find the closest gap to highest increment (Mostly aplicable to products with price between 100 and 500 and higher)
    if(tier_gap_1 > (inc*2)){
@@ -210,23 +216,63 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
         });
         low = closest;
+        console.log("tier_gap_1 closest " + closest);
    }
+
+   //If initial half increment is too small , we choose the closest gap to the highest increment ( Mostly aplicable for low prices with several tiers)
+   if(tier_gap_0 > (inc)){
+    //console.log("tier_gap_0 validation ");
+    var counts = tier_array;
+    goal = inc;
+    var closest = counts.reduce(function(prev, curr) {
+    return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+    });
+    low = closest;
+    console.log("tier_gap_0 closest " + closest);
+    }
+    
     // Select the tier change with closest tier gap value to the highest increment or the tier change with the lowest tier gap ( Indicated above when to choose the closest or lowest tier gap)
-    for (var i = 0; i < 11; i++) {
-       tier = "tier_gap_" + i;   
-        if(eval(tier)== low){
-            tier_change= eval("tier_change_" + i);
-            tier_gap= eval("tier_gap_" + i);
-            console.log("i=" + i);
+    for (var i = 0; i < 15; i++) {
+       //tier = "tier_gap_" + i;   
+        if(new_tier_array[i]== low){
+            tier_change= tier_change[i];
+            tier_gap= new_tier_array[i];
+            console.log(" Tier selected(i)= " + i);
             break;
         }
     }
-//Bottom tier to be added to tiers array
+//Bottom tier to be added to tiers array 
 bot_tier= inc + "-" + (tiers-1);
 // Return the tier increment changes to fill the pricing points and tier gap to fulfill the difference 
 return tier_change + "," + bot_tier + "," + tier_gap ;
 }
 ///////////////   End Function to calculate tier changers ////////////
+
+
+///////////////   Function to clear the offer////////////
+function Clear_Offer(sku){
+    var points;
+    var pay;
+    var tiers= document.getElementById(sku + '_hid_tie').value;
+    for (var i = 0; i < tiers; i++) {
+
+        var poi_nam= sku + '_txt_poi_' + i;
+        var pay_nam= sku + '_txt_pay_' + i;
+        var valu_nam = sku + '_txt_val_' + i;
+        var mar_nam = sku + '_txt_mar_' + i;
+        var per_nam = sku + '_txt_per_' + i;
+
+        document.getElementById(poi_nam).value="";
+        document.getElementById(pay_nam).value=""; 
+        document.getElementById(valu_nam).value= "";
+        document.getElementById(mar_nam).value= "";
+        document.getElementById(per_nam).value="";     
+
+    }
+
+}
+///////////////   Function to clear the offer////////////
+
 
 
 ///////////////   Function to create the offer////////////
@@ -379,7 +425,7 @@ function Paste_Tiers(sku){
             document.getElementById(poi_nam).value=parseInt(points);
             document.getElementById(pay_nam).value=parseInt(pay);
         }
-    }
+}
 /////////////////////  End function to paste tiers from UI ( same number of tiers)
 
 
@@ -400,9 +446,9 @@ function Check_Rebate(sku){
     // Get the rebate value from UI and update wac and fwac values
     var rebate= sku + '_txt_reb';
     var reb= document.getElementById(rebate).value;
-    var newreb = document.getElementById(sku + '_wac').innerHTML - reb;
-    document.getElementById(sku + '_wac').innerHTML= newreb;
-    document.getElementById(sku + '_fwac').innerHTML=newreb;  
+    var newreb = (document.getElementById(sku + '_wac').innerHTML - reb).toFixed(2);
+    document.getElementById(sku + '_wac').innerHTML= Number(newreb).toFixed(2);
+    document.getElementById(sku + '_fwac').innerHTML=Number(newreb).toFixed(2);
 }
 ///////////////////// End function to verify rebate value and update pricing details
 

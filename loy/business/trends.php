@@ -87,8 +87,9 @@ function insert_trend($parameter, $row){
 
     $query = "INSERT INTO product_pricing(solomon,orin,`name`,category,invoice_ex_gst,dbp_ex_gst,std_rrp_inc_gst,std_rrp_ex_gst,rebate,invoice_price,internal,`external`) 
     values($values[1],$values[0],'$values[2]','$values[8]',$values[3],$values[4],$values[5],$values[6],$values[7],0,0,0)";
-   // echo $query;
+   //echo $query;
     mysqli_query($con, $query);
+  
 
 
 }

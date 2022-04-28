@@ -10,6 +10,18 @@ function multi_boxes($price,$sku){
      //Create table to insert price points tiers
      echo "<table id=".$sku."_tab_offer border=0 cellpadding=3 cellspacing=3>";
         //Loop through pricing tiers
+        ?>
+        <tr>
+        <td class='mb_header'>Points</td>
+        <td class='mb_header'>Pay</td>
+        <td class='mb_header'></td>
+        <td class='mb_header'></td>
+        <td class='mb_header'></td>
+        <td class='mb_header' title='(Points * 0.0025) + (Pay/1.1)'>Value</td>
+        <td class='mb_header' title='(Value - fwac)'>Margin</td>
+        <td class='mb_header' title='((New RRP - Pay)/Points)/1.1'>Pvpp</td>
+        </tr>
+        <?php
         foreach( $tier as $key=>$element) {
         echo "<tr>";
         $tier_price = explode('-',$element);       
