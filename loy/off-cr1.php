@@ -102,18 +102,9 @@
                 $prod .= $skus;
                 }
                 //Temporary display the array 
-              echo '<br>Prod'. $prod. "<br><br><br>";
-               
-              //echo "test";
-
-<<<<<<< HEAD
-              include 'extractors/offer-to-file.php';
-                
-
-=======
+              //echo '<br>Prod'. $prod. "<br><br><br>";
 
                 include 'extractors/offer-to-file.php'; 
->>>>>>> local
                 switch ($target) {
                     case "offer":
                         create_offer_file($prod);
@@ -134,14 +125,6 @@
                     
                     
                 <!-- ////////////////////////End Create offer UI elements for products ///////////////////////////////////////////////////////////////////////-->
-
-
-
-
-                    
-                    
-
-                    
 
                 </div>
                 <!-- /.container-fluid -->
