@@ -192,6 +192,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         var tier_gap_0 = tier_array[0];
         var tier_gap_1 = tier_array[1];
     //Print gap variables to confirm results
+    console.log("Tiers " + tiers);
     console.log("Tier_gap_0 = " + tier_array[0]);
     console.log("Tier_gap_1 = " + tier_array[1]);
     console.log(tiers_arr_1);

@@ -38,10 +38,11 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_previous_offer="select price from products where sku=$sku and offer='Hot Offer' and segment ='LOYALTY_CON' order by date_report desc limit 1;";
     $sql_product_pricing="select concat(invoice_ex_gst,'-',dbp_ex_gst,'-',std_rrp_inc_gst,'-',std_rrp_ex_gst,'-',rebate,'-',invoice_price,'-',internal,'-',external)
     from product_pricing where orin=$sku;";
-    $sql_rrp_new="select std_rrp_ex_gst from product_pricing where orin=$sku;";
+    $sql_rrp_new="select std_rrp_inc_gst from product_pricing where orin=$sku;";
  
     $query="sql_".$parameter;
    // echo  ${$query};
+   //echo $sql_rrp_new;
     $result= mysqli_query($con, ${$query});
     $row_cnt = mysqli_num_rows($result);
      while($data = mysqli_fetch_array($result)){

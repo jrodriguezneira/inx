@@ -3,6 +3,7 @@
 
 ////////////////////// Present price-points tiers as table for new offer////////////////////////////
 function multi_boxes($price,$sku){ 
+    
 
     $tier_points=extract_pricing($price);
     //Divide string by comma to get points pay tiers
