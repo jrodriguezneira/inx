@@ -106,20 +106,25 @@
                
               //echo "test";
 
+<<<<<<< HEAD
               include 'extractors/offer-to-file.php';
                 
 
+=======
+
+                include 'extractors/offer-to-file.php'; 
+>>>>>>> local
                 switch ($target) {
-                    case offer:
+                    case "offer":
                         create_offer_file($prod);
                         break;
-                    case shop:
+                    case "shop":
                         create_shop_file($prod);
                         break;
-                    case stock:
+                    case "stock":
                         create_stock_file($prod);
                         break;
-                    case product:
+                    case "product":
                         create_product_file($prod);
                         break;
                 }

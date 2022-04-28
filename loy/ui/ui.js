@@ -94,25 +94,25 @@ function Add_Boxes(sku){
      label3.setAttribute("id", sku + "_ro_24_" + tiers);
      label3.style.height='12px'; 
 
-     //Append text box for pay  to table
+     //Append text box for value  to table
      var newinputbox2 = document.createElement("input");
      newinputbox2.setAttribute("type", "text");
      newinputbox2.setAttribute("id", sku + "_txt_val_" + tiers);
      newinputbox2.style.width='70px';
      newinputbox2.style.height='22px'; 
 
-     //Append text box for pay  to table
+     //Append text box for margin  to table
      var newinputbox3 = document.createElement("input");
      newinputbox3.setAttribute("type", "text");
      newinputbox3.setAttribute("id", sku + "_txt_mar_" + tiers);
      newinputbox3.style.width='70px';
      newinputbox3.style.height='22px'; 
 
-     //Append text box for pay  to table
+     //Append text box for Pvpp  to table
      var newinputbox4 = document.createElement("input");
      newinputbox4.setAttribute("type", "text");
-     newinputbox4.setAttribute("id", sku + "_txt_mar_" + tiers);
-     newinputbox4.style.width='70px';
+     newinputbox4.setAttribute("id", sku + "_txt_per_" + tiers);
+     newinputbox4.style.width='80px';
      newinputbox4.style.height='22px'; 
 
     newCell.appendChild(newinputbox);
