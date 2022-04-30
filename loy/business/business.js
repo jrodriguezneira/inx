@@ -187,8 +187,6 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         tier_change[w]= (inc*2) + "-" + w + "," + inc + "-" + (tiers-w);
         tiers_arr_1 += "Tier_gap_" + w + " = " + tier_array[w] + ", ";
         }
-        
- 
     //Select base gap with initial increment to define 
         var tier_gap_0 = tier_array[0];
         var tier_gap_1 = tier_array[1];
