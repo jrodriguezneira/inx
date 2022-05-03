@@ -38,10 +38,11 @@ function Previous_Offer(pre,sku){
 
 
 ///////////////   Function to verify top and bottom tiers and top tier point value////////////
-function Top_Bottom_Tiers(newrrp,tiers,sku){
+function Top_Bottom_Tiers(newrrp,tiers,sku,type){
     // Variables for top and bottom tiers 
     var bot_poi;
     var top_poi;
+    var top_ppvv= 0.002750;
     //Make tier rounded to 500 to avoid decimals 
     var tier_rounder =500;
         // Set value for relative top point value ( based on previous data)
@@ -58,13 +59,28 @@ function Top_Bottom_Tiers(newrrp,tiers,sku){
     top_poi= document.getElementById(top).value;
     //If top tier value is empty, then is calculated based on RRP and points value
     if(top_poi.length===0){
-    //Set value for top tier
-    top_poi = Math.round(newrrp/pv_top);
-    // Apply ounder top tier value to avoid decimals    
-    var res= top_poi/tier_rounder;
-    // Get rounded value
-    top_poi = Math.round(res)* tier_rounder;
-    // Create array with top and bottom tiers
+    
+        
+        //Set value for top tier
+        top_poi = Math.round(newrrp/pv_top);
+        if(type=="new"){
+        top_poi=newrrp/(top_ppvv*1.1);   
+        }
+        // Apply ounder top tier value to avoid decimals    
+        var res= top_poi/tier_rounder;
+        // Get rounded value
+        top_poi = Math.round(res)* tier_rounder;
+        // Create array with top and bottom tiers
+        if(type=="new"){
+        //Unrounded top points 
+        //top_poi=newrrp/(top_ppvv*1.1);
+        
+        //Rounded top points
+        //Math.round( Math.round(newrrp/pv_top)/tier_rounder) * tier_rounder
+        
+
+        }
+
     }
     //Get value for bottom tier from UI
     var bot= sku + '_txt_poi_' + (tiers-1);
@@ -109,13 +125,19 @@ return inc;
 
 
 ///////////////   Function to calculate the pricing margin////////////
-function Check_Price(sku,key){
+function Check_Price(sku,key,tiers,type){
     //Set text field names for product
     var poi_nam= sku + '_txt_poi_' + key;
     var pay_nam= sku + '_txt_pay_' + key;
     var valu_nam = sku + '_txt_val_' + key;
     var mar_nam = sku + '_txt_mar_' + key;
     var per_nam = sku + '_txt_per_' + key;
+    var top_ppvv= 0.002750;
+    var bot_ppvv= 0.002500;
+    var dec= ((top_ppvv - bot_ppvv)/tiers).toFixed(6);
+    console.log({dec});
+    var ppvv;
+    var newpay;
     // Get pay,points,rrp and wac values
     var points= document.getElementById(poi_nam).value;
     var pay= document.getElementById(pay_nam).value;
@@ -142,7 +164,45 @@ function Check_Price(sku,key){
     document.getElementById(valu_nam).value= valu;
     document.getElementById(valu_nam).setAttribute("Title", valu*1.1.toFixed(2));
     document.getElementById(mar_nam).value= mar;
-    document.getElementById(per_nam).value=per;      
+    document.getElementById(per_nam).value=per;  
+
+    if(type=="new"){
+        
+        // Calculate the ppvv accoding to tier(key)
+        if(key==0){
+        ppvv = top_ppvv.toFixed(6);
+        //document.getElementById(per_nam).value=ppvv; 
+        }else{
+        ppvv = (top_ppvv -(key*dec)).toFixed(6);
+        }
+       // console.log({ppvv});
+        //Recalculate pay component and update the value
+        newpay = rrp-(ppvv * 1.1 * points)
+        newpay = newpay.toFixed(0);
+        //New points for bottom tier 
+        if(key==(tiers-1)){
+        //ppvv = bot_ppvv.toFixed(6); 
+        points=(rrp-newpay)/(bot_ppvv*1.1);  
+        document.getElementById(poi_nam).value=Math.round(points);
+        console.log("new points" + points);
+        }
+        //console.log({newpay});
+        if(key!=0){
+        document.getElementById(pay_nam).value= newpay;
+         // recalculate margin and value
+         valu = ((points*0.0025) + (newpay/1.1)).toFixed(2);
+         mar = (valu - wac).toFixed(2);
+         per =(((rrp-newpay)/points)/(1.1)).toFixed(6);
+         //Set the values
+         document.getElementById(valu_nam).value= valu;
+         document.getElementById(mar_nam).value= mar;
+         document.getElementById(per_nam).value=per; 
+            
+        }
+       
+        
+    }
+    
 }
 ///////////////   End function to calculate the pricing margin////////////
 
@@ -278,7 +338,7 @@ function Clear_Offer(sku){
 
 
 ///////////////   Function to create the offer////////////
-function Create_Offer(sku){
+function Create_Offer(sku,type){
   var points;
   var pay;
   // Var tiers to obtain tier number for the product
@@ -288,7 +348,7 @@ function Create_Offer(sku){
   //Obtain new RRp from text box
   var newrrp = document.getElementById(sku + '_txt_new_rrp').value;
   //Obtain top and bottom tiers
-  var top_bottom= Top_Bottom_Tiers(newrrp,tiers,sku);
+  var top_bottom= Top_Bottom_Tiers(newrrp,tiers,sku,type);
   top_bottom= top_bottom.split(",");
   var top_tier = top_bottom[0];
   var bottom_tier = top_bottom[1];
@@ -327,7 +387,7 @@ function Create_Offer(sku){
                 document.getElementById(poi_nam).value=points;
                 document.getElementById(pay_nam).value=Math.round(pay); 
                 //Obtain pricing margins 
-                Check_Price(sku,x)
+                Check_Price(sku,x,tiers,type)
                 tier_start++;           
             }
     }

@@ -123,28 +123,13 @@
 
              
                 ?>
-                    
-                    
-                <!-- ////////////////////////End Create offer UI elements for products ///////////////////////////////////////////////////////////////////////-->
-
-
-
-
-                    
-                    
-
-                    
-
+      
+                <!-- ////////////////////////End Create offer UI elements for products ////////////////////////////////////////////////////////////////////
                 </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
-
-
-
-
-
 
             <!-- Footer -->
             <?php include 'footer.php'; ?>

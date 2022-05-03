@@ -212,7 +212,7 @@
                                             <div class="dropdown-header"></div>
                                             <?php 
                                         
-                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.")'>Create Offer</a>";
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Offer</a>";
                                             if($previous_offer){
                                             $pre=extract_pricing($previous_offer);
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Previous Offer</a>"; 
