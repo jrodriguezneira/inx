@@ -88,9 +88,9 @@
                 //Get name from name query
                 $productname=explode('-',$name);
                 //Get Current RRP when lfag is unchecked
-                if($sku[6]=="false"){
+                //if($sku[6]=="false"){
                 $rrp_old= get_trend("rrp_new",$sku[0]);
-                }
+                //}
                 $ro= get_trend('ro_sku',$sku[0]);
                 if($ro== "[12, 24]"){
                 $ini_ro= 1;    

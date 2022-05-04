@@ -146,9 +146,9 @@ function create_offer_file($prod){
             $sheet->setCellValueByColumnAndRow(2,$tot_tiers+$key+2,$tier[9]);
             //Repeat SKU
             $sheet->setCellValueByColumnAndRow(3,$tot_tiers+$key+2,$tier[0]);
-            //Set RRP
-            $sheet->setCellValueByColumnAndRow(4,$tot_tiers+$key+2,$tier[1]);
-            // Pricing Type
+            //Repeat RRP
+            $sheet->setCellValueByColumnAndRow(4,$tot_tiers+$key+2,$tier[10]);
+            // Repeat Pricing Type
             $sheet->setCellValueByColumnAndRow(5,$tot_tiers+$key+2,"Persistant"); 
             //Set points and pay 
             $j=6; //Column start
