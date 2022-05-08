@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
-$sql="select sku,name,category,rrp,stock,price from products_last where  segment='LOYALTY_CON' order by rrp,category;";
+$sql="select sku,name,category,rrp,ro,stock,price from products_last where  segment='LOYALTY_CON' order by rrp,category;";
 $response = array();
 $posts = array();
 $result=mysqli_query($con,$sql);
@@ -13,6 +13,7 @@ while($row=mysqli_fetch_array($result))
   $posts['category']=$row['category'];
   $posts['rrp']=$row['rrp'];
   $posts['stock']=$row['stock'];
+  $posts['ro']=$row['ro'];
   $posts['price']=$row['price']; 
   array_push($response, $posts);
 

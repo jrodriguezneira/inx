@@ -97,6 +97,7 @@
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>RRP</th>
+                                        <th>RO</th>
                                         <th>Stock</th>
 
                                         
@@ -208,6 +209,9 @@ $(document).ready(function() {
       },
       {
         'data': 'rrp'
+      },
+      {
+        'data': 'ro'
       },
       {
         'data': 'stock'

@@ -23,11 +23,12 @@ function multi_boxes($price,$sku){
         <td class='mb_header' title='((RRP - Pay)/Points)/1.1'>Pvpp</td>
         </tr>
         <?php
+        $type= "update";
         foreach( $tier as $key=>$element) {
         echo "<tr>";
         $tier_price = explode('-',$element);       
         //Cells for pricing and price calculation labels
-        echo "<td class='cell_price'><input onchange='javascript:Check_Price(".$sku.",".$key.")' onpaste='javascript:Paste_Offer(".$sku.")' id='".$sku."_txt_poi_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_pri'></td>
+        echo "<td class='cell_price'><input onchange='javascript:Check_Price(".$sku.",".$key.",".$type.")' onpaste='javascript:Paste_Offer(".$sku.")' id='".$sku."_txt_poi_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_pri'></td>
         <td class='cell_price'><input onchange='javascript:Check_Price(".$sku.",".$key.")'  id='".$sku."_txt_pay_".$key."' style='width:50px;height:22px;' type='text' class='".$sku."_txt_pri' ></td>
         <td class='cell_price'><label style='height:12px;' id='".$sku."_lab_pri_".$key."'></label></td>
         <td class='cell_price'><label style='height:12px;' id='".$sku."_ro_12_".$key."'></label></td>
