@@ -158,7 +158,7 @@
                                         }else{                                        
                                         
                                             if($a=="new")  {
-                                            multi_pricing($pricing,$sku,$a);
+                                            multi_pricing($pricing,$sku,$a); 
                                             }else{
                                             multi_pricing(get_trend("loy_price",$sku,$last_date),$sku);
                                             }                                  
@@ -186,9 +186,17 @@
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between"> 
                                     <div id="rrp_offer_chk">
-                                        <h6 class="m-0 font-weight-bold text-primary offer_text">Offer </h6>
+                                        <?php 
+                                        if($a=="new")
+                                        {$text="RRP";}
+                                        else{
+                                        {$text="Offer";}
+                                        }
                                         
-                                        <input id="<?php echo $sku;?>_txt_new_rrp" class="txt_new_rrp" type="text" size="10px" placeholder="New RRP">
+                                        ?>
+                                        <h6 class="m-0 font-weight-bold text-primary offer_text"><?php echo $text; ?> </h6>
+                                        
+                                        <input id="<?php echo $sku;?>_txt_new_rrp" class="txt_new_rrp" type="text" size="10px" placeholder=" RRP" value="<?php if($a=="new"){echo $rrp;} ?>">
                                         
                                         <div id="rrp_update">
                                         <input type="checkbox" class="chk_rrp" title="Update RRP for offer report" checked <?php if($ro== "[12, 24]"){ echo "checked ";}?> id="<?php echo $sku; ?>_chk_rrp" value="ro">
@@ -217,6 +225,10 @@
                                             $pre=extract_pricing($previous_offer);
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Previous Offer</a>"; 
                                             }
+                                            if($pricing){
+                                                $pre=extract_pricing($pricing);
+                                                echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Closest Pricing</a>"; 
+                                            }
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Clear_Offer(".$sku.")'>Clear Offer</a>";
                                             ?>
                                             
@@ -232,7 +244,10 @@
                                     if($a=="new"){
                                     multi_boxes($pricing,$sku);
                                     echo "<a href= 'javascript:void(0)' onClick='javascript:Add_Boxes(".$sku.")' title='Add Tier'>+</a> &nbsp;&nbsp;";
-                                    echo "<a href= 'javascript:void(0)' onClick='javascript:Remove_Boxes(".$sku.")' title='Remove Tier'>-</a>";
+                                    echo "<span title='# tiers' id ='".$sku."_tier_counter' class='span_count'>$count_tiers</span>";
+                                    echo "<a href= 'javascript:void(0)' onClick='javascript:Remove_Boxes(".$sku.")' title='Remove Tier'> -</a>";
+                                    
+             
 
                                     }else{
                                     multi_boxes(get_trend("loy_price",$sku,$last_date),$sku);
