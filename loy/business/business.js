@@ -365,7 +365,11 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
      var tiers_arr="";
      var tiers_arr_1="";
      var fix=0;
+     var inc_half;
+     //for new products
      if(inc==10000){fix=5000;}
+    //for offer
+    if(inc==5000 && bottom_tier==2500){fix=2500;}
      console.log({fix});
       
       //Tier gap and filling for half increment ( low prices)
@@ -386,8 +390,14 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
      for (var z = 2; z < tiers; z++) {
         //Total array elements
          y=(tiers-2)+z;
-         tier_array[y] = top_tier- ((((inc) * z) + ((inc/2)* (tiersdiv-z))) + Number(bottom_tier) );
-         tier_change[y]= (inc) + "-" + z + "," + inc/2 + "-" + (tiers-z);
+         if(inc==2500){
+         inc_half=1500;
+         }else{
+         inc_half= inc/2; 
+         }
+
+         tier_array[y] = top_tier- ((((inc) * z) + ((inc_half)* (tiersdiv-z))) + Number(bottom_tier) );
+         tier_change[y]= (inc) + "-" + z + "," + inc_half + "-" + (tiers-z);
          tiers_arr += "Tier_gap_" + y + " = " + tier_array[y] + ", ";
 
         if(tier_array[y] == tier_array[1]){
