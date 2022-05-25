@@ -147,31 +147,35 @@ function Pay_Increment(rrp){
     //Set text field names for product
     var ini_pay;
     switch(true){
-        case rrp > 550 && rrp <700: ini_pay=120; inc=24; break;
+        case rrp > 550 && rrp <=700: ini_pay=120; inc=120; limit=2; break;
 
        // 120-2,(100-24)-1, 24-16
 
-        case rrp > 700 && rrp <980: ini_pay=120; inc=120; break;
+       case rrp > 700 && rrp <=900: ini_pay=120; inc=120; limit=4; break;
 
        // 120-3,(100-24) - 1 , 24-15
 
-        case rrp > 980 && rrp <1400: ini_pay=240; inc=120; break;
+        case rrp > 900 && rrp <=980: ini_pay=240; inc=120; limit=3; break;
+
+       // 120-3,(100-24) - 1 , 24-15
+
+        case rrp > 980 && rrp <=1100: ini_pay=240; inc=120;limit=4; break;
 
        // 120-4/ 5, (100-24) - 1, 24-14
 
-        case rrp > 1400 && rrp <1700: ini_pay=240; inc=120; break;
+        case rrp > 1100 && rrp <=1200: ini_pay=240; inc=120; limit=6; break;
 
        // 120-5 /6, (100-24) - 1, /24-13
         
-        case rrp > 1700 && rrp <3500: ini_pay=240; inc=240; break;
+        case rrp > 1200 && rrp <=1250: ini_pay=240; inc=120; limit=7; break;
 
        // 120-6 /7/8, (100-24) - 1, /24-12
-
+       case rrp > 1250 && rrp <3500: ini_pay=240; inc=120; limit=8; break;
 
 
     }
     
-return [ini_pay,inc]
+return [ini_pay,inc,limit]
 }
 ///////////////   Function to calculate pay increment////////////
 
@@ -192,6 +196,7 @@ function Check_Price(sku,key,tiers,type){
     var last_pay;
     var ppvv;
     var newpay;
+    var tier_rounder=500;
     // Get pay,points,rrp and wac values
     var points= document.getElementById(poi_nam).value;
     var pay= document.getElementById(pay_nam).value;
@@ -200,9 +205,11 @@ function Check_Price(sku,key,tiers,type){
     //Obtain new RRp from text box
     var newrrp = document.getElementById(sku + '_txt_new_rrp').value;
     var pv=0.003030;
+
         //If RO option is selected 
         var chk_ro = document.getElementById(sku + '_chk_ro').checked;
         if(chk_ro){
+            
             
             var ro_12= sku + '_ro_12_' + key;
             var ro_24= sku + '_ro_24_' + key;
@@ -210,43 +217,99 @@ function Check_Price(sku,key,tiers,type){
             if(key!=0){
                 if(tiers){
                     payment= Pay_Increment(newrrp); 
+
                     pay_ini= payment[0];
                     pay_inc= payment[1];
-                    //console.log({tiers_changers});
-                    pay_limit=2;
+                    limit= payment[2];
+
+                    if(pay_ini==120){
+                    pv=0.002828;}
+                    if(pay_ini==240){
+                    pv=0.002775;}
                     
-                    if( key <= pay_limit){
-                        if(key==1){pay_inc = pay_ini;}
+                    if( key <= limit){
+
                         //Set new pay
-                        document.getElementById(pay_nam).value = pay_inc*key; 
-                        pay= pay_inc*key;
+                        if(key==1){
+                        document.getElementById(pay_nam).value = pay_ini*key; 
+                        pay= pay_ini*key;}
+                        else{
+
+                        var pay_nam_bef= sku + '_txt_pay_' + (key-1);
+                        last_pay= document.getElementById(pay_nam_bef).value;
+                        document.getElementById(pay_nam).value = Number(last_pay) + Number(pay_inc); 
+                        pay = Number(last_pay) + Number(pay_inc);   
+                        }
+
                         last_pay= pay;
                         //Set new points
                         
-                        points=(newrrp-pay)/pv;
+                        //Calculate points                        
+                        points = Math.round((newrrp-pay)/pv);
+                        // Apply ounder top tier value to avoid decimals    
+                        var res= points/tier_rounder;
+                        // Get rounded value
+                        points = Math.round(res)* tier_rounder;
                         document.getElementById(poi_nam).value=points;
                         //Update 12/24 months payment
-                        document.getElementById(ro_12).innerHTML = (pay_inc*key)/12;
-                        document.getElementById(ro_24).innerHTML = (pay_inc*key)/24;
+                        document.getElementById(ro_12).innerHTML = (pay_ini*key)/12;
+                        document.getElementById(ro_24).innerHTML = (pay_ini*key)/24;
 
 
                     }else{
-                        if(key == (pay_limit + 1) ){
-                            last_pay= (120 * pay_limit)+ 76;
+                        if(key == (limit + 1) ){
+
+                            var pay_nam_ini= sku + '_txt_pay_1';
+                            var pay_ini= document.getElementById(pay_nam_ini).value ;
+
+                            if(pay_ini==120){
+                            last_pay= (120 * limit)+ 52;
+                            }
+
+                            if(pay_ini==120 && limit ==4){
+                                last_pay= (120 * limit);
+                                }
+
+                            if(pay_ini==240){
+                                last_pay= (120 * limit )+ 172;
+                            }
+                            if(pay_ini==240 && limit==7){
+                                last_pay= (120 * limit ) + 120;
+                            }
+
                         }else{
                         var pay_nam_bef= sku + '_txt_pay_' + (key-1);
                         last_pay= document.getElementById(pay_nam_bef).value;
-                        console.log(last_pay);
+                        //console.log(last_pay);
 
                         }
 
                         var mon_24 = (Math.round(Number(last_pay) + 24)/24).toFixed(2);
+                        if(key == (limit + 2) && limit==3 && pay_ini==240){
+                        var mon_24 = (Math.round(Number(last_pay) + 48)/24).toFixed(2); 
+                        }
+
+                        if(key == (limit + 1) && limit==6){
+                            var mon_24 = (Math.round(Number(last_pay))/24).toFixed(2); 
+                            }
+
+                            if(key == (limit + 1) && limit==4){
+                                var mon_24 = (Math.round(Number(last_pay) + 24)/24).toFixed(2); 
+                                }
+
                         mon_24 = Math.round(mon_24);
                         document.getElementById(ro_12).innerHTML = mon_24*2;
                         document.getElementById(ro_24).innerHTML = mon_24;
                         document.getElementById(pay_nam).value = mon_24*24;
-                        //points=(newrrp-(mon_24*24))/pv;
-                        //document.getElementById(poi_nam).value=points;
+                        //points=((newrrp-(mon_24*24))/pv);
+
+                        points = Math.round((newrrp-(mon_24*24))/pv);
+                        // Apply ounder top tier value to avoid decimals    
+                        var res= points/tier_rounder;
+                        // Get rounded value
+                        points = Math.round(res)* tier_rounder;
+
+                        document.getElementById(poi_nam).value=points;
                     }     
                 }
             }
@@ -264,7 +327,7 @@ function Check_Price(sku,key,tiers,type){
     document.getElementById(mar_nam).value= mar;
     document.getElementById(per_nam).value=per;  
         
-        if(type=="new"){
+        if(type=="new" && !chk_ro){
 
             
             
@@ -274,43 +337,11 @@ function Check_Price(sku,key,tiers,type){
             //document.getElementById(per_nam).value=ppvv; 
             }else{
             ppvv = (top_ppvv -(key*dec)).toFixed(6);
-           // console.log({ppvv});
             }
-            // console.log({ppvv});
             //Recalculate pay component and update the value
             newpay = rrp-(ppvv * 1.1 * points);
             newpay = newpay.toFixed(0);
-/*
-            if(tiers > 110){
-                if (key>=3 && key !=(tiers -1) && key !=(tiers -2) ){
-                newpay= newpay-2;
-                }
 
-                if (key>=3 && key !=(tiers -1) && key !=(tiers -3)  ){
-                    newpay= newpay-1;
-                }
-            }
-            */
-
-            //newpay = Math.trunc(newpay);
-
-
-
-
-            
-
-
-           // poi*(ppvv*1.1)=newrrp - newpay;  
-            
-            //New points for bottom tier 
-            if(key==(tiers-1)){
-            //ppvv = bot_ppvv.toFixed(6); 
-           // points=(rrp-newpay)/(bot_ppvv*1.1);  
-            //document.getElementById(poi_nam).value=Math.round(points);
-            //console.log("new points" + points);
-            }
-            
-            //console.log({newpay});
             if(key!=0){
                 var pre_poi_nam= sku + '_txt_poi_' + (key-1);
                 var pre_points= document.getElementById(pre_poi_nam).value;
@@ -321,25 +352,11 @@ function Check_Price(sku,key,tiers,type){
                 var pre_per =(((rrp-pre_newpay)/pre_points)/(1.1)).toFixed(6);
                 per =(((rrp-newpay)/points)/(1.1)).toFixed(6);
 
-                //console.log("Per: " + per + " Pre_per: " + pre_per + "Pre_points" + pre_points + "Pre Pay" + pre_newpay);
-
-                if(per >= pre_per){
-
-                //newpay = newpay - 1;
-                //newpay_minus = newpay - 1;
-
-                console.log("Per: " + per + " Pre_per: " + pre_per + "Pre_points" + pre_points + "Pre Pay" + pre_newpay);
-
-                }
-
             document.getElementById(pay_nam).value= newpay;
             // recalculate margin and value
             valu = ((points*0.0025) + (newpay/1.1)).toFixed(2);
             mar = (valu - wac).toFixed(2);
             per =(((rrp-newpay)/points)/(1.1)).toFixed(6);
-
-
-           
 
             //Set the values
             document.getElementById(valu_nam).value= valu;
@@ -349,6 +366,11 @@ function Check_Price(sku,key,tiers,type){
             }   
             
         }
+
+
+
+
+
         
 }
 ///////////////   End function to calculate the pricing margin////////////
@@ -564,8 +586,8 @@ function Create_Offer(sku,type){
         // Split each layer by the increment and tier number to make the change
         var tier_inc= layers[i].split("-")[0];
         var tier_change= layers[i].split("-")[1];
-        console.log({layers});
-        console.log({tier_start});
+        //console.log({layers});
+        //console.log({tier_start});
         // Loop through each range of tiers and increment and set the value for text fields 
             //tier_change = tier_change + tier_start-2;
             if(tier_start!=0){
