@@ -125,6 +125,8 @@ function Add_Boxes(sku){
     newCell7.appendChild(newinputbox4);
 
     document.getElementById(sku + '_hid_tie').value= Number(tiers) + 1;
+    //var tier_count= document.getElementById(sku + '_tier_counter').innerHTML;
+    document.getElementById(sku + '_tier_counter').innerHTML = Number(tiers) + 1;
 
     // Verify boxes name array goes here
         
@@ -141,7 +143,7 @@ function Remove_Boxes(sku){
     table.deleteRow(rowCount -1);
     var tiers= document.getElementById(sku + '_hid_tie').value;
     document.getElementById(sku + '_hid_tie').value= Number(tiers) - 1;
- 
+    document.getElementById(sku + '_tier_counter').innerHTML = Number(tiers) - 1;
     }
 ////////////////////// End remove boxes to offer table////////////////////////////
 

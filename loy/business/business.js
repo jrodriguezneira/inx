@@ -32,6 +32,7 @@ function Previous_Offer(pre,sku){
             //Assign points and pay to textfield boxes
             document.getElementById(poi_nam).value=parseInt(points);
             document.getElementById(pay_nam).value=parseInt(pay);
+            Check_Price(sku,i);
         }
 }
 ///////////////   End function to obtain previous offer
@@ -85,18 +86,32 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
     //Get value for bottom tier from UI
     var bot= sku + '_txt_poi_' + (tiers-1);
     bot_poi= document.getElementById(bot).value;
+    //console.log("master bot_poi" + bot_poi);
     //If bottom tier value is empty, then is calculated based on RRP and points value(based on previous data)
+   
+    if(bot_poi.length===0 && type=="new"){
+        switch(true){
+            case 60 > newrrp: bot_poi=5000; break;
+            case 300 > newrrp: bot_poi=5000;break;
+            case 400 > newrrp: bot_poi=5000; break;
+            case 1000 > newrrp: bot_poi=5000; break;
+            case 1500 > newrrp: bot_poi=7500; break;
+        } 
+    }   
+   
+   
     if(bot_poi.length===0){
         switch(true){
             case 60 > newrrp: bot_poi=2000; break;
             case 300 > newrrp: bot_poi=2500;break;
             case 400 > newrrp: bot_poi=5000; break;
-            case 1000 > newrrp: bot_poi=6000; break;
+            case 1000 > newrrp: bot_poi=5000; break;
             case 2500 > newrrp: bot_poi=7500; break;
         } 
-    }   
+    }  
+   
     var top_bottom= top_poi + "," + bot_poi;
-//console.log(top_bottom);
+console.log("initial Top-bottom: " + top_bottom);
 return top_bottom;
 }
 ///////////////    End function to verify top and bottom tiers and top tier point value////////////
@@ -105,13 +120,16 @@ return top_bottom;
 ///////////////   Function to calculate points increment per tier
 function Tier_increment(top_tier,bottom_tier,tiers){
   //Average increment depending on tiers range to fill up / -3 to exclude top and bottom 2 tieres 
-  var inc = Math.round((top_tier- bottom_tier -2500)/(tiers-3));
+  if(tiers==3){tiers=5;}
+  var inc = Math.round((top_tier- bottom_tier)/(tiers-3));
     //Set rounded increment depending on increment value
     switch(true){
     case inc > 1000 && inc <1500: inc=1000; break;
     case inc > 1500 && inc <2010: inc=2000; break;
     case inc > 2011 && inc <5000:  inc=2500; break;
+    case inc > 5000 && inc <7500 && tiers <=5:  inc=2500; break;
     case inc > 5000 && inc <10000:  inc=5000; break;
+    
     case inc > 10000 && inc <15000: inc=10000; break;
     case inc > 15000 && inc <20000: inc=15000; break;
     case inc > 20000 && inc <25000: inc=20000; break;
@@ -129,31 +147,35 @@ function Pay_Increment(rrp){
     //Set text field names for product
     var ini_pay;
     switch(true){
-        case rrp > 550 && rrp <700: ini_pay=120; inc=24; break;
+        case rrp > 550 && rrp <=700: ini_pay=120; inc=120; limit=2; break;
 
        // 120-2,(100-24)-1, 24-16
 
-        case rrp > 700 && rrp <980: ini_pay=120; inc=120; break;
+       case rrp > 700 && rrp <=900: ini_pay=120; inc=120; limit=4; break;
 
        // 120-3,(100-24) - 1 , 24-15
 
-        case rrp > 980 && rrp <1400: ini_pay=240; inc=120; break;
+        case rrp > 900 && rrp <=980: ini_pay=240; inc=120; limit=3; break;
+
+       // 120-3,(100-24) - 1 , 24-15
+
+        case rrp > 980 && rrp <=1100: ini_pay=240; inc=120;limit=4; break;
 
        // 120-4/ 5, (100-24) - 1, 24-14
 
-        case rrp > 1400 && rrp <1700: ini_pay=240; inc=120; break;
+        case rrp > 1100 && rrp <=1200: ini_pay=240; inc=120; limit=6; break;
 
        // 120-5 /6, (100-24) - 1, /24-13
         
-        case rrp > 1700 && rrp <3500: ini_pay=240; inc=240; break;
+        case rrp > 1200 && rrp <=1250: ini_pay=240; inc=120; limit=7; break;
 
        // 120-6 /7/8, (100-24) - 1, /24-12
-
+       case rrp > 1250 && rrp <3500: ini_pay=240; inc=120; limit=8; break;
 
 
     }
     
-return [ini_pay,inc]
+return [ini_pay,inc,limit]
 }
 ///////////////   Function to calculate pay increment////////////
 
@@ -169,11 +191,12 @@ function Check_Price(sku,key,tiers,type){
     var per_nam = sku + '_txt_per_' + key;
     var top_ppvv= 0.002750;
     var bot_ppvv= 0.002500;
-    var dec= ((top_ppvv - bot_ppvv)/tiers).toFixed(6);
-    var last_pay;
+    var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
     //console.log({dec});
+    var last_pay;
     var ppvv;
     var newpay;
+    var tier_rounder=500;
     // Get pay,points,rrp and wac values
     var points= document.getElementById(poi_nam).value;
     var pay= document.getElementById(pay_nam).value;
@@ -182,9 +205,11 @@ function Check_Price(sku,key,tiers,type){
     //Obtain new RRp from text box
     var newrrp = document.getElementById(sku + '_txt_new_rrp').value;
     var pv=0.003030;
+
         //If RO option is selected 
         var chk_ro = document.getElementById(sku + '_chk_ro').checked;
         if(chk_ro){
+            
             
             var ro_12= sku + '_ro_12_' + key;
             var ro_24= sku + '_ro_24_' + key;
@@ -192,43 +217,99 @@ function Check_Price(sku,key,tiers,type){
             if(key!=0){
                 if(tiers){
                     payment= Pay_Increment(newrrp); 
+
                     pay_ini= payment[0];
                     pay_inc= payment[1];
-                    //console.log({tiers_changers});
-                    pay_limit=2;
+                    limit= payment[2];
+
+                    if(pay_ini==120){
+                    pv=0.002828;}
+                    if(pay_ini==240){
+                    pv=0.002775;}
                     
-                    if( key <= pay_limit){
-                        if(key==1){pay_inc = pay_ini;}
+                    if( key <= limit){
+
                         //Set new pay
-                        document.getElementById(pay_nam).value = pay_inc*key; 
-                        pay= pay_inc*key;
+                        if(key==1){
+                        document.getElementById(pay_nam).value = pay_ini*key; 
+                        pay= pay_ini*key;}
+                        else{
+
+                        var pay_nam_bef= sku + '_txt_pay_' + (key-1);
+                        last_pay= document.getElementById(pay_nam_bef).value;
+                        document.getElementById(pay_nam).value = Number(last_pay) + Number(pay_inc); 
+                        pay = Number(last_pay) + Number(pay_inc);   
+                        }
+
                         last_pay= pay;
                         //Set new points
                         
-                        points=(newrrp-pay)/pv;
+                        //Calculate points                        
+                        points = Math.round((newrrp-pay)/pv);
+                        // Apply ounder top tier value to avoid decimals    
+                        var res= points/tier_rounder;
+                        // Get rounded value
+                        points = Math.round(res)* tier_rounder;
                         document.getElementById(poi_nam).value=points;
                         //Update 12/24 months payment
-                        document.getElementById(ro_12).innerHTML = (pay_inc*key)/12;
-                        document.getElementById(ro_24).innerHTML = (pay_inc*key)/24;
+                        document.getElementById(ro_12).innerHTML = (pay_ini*key)/12;
+                        document.getElementById(ro_24).innerHTML = (pay_ini*key)/24;
 
 
                     }else{
-                        if(key == (pay_limit + 1) ){
-                            last_pay= (120 * pay_limit)+ 76;
+                        if(key == (limit + 1) ){
+
+                            var pay_nam_ini= sku + '_txt_pay_1';
+                            var pay_ini= document.getElementById(pay_nam_ini).value ;
+
+                            if(pay_ini==120){
+                            last_pay= (120 * limit)+ 52;
+                            }
+
+                            if(pay_ini==120 && limit ==4){
+                                last_pay= (120 * limit);
+                                }
+
+                            if(pay_ini==240){
+                                last_pay= (120 * limit )+ 172;
+                            }
+                            if(pay_ini==240 && limit==7){
+                                last_pay= (120 * limit ) + 120;
+                            }
+
                         }else{
                         var pay_nam_bef= sku + '_txt_pay_' + (key-1);
                         last_pay= document.getElementById(pay_nam_bef).value;
-                        console.log(last_pay);
+                        //console.log(last_pay);
 
                         }
 
                         var mon_24 = (Math.round(Number(last_pay) + 24)/24).toFixed(2);
+                        if(key == (limit + 2) && limit==3 && pay_ini==240){
+                        var mon_24 = (Math.round(Number(last_pay) + 48)/24).toFixed(2); 
+                        }
+
+                        if(key == (limit + 1) && limit==6){
+                            var mon_24 = (Math.round(Number(last_pay))/24).toFixed(2); 
+                            }
+
+                            if(key == (limit + 1) && limit==4){
+                                var mon_24 = (Math.round(Number(last_pay) + 24)/24).toFixed(2); 
+                                }
+
                         mon_24 = Math.round(mon_24);
                         document.getElementById(ro_12).innerHTML = mon_24*2;
                         document.getElementById(ro_24).innerHTML = mon_24;
                         document.getElementById(pay_nam).value = mon_24*24;
-                        //points=(newrrp-(mon_24*24))/pv;
-                        //document.getElementById(poi_nam).value=points;
+                        //points=((newrrp-(mon_24*24))/pv);
+
+                        points = Math.round((newrrp-(mon_24*24))/pv);
+                        // Apply ounder top tier value to avoid decimals    
+                        var res= points/tier_rounder;
+                        // Get rounded value
+                        points = Math.round(res)* tier_rounder;
+
+                        document.getElementById(poi_nam).value=points;
                     }     
                 }
             }
@@ -239,48 +320,58 @@ function Check_Price(sku,key,tiers,type){
     // Calculate pricing margins
     var valu = ((points*0.0025) + (pay/1.1)).toFixed(2);
     var mar = (valu - wac).toFixed(2);
-    var per =(((rrp-pay)/points)/(1.1)).toFixed(5);
+    var per =(((rrp-pay)/points)/(1.1)).toFixed(6);
     //Set pricing margin values
     document.getElementById(valu_nam).value= valu;
     document.getElementById(valu_nam).setAttribute("Title", valu*1.1.toFixed(2));
     document.getElementById(mar_nam).value= mar;
     document.getElementById(per_nam).value=per;  
+        
+        if(type=="new" && !chk_ro){
 
-        if(type=="new"){
             
-            // Calculate the ppvv accoding to tier(key)
+            
+            // Calculate the ppvv according to tier(key)
             if(key==0){
             ppvv = top_ppvv.toFixed(6);
             //document.getElementById(per_nam).value=ppvv; 
             }else{
             ppvv = (top_ppvv -(key*dec)).toFixed(6);
             }
-            // console.log({ppvv});
             //Recalculate pay component and update the value
-            newpay = rrp-(ppvv * 1.1 * points)
+            newpay = rrp-(ppvv * 1.1 * points);
             newpay = newpay.toFixed(0);
-            //New points for bottom tier 
-            if(key==(tiers-1)){
-            //ppvv = bot_ppvv.toFixed(6); 
-            points=(rrp-newpay)/(bot_ppvv*1.1);  
-            document.getElementById(poi_nam).value=Math.round(points);
-            //console.log("new points" + points);
-            }
-            //console.log({newpay});
+
             if(key!=0){
+                var pre_poi_nam= sku + '_txt_poi_' + (key-1);
+                var pre_points= document.getElementById(pre_poi_nam).value;
+
+                var pre_ppvv = (top_ppvv -((key-1)*dec)).toFixed(6);
+                var pre_newpay = (rrp-(pre_ppvv * 1.1 * pre_points)).toFixed(0);
+
+                var pre_per =(((rrp-pre_newpay)/pre_points)/(1.1)).toFixed(6);
+                per =(((rrp-newpay)/points)/(1.1)).toFixed(6);
+
             document.getElementById(pay_nam).value= newpay;
             // recalculate margin and value
             valu = ((points*0.0025) + (newpay/1.1)).toFixed(2);
             mar = (valu - wac).toFixed(2);
             per =(((rrp-newpay)/points)/(1.1)).toFixed(6);
+
             //Set the values
             document.getElementById(valu_nam).value= valu;
             document.getElementById(mar_nam).value= mar;
             document.getElementById(per_nam).value=per; 
                 
             }   
+            
         }
-    
+
+
+
+
+
+        
 }
 ///////////////   End function to calculate the pricing margin////////////
 
@@ -295,36 +386,49 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
      var tier_change=[];
      var tiers_arr="";
      var tiers_arr_1="";
-
-      //Temporary fixer for increment of 2500 or even number of tiers?
-      var fix=0;
-      var fixer=0;
-      if(inc==2500){fix=inc;}
-      if(inc==1000){fix=inc*2;}
-      if(inc==2000 || inc==1000){fixer=inc/2;}
-      //Tier gap and filling for low prices with long range tiers
-      for (var z = 2; z < 16; z++) {
-      y=z+14;
-      tier_array[y] = top_tier- ((((inc) * z) + ((inc/2)* (tiersdiv-z))) + (inc*2) + fixer);
-      tier_change[y]= (inc) + "-" + z + "," + inc/2 + "-" + (tiers-z);
-      tiers_arr += "Tier_gap_" + y + " = " + tier_array[y] + ", ";
-      }
+     var fix=0;
+     var inc_half;
+     //for new products
+     if(inc==10000){fix=5000;}
+    //for offer
+    if(inc==5000 && bottom_tier==2500){fix=2500;}
+     console.log({fix});
+      
       //Tier gap and filling for half increment ( low prices)
-      tier_array[0] = top_tier- ((((inc/2)*tiersdiv) + (bottom_tier*2)));
+      tier_array[0] = top_tier- ((((inc/2)*tiersdiv) + Number(bottom_tier)));
       tier_change[0]= (inc/2) + "-" + (tiers-2);
       //Tier gap and filling for initial increment with no tier increment changes
-      tier_array[1] = top_tier- (((inc*tiersdiv) + (bottom_tier*2)));
+      tier_array[1] = top_tier- (((inc*tiersdiv) + Number(bottom_tier)));
       tier_change[1]= inc + "-" + (tiers-2);
 
       // Calculate top gap and tier filling with different variations ( making the tier increment change on different positions)
-      for (var w = 2; w < 16; w++) {
-        if(w==2){
-        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))));
-        }else{
-        tier_array[w] = top_tier- ( ((inc*2)* w) + (inc* (tiersdiv-w)) + fix );}
+      for (var w = 2; w < tiers; w++) {       
+        tier_array[w] = top_tier- ((((inc*2) * w) + (inc* (tiersdiv-w))) + Number(bottom_tier) - fix);
         tier_change[w]= (inc*2) + "-" + w + "," + inc + "-" + (tiers-w);
         tiers_arr_1 += "Tier_gap_" + w + " = " + tier_array[w] + ", ";
         }
+
+     //Tier gap and filling for low prices with long range tiers
+     for (var z = 2; z < tiers; z++) {
+        //Total array elements
+         y=(tiers-2)+z;
+         if(inc==2500){
+         inc_half=1500;
+         }else{
+         inc_half= inc/2; 
+         }
+
+         tier_array[y] = top_tier- ((((inc) * z) + ((inc_half)* (tiersdiv-z))) + Number(bottom_tier) );
+         tier_change[y]= (inc) + "-" + z + "," + inc_half + "-" + (tiers-z);
+         tiers_arr += "Tier_gap_" + y + " = " + tier_array[y] + ", ";
+
+        if(tier_array[y] == tier_array[1]){
+            var tier_1_check = true;
+        }
+
+         }
+        
+ 
     //Select base gap with initial increment to define 
         var tier_gap_0 = tier_array[0];
         var tier_gap_1 = tier_array[1];
@@ -334,6 +438,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
     console.log("Tier_gap_1 = " + tier_array[1]);
     console.log(tiers_arr_1);
     console.log(tiers_arr);
+   // console.log({top_tier},{bottom_tier});
     //Duplicate tier array to store original array order( Ascendent by gap)
     let new_tier_array = tier_array.slice();
 
@@ -354,7 +459,24 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         var closest = counts.reduce(function(prev, curr) {
         return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
         });
+        var tot = closest +  ((inc*tiersdiv) + Number(bottom_tier)) ;
+        console.log({tot});
+        // 
+        // Validate tires for new products
+        if (tot < top_tier ){
         low = closest;
+        }
+        if( (closest - inc) > 1000){
+        low = closest;
+        }
+        //Avoid 
+        if( tier_gap_1 < (inc/2) ){
+            low = closest;
+        }
+        if(inc== 10000 && low < inc){
+            low = closest;
+        }
+        // End Validate tires for new products
         console.log("tier_gap_0 closest " + closest);
         }
 
@@ -365,23 +487,34 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         var closest = counts.reduce(function(prev, curr) {
         return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
         });
+        
+        if ( top_tier > 20000){
         low = closest;
+        }
+
         console.log("tier_gap_1 closest " + closest);
    }
 
   
    
     // Select the tier change with closest tier gap value to the highest increment or the tier change with the lowest tier gap ( Indicated above when to choose the closest or lowest tier gap)
-    for (var i = 0; i < 30; i++) {
+    console.log({low});
+    for (var i = 0; i <= y ; i++) {
        //tier = "tier_gap_" + i;   
         if(new_tier_array[i]== low){
+
+            if(i==1 && tier_1_check){
+            console.log("Tier 1 gap not taken");
+            }else{
             tier_change= tier_change[i];
             tier_gap= new_tier_array[i];
             console.log(" Tier selected(i)= " + i);
             break;
+            }
+
         }
     }
-//Bottom tier to be added to tiers array 
+//Bottom tier to be added to tiers array ( not last tier)
 bot_tier= inc + "-" + (tiers-1);
 // Return the tier increment changes to fill the pricing points and tier gap to fulfill the difference 
 return tier_change + "," + bot_tier + "," + tier_gap ;
@@ -441,14 +574,26 @@ function Create_Offer(sku,type){
   // Get tier gap from last element on layers array
   var tier_start=0;
   var z= layers.length;
+  if (z==4){
+  var val_changers= z-2;
+  }else{
+    val_changers= z-1;   
+  }
   var gap_tier= layers[z-1];
   points= gap_tier;
    //Loop through the number of layers per increment to fulfill pricing points 
-    for (var i = 0; i < z-1; i++) {
+    for (var i = 0; i < val_changers; i++) {
         // Split each layer by the increment and tier number to make the change
         var tier_inc= layers[i].split("-")[0];
         var tier_change= layers[i].split("-")[1];
-        // Loop through each range of tiers and increment and set the value for text fields      
+        //console.log({layers});
+        //console.log({tier_start});
+        // Loop through each range of tiers and increment and set the value for text fields 
+            //tier_change = tier_change + tier_start-2;
+            if(tier_start!=0){
+            tier_change= Number(tier_change) + Number(tier_start) - 2;
+            }
+            //console.log({tier_change});
             for (var x = tier_start; x <= (tier_change); x++) {
                 //Get the name for each textbox 
                 var poi_nam= sku + '_txt_poi_' + x;
@@ -591,8 +736,3 @@ function Check_Rebate(sku){
     document.getElementById(sku + '_fwac').value=Number(newreb).toFixed(2);
 }
 ///////////////////// End function to verify rebate value and update pricing details
-
-
-
-
-  

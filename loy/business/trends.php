@@ -34,7 +34,7 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_stock="select stock from products_last where sku=$sku limit 1;";
     $sql_launch_date="select date(date_report) from products where sku=$sku order by date_report asc limit 1;";
     $sql_find_price="select price from products_last where RRP=$rrp and segment ='LOYALTY_CON' and sku not in (100154564) limit 1;";
-    $sql_closest_price="select price from products_last where segment='LOYALTY_CON' and price NOT IN (\"['1000.0 - 0.0']\",\"['10000.0 - 0.0']\") order by abs(rrp - $rrp),price limit 1;";
+    $sql_closest_price="select price from products_last where segment='LOYALTY_CON' and offer <> 'Hot Offer' and price NOT IN (\"['1000.0 - 0.0']\",\"['10000.0 - 0.0']\") order by abs(rrp - $rrp),price desc limit 1;";
     $sql_previous_offer="select price from products where sku=$sku and offer='Hot Offer' and segment ='LOYALTY_CON' order by date_report desc limit 1;";
     $sql_product_pricing="select concat(invoice_ex_gst,'-',dbp_ex_gst,'-',std_rrp_inc_gst,'-',std_rrp_ex_gst,'-',rebate,'-',invoice_price,'-',internal,'-',external)
     from product_pricing where orin=$sku;";
