@@ -239,14 +239,13 @@ function Check_Price(sku,key,tiers,type){
                         }else{
                         var pay_nam_bef= sku + '_txt_pay_' + (key-1);
                         last_pay= document.getElementById(pay_nam_bef).value;
-                        document.getElementById(pay_nam).value = Number(last_pay) + Number(pay_inc); 
                         pay = Number(last_pay) + Number(pay_inc);   
+                        document.getElementById(pay_nam).value = pay; 
                         }
                         //Set new points//////////////
                         points = (((newrrp/1.1) - (pay/1.1) ).toFixed(2) )/0.0025;
                         var res= points/tier_rounder;
                         points = Math.round(res)* tier_rounder;
-                       // points = Math.round(res)* tier_rounder;
                         document.getElementById(poi_nam).value=points;
                         //Update 12/24 months payment
                         document.getElementById(ro_12).innerHTML = (pay)/12;
@@ -569,8 +568,6 @@ function Create_Offer(sku,type){
         // Split each layer by the increment and tier number to make the change
         var tier_inc= layers[i].split("-")[0];
         var tier_change= layers[i].split("-")[1];
-        //console.log({layers});
-        //console.log({tier_start});
         // Loop through each range of tiers and increment and set the value for text fields 
             //tier_change = tier_change + tier_start-2;
             if(tier_start!=0){
@@ -612,6 +609,7 @@ function Create_File(target){
     var tiers='';
     var dates;
     var stock;
+    var fwac;
     //Get number of products
     var x = document.getElementsByClassName("sku_cel");
     var k =0;
@@ -644,9 +642,10 @@ function Create_File(target){
         z= Format_Date(end);
         dates= y + ',' + z;
         k = k + 2;
+        fwac = document.getElementsByClassName("txt_fwac")[i].value;
         // Create URL with information required to create the excel offer file
-        // Array with sku details: sku(0),rrp(1), number of tiers(2),tiers pricing(3), dates(4), stock(5), check rrp(6), check_ro(7)
-        prod += 'sku' + i + '=' + sku + '*' + rrp + '*' + tot_tiers + '*' + tiers + '*' + dates + '*' + stock + '*' + chk_rrp + '*' + chk_ro + '&';
+        // Array with sku details: sku(0),rrp(1), number of tiers(2),tiers pricing(3), dates(4), stock(5), check rrp(6), check_ro(7), fwac(8)
+        prod += 'sku' + i + '=' + sku + '*' + rrp + '*' + tot_tiers + '*' + tiers + '*' + dates + '*' + stock + '*' + chk_rrp + '*' + chk_ro + '*' + fwac + '&';
       } 
     // Append number of skus to offer URL (skus array) and export file type(target)
     prod= 'i=' + i + '&' + prod;

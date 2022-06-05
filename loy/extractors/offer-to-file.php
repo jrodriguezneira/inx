@@ -96,8 +96,8 @@ function create_offer_file($prod){
         $tier = explode('*',$skus[$i]);
 
         //Set Name
-        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[9]);
-        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[9]);
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[10]);
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[10]);
         $sheet->getColumnDimension('B')->setWidth(50);
         //Set SKU
         $sheet->setCellValueByColumnAndRow(3,$tot_tiers+1,"Inventory ID");
@@ -118,11 +118,11 @@ function create_offer_file($prod){
         $sheet->getColumnDimension('G')->setWidth(15);
         //Apply format to header for each sku
         $header1="B" . strval($tot_tiers+1) . ':J' . strval($tot_tiers+1);
-        $header2="L" . strval($tot_tiers+1) . ':N' . strval($tot_tiers+1);
+        $header2="L" . strval($tot_tiers+1) . ':Q' . strval($tot_tiers+1);
         $sheet->getStyle("$header1")->applyFromArray($tablehead);
         $sheet->getStyle("$header2")->applyFromArray($tablehead2);
         //Get RO options
-        $ro= $tier[11];
+        $ro= $tier[12];
         if($ro==1){
             $ro_des="Yes";
         }else{
@@ -133,21 +133,21 @@ function create_offer_file($prod){
         //Set RRP
         $rrp_old= $tier[6];
         if($rrp_old =="false"){
-            $rrp = $tier[10];
+            $rrp = $tier[11];
             }else{
             $rrp = $tier[1];
         }
       
           // Obtain points and tiers from current pricing array
-          $tier1 = explode(',',$tier[8]);        
+          $tier1 = explode(',',$tier[9]);        
         foreach( $tier1 as $key=>$element) {     
               
             //Repeat Name
-            $sheet->setCellValueByColumnAndRow(2,$tot_tiers+$key+2,$tier[9]);
+            $sheet->setCellValueByColumnAndRow(2,$tot_tiers+$key+2,$tier[10]);
             //Repeat SKU
             $sheet->setCellValueByColumnAndRow(3,$tot_tiers+$key+2,$tier[0]);
             //Repeat RRP
-            $sheet->setCellValueByColumnAndRow(4,$tot_tiers+$key+2,$tier[10]);
+            $sheet->setCellValueByColumnAndRow(4,$tot_tiers+$key+2,$tier[11]);
             // Repeat Pricing Type
             $sheet->setCellValueByColumnAndRow(5,$tot_tiers+$key+2,"Persistant"); 
             //Set points and pay 
@@ -191,8 +191,12 @@ function create_offer_file($prod){
         //Set New Pricing
         $sheet->setCellValueByColumnAndRow(13,$tot_tiers+1,"Points");
         $sheet->setCellValueByColumnAndRow(14,$tot_tiers+1,"Pay");
+        $sheet->setCellValueByColumnAndRow(15,$tot_tiers+1,"Value");
+        $sheet->setCellValueByColumnAndRow(16,$tot_tiers+1,"Margin");
+        $sheet->setCellValueByColumnAndRow(17,$tot_tiers+1,"PPVV");
         // Obtain points and tiers from new pricing array
         $tier2 = explode(',',$tier[3]);
+        $fwac= $tier[8];
         foreach( $tier2 as $key=>$element) {
 
             //Repeat new or old RRP depending on checkbox selection
@@ -200,8 +204,17 @@ function create_offer_file($prod){
             //Set points and pay
             $j=13; // Column Start
             $tier_price = explode('-',$element);
+            // Calculate pricing margins
+            $valu = round((((int)$tier_price[0]*0.0025) + ((int)$tier_price[1]/1.1)),2);
+            $mar = round(($valu - $fwac),2);
+            $per = round(((($tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
+
             $sheet->setCellValueByColumnAndRow($j,$tot_tiers + $key+2,(int)$tier_price[0]);
             $sheet->setCellValueByColumnAndRow($j+1,$tot_tiers + $key+2,(int)$tier_price[1]);
+            $sheet->setCellValueByColumnAndRow($j+2,$tot_tiers + $key+2,$valu);
+            $sheet->setCellValueByColumnAndRow($j+3,$tot_tiers + $key+2,$mar);
+            $sheet->setCellValueByColumnAndRow($j+4,$tot_tiers + $key+2,$per);       
+
         }
         //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
         $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
@@ -264,7 +277,7 @@ function create_shop_file($prod){
         //Set sku
         $sheet->setCellValueByColumnAndRow(1,$tot_tiers+3,$tier[0]);
         //Set name
-        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+3,$tier[9]);
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+3,$tier[10]);
         //Set new pricing 
               $tier1 = explode(',',$tier[3]);         
               foreach( $tier1 as $key=>$element) {
@@ -278,7 +291,7 @@ function create_shop_file($prod){
           $sheet->setCellValueByColumnAndRow(5,$tot_tiers+3,$dates[0]);
           $sheet->setCellValueByColumnAndRow(6,$tot_tiers+3,$dates[1]);
           //Set Current pricing 
-              $tier2 = explode(',',$tier[8]);
+              $tier2 = explode(',',$tier[9]);
               foreach( $tier2 as $key=>$element) {
               $j=7; //Column start
               $tier_price = explode('-',$element);
@@ -337,7 +350,7 @@ function create_stock_file($prod){
         $sheet->setCellValueByColumnAndRow(1,$tot_tiers+2,$tier[0]);
         $sheet->getColumnDimension('A')->setWidth(15);
         //Set name
-        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[9]);
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[10]);
         $sheet->getColumnDimension('B')->setWidth(50);
         //Set stock 
         $sheet->setCellValueByColumnAndRow(3,$tot_tiers+2,$tier[5]); 
@@ -438,7 +451,7 @@ function create_product_file($prod){
         $tier = explode('*',$skus[$i]);
         
         //Set Name
-        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[9]);
+        $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[10]);
         $sheet->getColumnDimension('B')->setWidth(50);
         
         //Set SKU
@@ -473,7 +486,7 @@ function create_product_file($prod){
                 foreach( $tier1 as $key=>$element) {
 
                 //Repeat Name
-                $sheet->setCellValueByColumnAndRow(2,$tot_tiers+$key+2,$tier[9]);
+                $sheet->setCellValueByColumnAndRow(2,$tot_tiers+$key+2,$tier[10]);
                 //Repeat SKU
                 $sheet->setCellValueByColumnAndRow(3,$tot_tiers+$key+2,$tier[0]);
                 //Set RRP
