@@ -321,6 +321,9 @@ function Check_Price(sku,key,tiers,type){
             }
             //Recalculate pay component and update the value
             pay = rrp-(ppvv * 1.1 * points);
+            if(key==0){
+            pay=0;
+            }
             pay = pay.toFixed(0);
             document.getElementById(pay_nam).value= pay;            
         }
@@ -650,8 +653,8 @@ function Create_File(target){
     // Append number of skus to offer URL (skus array) and export file type(target)
     prod= 'i=' + i + '&' + prod;
     var url = 'off-cr1.php?' + prod + 'target=' + target;
-    console.log("Prod" + prod);
-    console.log("target" + target);
+    //console.log("Prod" + prod);
+   // console.log("target" + target);
     window.open(url, '_blank'); 
   }
 ////////////////////// End Function to create URL containing product offer details for shop

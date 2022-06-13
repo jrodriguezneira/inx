@@ -71,7 +71,9 @@ function multi_pricing($price,$sku=null,$new=null){
                 case 7: $ext = $pri; break;
             }
         }
+        if($inv){
         $fwac= $inv +(($rrpex-$dbp)*$ext);
+        }
         //echo "fwac= ". $fwac . " invp= " . $invp ." rrpex= ". $rrpex. " dbp=  " . $dbp . " ext= " . $ext;
     
     echo "<table width='100%'><tr><td>";

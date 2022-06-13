@@ -84,7 +84,7 @@
                 $name= get_trend("name",$sku[0]);
                 // If the target is for new products change the query source
                 if($target=="product")
-                {$name= get_trend("name_new",$sku[0]);}
+                {$name= get_trend("name_new",trim($sku[0]));}
                 //Get name from name query
                 $productname=explode('-',$name);
                 //Get Current RRP when lfag is unchecked
@@ -99,7 +99,7 @@
                 $prod .= $skus;
                 }
                 //Temporary display the array 
-               echo '<br>Prod'. $prod. "<br><br><br>";
+              // echo '<br>Prod'. $prod. "<br><br><br>";
                
 
 

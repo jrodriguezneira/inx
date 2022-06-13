@@ -56,21 +56,30 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                  <!-- Page Heading -->
+                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><b>Products</b> </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> <?php //echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
+                                class="fas fa-download fa-sm text-white-50"></i> <?php echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
+
+                                
                     </div>
 
                     <!-- Content Row -->
                    
+                    <?php
+                      //Export productc to excel file
+                      if(isset($_GET['rep'])){           
+                        include 'extractors/offer-to-file.php'; 
+                        create_catalog_file();
+                      }
+                    ?>
 
                     <!-- Content Row -->
 
-                    <div class="row">
+                      <div class="row">
 
-                        <!-- Area Chart -->
+                        <!-- Products Table-->
                         <div class="col-xl-9 col-lg-9">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
@@ -86,41 +95,37 @@
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
                                             <a id="export" class="dropdown-item" href="#">Create Offer</a>  
+                                            <a id="excel" class="dropdown-item" href="prod_all.php?rep=excel">Export All products(xls)</a>  
                                             
                                             </div>
                                     </div>
                                 </div>
-                                <!-- Card Body content goes here -->
+                                <!-- Products table details-->
                                 <div class="card-body">
                                 
                                     <table id="sample_data" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                        <th>orin</th>
-                                        <th>solomon</th>
-                                        <th>Name</th>
-                                        <th>Invoice(ex GST)</th>
-                                        <th>DBP(ex GST)</th>
-                                        <th>STD RRP(inc GST)</th>
-                                        <th>STD RRP(ex GST)</th>
-                                        <th>Rebate</th>                                                                   
-                                       
-                                        </tr> 
-                                    </thead>
-                                    
+                                      <thead>
+                                          <tr>
+                                          <th></th>
+                                          <th></th>
+                                          <th>orin</th>
+                                          <th>solomon</th>
+                                          <th>Name</th>
+                                          <th>Invoice(ex GST)</th>
+                                          <th>DBP(ex GST)</th>
+                                          <th>STD RRP(inc GST)</th>
+                                          <th>STD RRP(ex GST)</th>
+                                          <th>Rebate</th>    
+                                          <th>Stock</th>                                                               
+                                        
+                                          </tr> 
+                                      </thead>                                    
                                     </table>
-                                    
-
-                                </div>
+                                 </div>
+                                 <!-- End Products table details-->
                             </div>
-                        </div>
-
-                     
-
-                        <!-- Pie Chart -->
-                       
-                    </div>
+                        </div>                       
+                  </div>
 
                     
 
@@ -149,18 +154,11 @@
     <?php include 'logout.php'; ?>
     <!-- End Logout Modal-->
 
-   
-
-
 <!-- Modal Search-->
 <?php //include 'searchmodal.php'; ?>
 <!-- End Modal Search-->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-   
-
-
 
     <!-- Business script-->
     <script type="text/javascript" src="business/business.js"></script>
@@ -192,83 +190,197 @@
 <script>
 /* Formatting function for row details - modify as you need */
 
+function format(d) {
+  // `d` is the original data object for the row
+  var d = '\'' + d ;
+  var prices = '';
+  var prev = d.split(",")[9];
+  var pri_change= prev.split("#");
+        //Loop through tiers to assign values 
+          prices += '<table><tr><td>Price Change</td><td>Value</td><td>Date</td></tr>'
+          for (var i = 0; i < pri_change.length; i++) {
+          var pri_det= pri_change[i].split(" ");
+            if(pri_change.length>=1){
+            prices += '<tr><td>' + pri_det[0] + '</td><td>' + pri_det[1] + '</td><td>' + pri_det[2] + '</td></tr>' ;
+            }
+          }
+          prices += '</table>';
+        
+    
+  return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+    '<tr>' +
+    '<td>' + prices + '</td>' +
+    '</tr>' +
+    '</table>'; 
+}
+
 $(document).ready(function(){
 
-var dataTable = $('#sample_data').DataTable({
- "processing" : true,
- "serverSide" : true,
- "order" : [],
- "ajax" : {
-  url:"fetch_all.php",
-  type:"POST"
- },
 
- 'columns': [{
-        'className': 'select-checkbox',
+  var dataTable = $('#sample_data').DataTable({
+  "processing" : true,
+  "serverSide" : true,
+  "order" : [],
+  "ajax" : {
+    url:"fetch_all.php",
+    type:"POST"
+  },
+
+  'columns': [{
+        'className': 'details-control',
         'orderable': false,
         'data': null,
         'defaultContent': ''
-      },
-      {
-        'data': '0'
-      },
-      {
-        'data': '1'
-      },
-      {
-        'data': '2'
-      },
-      {
-        'data': '3'
-      },
-      {
-        'data': '4'
-      },
-      {
-        'data': '5'
-      },
-      {
-        'data': '6'
-      },
-      {
-        'data': '7'
-      }
-    ],
-    select: {
-            style:    'os',
-            selector: 'td:first-child'
+        },        
+        {
+          'className': 'select-checkbox',
+          'orderable': false,
+          'data': null,
+          'defaultContent': ''
         },
-    'order': [
-      [1, 'asc']
-    ]
+        {
+          'data': '0'
+        },
+        {
+          'data': '1'
+        },
+        {
+          'data': '2'
+        },
+        {
+          'data': '3'
+        },
+        {
+          'data': '4'
+        },
+        {
+          'data': '5'
+        },
+        {
+          'data': '6'
+        },
+        {
+          'data': '7'
+        },
+        {
+          'data': '8'
+        }
+      ],
+      select: {
+              style:    'os',
+              selector: 'td:first-child'
+          },
+      'order': [
+        [1, 'asc']
+      ]
+
+  });
+
+  var order_array=[];
+
+
+    $('#sample_data tbody').on('click', 'tr', function () {
+        $(this).toggleClass('selected');
+
+        var rox= '"' + dataTable.row(this).data() + '"';
+        console.log( "Array: " + rox.split(",")[0].substring(1) );
+
+              order_array.push(rox.split(",")[0].substring(1) );
+
+    });
+
+    $('#sample_data').on('draw.dt', function(){
+    $('#sample_data').Tabledit({
+      url:'action_all.php',
+      dataType:'json',
+      columns:{
+      identifier : [2, 'orin'],
+      editable:[[5, 'invoice_ex_gst'], [6, 'dbp_ex_gst'], [7, 'std_rrp_inc_gst'],[8, 'std_rrp_ex_gst'],[9, 'rebate']]
+      },
+      restoreButton:false,
+      onSuccess:function(data, textStatus, jqXHR)
+      {
+      if(data.action == 'delete')
+      {
+        $('#' + data.id).remove();
+        $('#sample_data').DataTable().ajax.reload();
+      }
+      }
+    });
+    });
+
+
+    $('#export').click( function () {
+        var skus='';
+      for (var i = 0; i < dataTable.rows('.selected').data().length; i++) { 
+          var row = '\'' + dataTable.rows('.selected').data()[i] + '\'';
+         // console.log( row);
+         // console.log( row.split(",")[0].substring(1));
+          //console.log( row.split(",")[8].substring(0, row.split(",")[8].length - 1) );
+
+         skus += 'sku' + order_array.indexOf(row.split(",")[0].substring(1)) + '=' + row.split(",")[0].substring(1) + '*' + row.split(",")[8].substring(0, row.split(",")[8].length - 1) + '&';
+      }
+      
+      var url = 'off-cr.php?' + skus + 'q=' + dataTable.rows('.selected').data().length;
+      console.log( url ); 
+      window.location.href = url;
+    } );
+
+
+    // Add event listener for opening and closing details
+  $('#sample_data tbody').on('click', 'td.details-control', function() {
+    var tr = $(this).closest('tr');
+    var row = dataTable.row(tr);
+
+    if (row.child.isShown()) {
+      // This row is already open - close it
+      row.child.hide();
+      tr.removeClass('shown');
+    } else {
+      // Open this row
+      row.child(format(row.data())).show();
+      tr.addClass('shown');
+    }
+  });
+
+  // Handle click on "Expand All" button
+  // Handle click on "Expand All" button
+  $('#btn-show-all-children').on('click', function() {
+    let containers, user_name;
+    var count = 0;
+    table.rows().every(function() {
+    //get data from row this will return values in json object..
+      var d = this.data();
+      if (!this.child.isShown()) {
+        containers = document.createElement('div');
+        containers.setAttribute('id', `container_${d.name.replace(' ', '_')}`);
+        containers.innerHTML = d.name;//add value in inside div crated
+        this.child(containers).show();
+        $(this.node()).addClass('shown'); 
+      }
+    });
+  });
+
+  // Handle click on "Collapse All" button
+  $('#btn-hide-all-children').on('click', function() {
+    // Enumerate all rows
+    dataTable.rows().every(function() {
+      // If row has details expanded
+      if (this.child.isShown()) {
+        // Collapse row details
+        this.child.hide();
+        $(this.node()).removeClass('shown');
+      }
+    });
+  });
 
 });
 
-$('#sample_data tbody').on('click', 'tr', function () {
-    $(this).toggleClass('selected');
-});
 
-$('#sample_data').on('draw.dt', function(){
- $('#sample_data').Tabledit({
-  url:'action.php',
-  dataType:'json',
-  columns:{
-   identifier : [1, 'orin'],
-   editable:[[4, 'invoice_ex_gst'], [5, 'dbp_ex_gst'], [6, 'std_rrp_inc_gst'],[7, 'std_rrp_ex_gst'],[8, 'rebate']]
-  },
-  restoreButton:false,
-  onSuccess:function(data, textStatus, jqXHR)
-  {
-   if(data.action == 'delete')
-   {
-    $('#' + data.id).remove();
-    $('#sample_data').DataTable().ajax.reload();
-   }
-  }
- });
-});
  
-}); 
+
+
+
 </script>
 
     

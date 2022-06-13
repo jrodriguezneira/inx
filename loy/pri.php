@@ -81,8 +81,8 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
-                                            <a class="dropdown-item" href="#">History</a>
-                                            <a class="dropdown-item" href="#">Export</a>
+                                            <a class="dropdown-item" href="#"></a>
+                                            <a class="dropdown-item" href="#"></a>
                                             </div>
                                     </div>
                                 </div>
@@ -111,13 +111,9 @@
                             </div>
                         </div>
 
-                     
-
                         <!-- Pie Chart -->
                        
                     </div>
-
-                    
 
                 </div>
                 <!-- /.container-fluid -->
@@ -144,8 +140,7 @@
     <?php include 'logout.php'; ?>
     <!-- End Logout Modal-->
 
-   
-
+  
 
 <!-- Modal Search-->
 <?php //include 'searchmodal.php'; ?>
@@ -186,7 +181,7 @@ function format(d) {
     '<td>Points Pay:</td>' +
     '<td>' + d.price.slice(1,-1).replaceAll("'"," ").replaceAll(",","<br>") + '</td>' +
     '</tr>' +
-    '</table>';
+    '</table>'; 
 }
 
 $(document).ready(function() {
@@ -269,6 +264,8 @@ $(document).ready(function() {
     });
   });
 });
+
+
 </script>
 
     
