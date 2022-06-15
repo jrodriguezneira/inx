@@ -140,7 +140,8 @@ function create_offer_file($prod){
         }
       
           // Obtain points and tiers from current pricing array
-          $tier1 = explode(',',$tier[9]);        
+          $tier1 = explode(',',$tier[9]);    
+          
         foreach( $tier1 as $key=>$element) {     
               
             //Repeat Name

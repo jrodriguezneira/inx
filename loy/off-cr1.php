@@ -79,9 +79,9 @@
                 //Divide array to obtain sku and get sku pricing and name details from database
                 $sku = explode('*',$skus);                
                 //Get current pricing 
-                $loy_price=extract_pricing(get_trend("loy_price",$sku[0]));                 
+                $loy_price=extract_pricing(get_trend("loy_price",trim($sku[0])));              
                 //Query to get sku and name
-                $name= get_trend("name",$sku[0]);
+                $name= get_trend("name",trim($sku[0]));
                 // If the target is for new products change the query source
                 if($target=="product")
                 {$name= get_trend("name_new",trim($sku[0]));}
@@ -89,7 +89,7 @@
                 $productname=explode('-',$name);
                 //Get Current RRP when lfag is unchecked
                 $rrp_old= get_trend("rrp_new",$sku[0]);
-                $ro= get_trend('ro_sku',$sku[0]);
+                $ro= get_trend('ro_sku',trim($sku[0]));
                 if($ro== "[12, 24]"){
                 $ini_ro= 1;    
                 }else{$ini_ro= 0; }
@@ -99,7 +99,8 @@
                 $prod .= $skus;
                 }
                 //Temporary display the array 
-              // echo '<br>Prod'. $prod. "<br><br><br>";
+               //echo '<br>Prod'. $prod. "<br><br><br>";
+
                
 
 

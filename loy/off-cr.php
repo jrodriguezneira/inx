@@ -301,7 +301,7 @@
                                             }else{                                           
                                              echo "<a class='dropdown-item' id='offer_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"offer\")'>Export Offer File</a>";                                             
                                              echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"shop\")'>Export Shop File</a>";
-                                             echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"stock\")'>Export Stock File</a>";
+                                             //echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"stock\")'>Export Stock File</a>";
                                              echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Populate_Dates()'>Same Dates</a>";
 
                                             }

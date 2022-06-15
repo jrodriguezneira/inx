@@ -190,6 +190,8 @@
 <script>
 /* Formatting function for row details - modify as you need */
 
+var selected = [];
+
 function format(d) {
   // `d` is the original data object for the row
   var d = '\'' + d ;
@@ -201,6 +203,7 @@ function format(d) {
           for (var i = 0; i < pri_change.length; i++) {
           var pri_det= pri_change[i].split(" ");
             if(pri_change.length>=1){
+              if(pri_det[1] == null ){pri_det[1] = ' ';pri_det[2] = ' ';}
             prices += '<tr><td>' + pri_det[0] + '</td><td>' + pri_det[1] + '</td><td>' + pri_det[2] + '</td></tr>' ;
             }
           }
@@ -215,7 +218,7 @@ function format(d) {
 }
 
 $(document).ready(function(){
-
+  
 
   var dataTable = $('#sample_data').DataTable({
   "processing" : true,
@@ -224,6 +227,14 @@ $(document).ready(function(){
   "ajax" : {
     url:"fetch_all.php",
     type:"POST"
+  },
+  Id: '0',
+  "rowCallback": function( row, data ) {
+           var data = '\'' + data + '\'';
+           var id= data.split(",")[0].substring(1);
+            if ( $.inArray(id, selected) !== -1 ) {
+                $(row).addClass('selected');
+            }
   },
 
   'columns': [{
@@ -269,25 +280,28 @@ $(document).ready(function(){
       select: {
               style:    'os',
               selector: 'td:first-child'
+              
           },
       'order': [
-        [1, 'asc']
-      ]
+        [2, 'asc']
+      ] 
 
   });
 
-  var order_array=[];
-
-
     $('#sample_data tbody').on('click', 'tr', function () {
+        var id = this.id;
+        var index = $.inArray(id, selected);
+ 
+        if ( index === -1 ) {
+            selected.push( id );
+        } else {
+            selected.splice( index, 1 );
+        }
+ 
         $(this).toggleClass('selected');
+        console.log(selected);
+    } );
 
-        var rox= '"' + dataTable.row(this).data() + '"';
-        console.log( "Array: " + rox.split(",")[0].substring(1) );
-
-              order_array.push(rox.split(",")[0].substring(1) );
-
-    });
 
     $('#sample_data').on('draw.dt', function(){
     $('#sample_data').Tabledit({
@@ -312,16 +326,10 @@ $(document).ready(function(){
 
     $('#export').click( function () {
         var skus='';
-      for (var i = 0; i < dataTable.rows('.selected').data().length; i++) { 
-          var row = '\'' + dataTable.rows('.selected').data()[i] + '\'';
-         // console.log( row);
-         // console.log( row.split(",")[0].substring(1));
-          //console.log( row.split(",")[8].substring(0, row.split(",")[8].length - 1) );
-
-         skus += 'sku' + order_array.indexOf(row.split(",")[0].substring(1)) + '=' + row.split(",")[0].substring(1) + '*' + row.split(",")[8].substring(0, row.split(",")[8].length - 1) + '&';
-      }
-      
-      var url = 'off-cr.php?' + skus + 'q=' + dataTable.rows('.selected').data().length;
+      for (var i = 0; i < selected.length; i++) { 
+         skus += 'sku' + selected.indexOf(selected[i]) + '=' + selected[i] + '*' + 'In Stock' + '&';
+      }    
+      var url = 'off-cr.php?' + skus + 'q=' + selected.length;
       console.log( url ); 
       window.location.href = url;
     } );
@@ -343,7 +351,6 @@ $(document).ready(function(){
     }
   });
 
-  // Handle click on "Expand All" button
   // Handle click on "Expand All" button
   $('#btn-show-all-children').on('click', function() {
     let containers, user_name;
@@ -376,16 +383,8 @@ $(document).ready(function(){
 
 });
 
-
- 
-
-
-
 </script>
-
     
 </body>
-
-
 
 </html>
