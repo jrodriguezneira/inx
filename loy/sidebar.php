@@ -38,10 +38,11 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Products:</h6>
-                        <a class="collapse-item" href="pro.php">Products</a>
+                        <h6 class="collapse-header">Products:</h6>                
+                        <a class="collapse-item" href="prod_all.php">Products </a>
                         <a class="collapse-item" href="newpro.php">New products</a>
-                        <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
+                      <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
+                        <a class="collapse-item" href="pro.php">Products</a> -->
                     </div>
                 </div>
             </li>

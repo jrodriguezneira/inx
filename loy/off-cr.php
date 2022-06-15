@@ -92,7 +92,7 @@
                 $skux= $_GET['sku'.$x];
                 $skustock= explode("*",$skux);
                 $sku=$skustock[0];
-                $skus+= $sku.",";               
+                //$skus+= $sku.",";               
                 ?>
                     
                     <!-- Row for products-->
@@ -219,8 +219,11 @@
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
                                             <?php 
-                                        
-                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Offer</a>";
+                                            if($a=="new"){
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Pricing</a>";
+                                            }else{
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Offer</a>";                                                    
+                                            }
                                             if($previous_offer){
                                             $pre=extract_pricing($previous_offer);
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Previous Offer</a>"; 
@@ -273,8 +276,17 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Dates</h6>
-                                   
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        
+                                    <?php
+                                    if($a=="new"){
+                                    echo "Export";    
+                                    }else {
+                                    echo "Dates";
+                                    }
+
+                                    ?>
+                                   </h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -289,9 +301,10 @@
                                             }else{                                           
                                              echo "<a class='dropdown-item' id='offer_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"offer\")'>Export Offer File</a>";                                             
                                              echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"shop\")'>Export Shop File</a>";
-                                             echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"stock\")'>Export Stock File</a>";
+                                             //echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Create_File(\"stock\")'>Export Stock File</a>";
+                                             echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Populate_Dates()'>Same Dates</a>";
+
                                             }
-                                            echo "<a class='dropdown-item' id='shop_file' href= 'javascript:void(0)' onClick='javascript:Populate_Dates()'>Same Dates</a>";
                                             ?>
                                             
                                             </div>
@@ -306,13 +319,15 @@
                                     
                                         <div class="col-lg-5 mb-4">
                                         <br>
+                                        
                                         <table><tr>
                                         <td>
                                         <input type="datetime-local" class="date_pick"  id="<?php echo $sku; ?>_txt_sta" >  </td>
                                         <td>
                                         <input type="datetime-local" class="date_pick"  id="<?php echo $sku; ?>_txt_end" >  </td>
                                         </tr></table>
-
+                                        
+                                    
                                         </div>
                                     
                                 

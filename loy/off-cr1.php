@@ -80,29 +80,30 @@
                 //Divide array to obtain sku and get sku pricing and name details from database
                 $sku = explode('*',$skus);                
                 //Get current pricing 
-                $loy_price=extract_pricing(get_trend("loy_price",$sku[0]));                 
+                $loy_price=extract_pricing(get_trend("loy_price",trim($sku[0])));              
                 //Query to get sku and name
-                $name= get_trend("name",$sku[0]);
+                $name= get_trend("name",trim($sku[0]));
                 // If the target is for new products change the query source
                 if($target=="product")
-                {$name= get_trend("name_new",$sku[0]);}
+                {$name= get_trend("name_new",trim($sku[0]));}
                 //Get name from name query
                 $productname=explode('-',$name);
                 //Get Current RRP when lfag is unchecked
-                //if($sku[6]=="false"){
                 $rrp_old= get_trend("rrp_new",$sku[0]);
-                //}
-                $ro= get_trend('ro_sku',$sku[0]);
+                $ro= get_trend('ro_sku',trim($sku[0]));
                 if($ro== "[12, 24]"){
                 $ini_ro= 1;    
                 }else{$ini_ro= 0; }
-                //Add current pricing (8) , name(9) , old RRP(10), initial RO(11) to sku array 
+                //Add current pricing (9) , name(10) , old RRP(11), initial RO(12) to sku array 
                 $skus .= '*'. $loy_price. '*'.$productname[0].'*'.$rrp_old.'*'.$ini_ro.'&';
                 //Attach price and name to skus array
                 $prod .= $skus;
                 }
                 //Temporary display the array 
-              //echo '<br>Prod'. $prod. "<br><br><br>";
+               //echo '<br>Prod'. $prod. "<br><br><br>";
+
+               
+
 
                 include 'extractors/offer-to-file.php'; 
                 switch ($target) {

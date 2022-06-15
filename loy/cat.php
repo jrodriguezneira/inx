@@ -81,8 +81,8 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
-                                            <a class="dropdown-item" href="#">History</a>
-                                            <a class="dropdown-item" href="#">Export</a>
+                                            <a class="dropdown-item" href="#"></a>
+                                            <a class="dropdown-item" href="#"></a>
                                             </div>
                                     </div>
                                 </div>
