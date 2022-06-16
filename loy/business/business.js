@@ -72,15 +72,7 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
         // Get rounded value
         top_poi = Math.round(res)* tier_rounder;
         // Create array with top and bottom tiers
-        if(type=="new"){
-        //Unrounded top points 
-        //top_poi=newrrp/(top_ppvv*1.1);
-        
-        //Rounded top points
-        //Math.round( Math.round(newrrp/pv_top)/tier_rounder) * tier_rounder
-        
-
-        }
+     
 
     }
     //Get value for bottom tier from UI
