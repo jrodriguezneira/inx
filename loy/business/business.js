@@ -46,60 +46,46 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
     var top_ppvv= 0.002750;
     //Make tier rounded to 500 to avoid decimals 
     var tier_rounder =500;
+
         // Set value for relative top point value ( based on previous data)
         switch(true){
             case 100 > newrrp: pv_top=0.002966666666667; break;
             case 200 > newrrp: pv_top=0.002929; break;
             case 300 > newrrp: pv_top=0.00312; break;
             case 400 > newrrp: pv_top=0.002828; break;
-            case 1000 > newrrp: pv_top=0.002828; break;
-            case 2500 > newrrp: pv_top=0.002828; break;
         } 
-    //Get value from UI for Top tier  
+
+    ////Get value from UI for Top tier  
     var top= sku + '_txt_poi_0';   
     top_poi= document.getElementById(top).value;
-    //If top tier value is empty, then is calculated based on RRP and points value
-    if(top_poi.length===0){
-    
-        
-        //Set value for top tier
-        top_poi = Math.round(newrrp/pv_top);
-        if(type=="new"){
-        top_poi=newrrp/(top_ppvv*1.1);   
-        }
-        // Apply ounder top tier value to avoid decimals    
-        var res= top_poi/tier_rounder;
-        // Get rounded value
-        top_poi = Math.round(res)* tier_rounder;
-        // Create array with top and bottom tiers
-        if(type=="new"){
-        //Unrounded top points 
-        //top_poi=newrrp/(top_ppvv*1.1);
-        
-        //Rounded top points
-        //Math.round( Math.round(newrrp/pv_top)/tier_rounder) * tier_rounder
-        
 
+        //If top tier value is empty, then is calculated based on RRP and points value
+        if(top_poi.length===0){          
+            //Set value for top tier
+            top_poi = Math.round(newrrp/pv_top);
+            if(type=="new"){
+            top_poi=newrrp/(top_ppvv*1.1);   
+            }
+            // Apply ounder top tier value to avoid decimals    
+            var res= top_poi/tier_rounder;
+            // Get rounded value
+            top_poi = Math.round(res)* tier_rounder;
         }
+    ////End get value from UI for Top tier 
 
-    }
-    //Get value for bottom tier from UI
+    ////Get value for bottom tier from UI
     var bot= sku + '_txt_poi_' + (tiers-1);
     bot_poi= document.getElementById(bot).value;
-    //console.log("master bot_poi" + bot_poi);
+
     //If bottom tier value is empty, then is calculated based on RRP and points value(based on previous data)
-   
+    //Bottom value for new products
     if(bot_poi.length===0 && type=="new"){
         switch(true){
             case 60 > newrrp: bot_poi=5000; break;
-            case 300 > newrrp: bot_poi=5000;break;
-            case 400 > newrrp: bot_poi=5000; break;
-            case 1000 > newrrp: bot_poi=5000; break;
             case 1500 > newrrp: bot_poi=7500; break;
         } 
-    }   
-   
-   
+    }     
+    //Bottom value for offers
     if(bot_poi.length===0){
         switch(true){
             case 60 > newrrp: bot_poi=2000; break;
@@ -109,9 +95,9 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
             case 2500 > newrrp: bot_poi=7500; break;
         } 
     }  
-   
+   //Return top and bottom tiers
     var top_bottom= top_poi + "," + bot_poi;
-console.log("initial Top-bottom: " + top_bottom);
+    console.log("initial Top-bottom: " + top_bottom);
 return top_bottom;
 }
 ///////////////    End function to verify top and bottom tiers and top tier point value////////////
@@ -128,8 +114,7 @@ function Tier_increment(top_tier,bottom_tier,tiers){
     case inc > 1500 && inc <2010: inc=2000; break;
     case inc > 2011 && inc <5000:  inc=2500; break;
     case inc > 5000 && inc <7500 && tiers <=5:  inc=2500; break;
-    case inc > 5000 && inc <10000:  inc=5000; break;
-    
+    case inc > 5000 && inc <10000:  inc=5000; break; 
     case inc > 10000 && inc <15000: inc=10000; break;
     case inc > 15000 && inc <20000: inc=15000; break;
     case inc > 20000 && inc <25000: inc=20000; break;
@@ -147,10 +132,7 @@ function Pay_Increment(rrp){
     //Set text field names for product
     var ini_pay;
     switch(true){
-        case rrp > 550 && rrp <=700: ini_pay=120; inc=120; limit=2; break;
-
-       // 120-2,(100-24)-1, 24-16
-
+       case rrp > 550 && rrp <=700: ini_pay=120; inc=120; limit=2; break;
        case rrp > 700 && rrp <=900: ini_pay=120; inc=120; limit=4; break;
 
        // 120-3,(100-24) - 1 , 24-15
@@ -223,7 +205,6 @@ function Check_Price(sku,key,tiers,type){
                 if(tiers){
 
                     payment= Pay_Increment(newrrp); 
-
                     pay_ini= payment[0];
                     pay_inc= payment[1];
                     limit= payment[2];
@@ -407,11 +388,11 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
          tier_change[y]= (inc) + "-" + z + "," + inc_half + "-" + (tiers-z);
          tiers_arr += "Tier_gap_" + y + " = " + tier_array[y] + ", ";
 
-        if(tier_array[y] == tier_array[1]){
-            var tier_1_check = true;
-        }
+            if(tier_array[y] == tier_array[1]){
+                var tier_1_check = true;
+            }
 
-         }
+        }
         
  
     //Select base gap with initial increment to define 
@@ -447,7 +428,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
         var tot = closest +  ((inc*tiersdiv) + Number(bottom_tier)) ;
         console.log({tot});
         // 
-        // Validate tires for new products
+        // Validate tiers for new products
         if (tot < top_tier ){
         low = closest;
         }
@@ -479,8 +460,6 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
 
         console.log("tier_gap_1 closest " + closest);
    }
-
-  
    
     // Select the tier change with closest tier gap value to the highest increment or the tier change with the lowest tier gap ( Indicated above when to choose the closest or lowest tier gap)
     console.log({low});
