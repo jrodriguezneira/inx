@@ -7,7 +7,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="bi bi-briefcase-fill"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">T+Ops (Beta)</div>
+    <div class="sidebar-brand-text mx-3">T+Ops</div>
 </a>
 
 <!-- Divider -->
