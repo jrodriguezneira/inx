@@ -14,7 +14,7 @@ if(isset($_POST["search"]["value"]))
 {
  $query .= '
  WHERE (t1.name LIKE "%'.$_POST["search"]["value"].'%" 
- OR orin LIKE "%'.$_POST["search"]["value"].'%") and t1.segment = "LOYALTY_CON"
+ OR t1.sku LIKE "%'.$_POST["search"]["value"].'%") and t1.segment = "LOYALTY_CON"
  ' ;
 }
 

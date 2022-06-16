@@ -208,8 +208,8 @@ function create_offer_file($prod){
             $tier_price = explode('-',$element);
             // Calculate pricing margins
             $valu = round((((int)$tier_price[0]*0.0025) + ((int)$tier_price[1]/1.1)),2);
-            $mar = round(($valu - $fwac),2);
-            $per = round(((($tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
+            $mar = round(((int)$valu - (int)$fwac),2);
+            $per = round(((((int)$tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
 
             $sheet->setCellValueByColumnAndRow($j,$tot_tiers + $key+2,(int)$tier_price[0]);
             $sheet->setCellValueByColumnAndRow($j+1,$tot_tiers + $key+2,(int)$tier_price[1]);
