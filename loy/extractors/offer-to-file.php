@@ -99,27 +99,33 @@ function create_offer_file($prod){
         //Set Name
         $sheet->setCellValueByColumnAndRow(2,$tot_tiers+1,$tier[10]);
         $sheet->setCellValueByColumnAndRow(2,$tot_tiers+2,$tier[10]);
-        $sheet->getColumnDimension('B')->setWidth(50);
+        $sheet->getColumnDimension('B')->setWidth(35);
         //Set SKU
         $sheet->setCellValueByColumnAndRow(3,$tot_tiers+1,"Inventory ID");
         $sheet->setCellValueByColumnAndRow(3,$tot_tiers+2,$tier[0]);
-        $sheet->getColumnDimension('C')->setWidth(15);
+        $sheet->getColumnDimension('C')->setWidth(12);
         //Set RRP
         $sheet->setCellValueByColumnAndRow(4,$tot_tiers+1,"RRP(Inc GST)");
         $sheet->setCellValueByColumnAndRow(4,$tot_tiers+2,$tier[1]);
-        $sheet->getColumnDimension('D')->setWidth(15);
+        $sheet->getColumnDimension('D')->setWidth(10);
         // Pricing Type
         $sheet->setCellValueByColumnAndRow(5,$tot_tiers+1,"Pricing Type");
-        $sheet->setCellValueByColumnAndRow(5,$tot_tiers+2,"Persistant");
-        $sheet->getColumnDimension('E')->setWidth(15);
+        $sheet->getColumnDimension('E')->setWidth(10);
         // Pricing 
         $sheet->setCellValueByColumnAndRow(6,$tot_tiers+1,"Points");
         $sheet->setCellValueByColumnAndRow(7,$tot_tiers+1,"Pay(inc GST)");
-        $sheet->getColumnDimension('F')->setWidth(15);
-        $sheet->getColumnDimension('G')->setWidth(15);
+        $sheet->getColumnDimension('F')->setWidth(12);
+        $sheet->getColumnDimension('G')->setWidth(12);
+        //Margin and values
+        $sheet->setCellValueByColumnAndRow(8,$tot_tiers+1,"Value");
+        $sheet->setCellValueByColumnAndRow(9,$tot_tiers+1,"Margin");
+        $sheet->setCellValueByColumnAndRow(10,$tot_tiers+1,"PPVV");
+        $sheet->getColumnDimension('J')->setWidth(12);
+
+
         //Apply format to header for each sku
-        $header1="B" . strval($tot_tiers+1) . ':J' . strval($tot_tiers+1);
-        $header2="L" . strval($tot_tiers+1) . ':Q' . strval($tot_tiers+1);
+        $header1="B" . strval($tot_tiers+1) . ':M' . strval($tot_tiers+1);
+        $header2="O" . strval($tot_tiers+1) . ':T' . strval($tot_tiers+1);
         $sheet->getStyle("$header1")->applyFromArray($tablehead);
         $sheet->getStyle("$header2")->applyFromArray($tablehead2);
         //Get RO options
@@ -157,21 +163,31 @@ function create_offer_file($prod){
             $tier_price = explode('-',$element);         
             $sheet->setCellValueByColumnAndRow($j,$tot_tiers + $key+2,(int)$tier_price[0]);
             $sheet->setCellValueByColumnAndRow($j+1,$tot_tiers + $key+2,(int)$tier_price[1]);
+            $fwac= $tier[8];
+            //Set margin
+            $valu = round((((int)$tier_price[0]*0.0025) + ((int)$tier_price[1]/1.1)),2);
+            $mar = round(($valu - $fwac),2);
+            $per = round(((((int)$tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
+
+            $sheet->setCellValueByColumnAndRow($j+2,$tot_tiers + $key+2,$valu);
+            $sheet->setCellValueByColumnAndRow($j+3,$tot_tiers + $key+2,$mar);
+            $sheet->setCellValueByColumnAndRow($j+4,$tot_tiers + $key+2,$per);
+
             //Set 12 months
             if($ro==1){
             $ro_12_mon=(int)$tier_price[1]/12;}
-            $sheet->setCellValueByColumnAndRow(8,$tot_tiers+$key+2,$ro_12_mon);
-            $cell_12= "H" . strval($tot_tiers+$key+2);
+            $sheet->setCellValueByColumnAndRow(11,$tot_tiers+$key+2,$ro_12_mon);
+            $cell_12= "K" . strval($tot_tiers+$key+2);
             $sheet->getStyle("$cell_12")->getAlignment()->setHorizontal('right');
             //repeat 24 months
             if($ro==1){
             $ro_24_mon=(int)$tier_price[1]/24;}
-            $sheet->setCellValueByColumnAndRow(9,$tot_tiers+$key+2,"$ro_24_mon");
-            $cell_24= "I" . strval($tot_tiers+$key+2);
+            $sheet->setCellValueByColumnAndRow(12,$tot_tiers+$key+2,"$ro_24_mon");
+            $cell_24= "L" . strval($tot_tiers+$key+2);
             $sheet->getStyle("$cell_24")->getAlignment()->setHorizontal('right');
             // Repeat RO option
-            $sheet->setCellValueByColumnAndRow(10,$tot_tiers+$key+2,$ro_des);
-            $cell_ro= "J" . strval($tot_tiers+$key+2);
+            $sheet->setCellValueByColumnAndRow(13,$tot_tiers+$key+2,$ro_des);
+            $cell_ro= "M" . strval($tot_tiers+$key+2);
             if($ro==1){
             $header_color=$tablehead4;}
             else{$header_color=$tablehead3;}  
@@ -180,35 +196,37 @@ function create_offer_file($prod){
         }
         //Set 12 and 24 months values
         $dates = explode(',',$tier[4]);
-        $sheet->setCellValueByColumnAndRow(8,$tot_tiers+1,"12mth price");
-        $sheet->getColumnDimension('H')->setWidth(15);
-        $sheet->setCellValueByColumnAndRow(9,$tot_tiers+1,"24mth price");
-        $sheet->getColumnDimension('I')->setWidth(15);
+        $sheet->setCellValueByColumnAndRow(11,$tot_tiers+1,"12mth price");
+        $sheet->getColumnDimension('K')->setWidth(11);
+        $sheet->setCellValueByColumnAndRow(12,$tot_tiers+1,"24mth price");
+        $sheet->getColumnDimension('L')->setWidth(11);
         //Set HRO
-        $sheet->setCellValueByColumnAndRow(10,$tot_tiers+1,"HRO");
-        $sheet->getColumnDimension('J')->setWidth(15);
+        $sheet->setCellValueByColumnAndRow(13,$tot_tiers+1,"HRO");
+        $sheet->getColumnDimension('M')->setWidth(10);
         //Set New RRP
-        $sheet->setCellValueByColumnAndRow(12,$tot_tiers+1,"RRP");
-        $sheet->getColumnDimension('L')->setWidth(15);
+        $sheet->setCellValueByColumnAndRow(15,$tot_tiers+1,"RRP");
+        $sheet->getColumnDimension('O')->setWidth(10);
         //Set New Pricing
-        $sheet->setCellValueByColumnAndRow(13,$tot_tiers+1,"Points");
-        $sheet->setCellValueByColumnAndRow(14,$tot_tiers+1,"Pay");
-        $sheet->setCellValueByColumnAndRow(15,$tot_tiers+1,"Value");
-        $sheet->setCellValueByColumnAndRow(16,$tot_tiers+1,"Margin");
-        $sheet->setCellValueByColumnAndRow(17,$tot_tiers+1,"PPVV");
+        $sheet->setCellValueByColumnAndRow(16,$tot_tiers+1,"Points");
+        $sheet->setCellValueByColumnAndRow(17,$tot_tiers+1,"Pay");
+        $sheet->setCellValueByColumnAndRow(18,$tot_tiers+1,"Value");
+        $sheet->setCellValueByColumnAndRow(19,$tot_tiers+1,"Margin");
+        $sheet->setCellValueByColumnAndRow(20,$tot_tiers+1,"PPVV");
+        $sheet->getColumnDimension('T')->setWidth(12);
+
         // Obtain points and tiers from new pricing array
         $tier2 = explode(',',$tier[3]);
         $fwac= $tier[8];
         foreach( $tier2 as $key=>$element) {
 
             //Repeat new or old RRP depending on checkbox selection
-            $sheet->setCellValueByColumnAndRow(12,$tot_tiers+$key+2,$rrp);
+            $sheet->setCellValueByColumnAndRow(15,$tot_tiers+$key+2,$rrp);
             //Set points and pay
-            $j=13; // Column Start
+            $j=16; // Column Start
             $tier_price = explode('-',$element);
             // Calculate pricing margins
             $valu = round((((int)$tier_price[0]*0.0025) + ((int)$tier_price[1]/1.1)),2);
-            $mar = round(((int)$valu - (int)$fwac),2);
+            $mar = round(($valu - $fwac),2);
             $per = round(((((int)$tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
 
             $sheet->setCellValueByColumnAndRow($j,$tot_tiers + $key+2,(int)$tier_price[0]);

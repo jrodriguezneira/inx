@@ -359,20 +359,9 @@
   } );
 
 
- 
-
-
-//});
-
-
-
-
-
 /* Formatting function for row details - modify as you need */
 
 $(document).ready(function(){
-
-
 
 
 var dataTable = $('#sample_data').DataTable({
@@ -455,7 +444,7 @@ $('#sample_data').on('draw.dt', function(){
   dataType:'json',
   columns:{
    identifier : [1, 'orin'],
-   editable:[[4, 'invoice_ex_gst'], [5, 'dbp_ex_gst'], [6, 'std_rrp_inc_gst'],[7, 'std_rrp_ex_gst'],[8, 'rebate'],[9, 'category']] 
+   editable:[[2, 'solomon'],[3, 'name'],[4, 'invoice_ex_gst'], [5, 'dbp_ex_gst'], [6, 'std_rrp_inc_gst'],[7, 'std_rrp_ex_gst'],[8, 'rebate'],[9, 'category']] 
   },
   restoreButton:false,
   onSuccess:function(data, textStatus, jqXHR)
