@@ -99,7 +99,13 @@
                     <div class="row">
 
                         <!-- Loyalty pricing -->
-                        <div class="col-xl-4 col-lg-5">
+                        <?php                                    
+                        if($a=="new"){$col =4;}
+                        else{$col=5;}
+                        ?>
+
+
+                        <div class="col-xl-<?php echo $col; ?> col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div

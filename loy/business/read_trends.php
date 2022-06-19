@@ -89,6 +89,19 @@ function multi_pricing($price,$sku=null,$new=null){
     echo "</td><td>";
      
         echo "<table border=0 cellpadding=3 cellspacing=3>";
+        if(!isset($new)){
+        ?>
+
+        <tr>
+        <td class='mb_header'>Points</td>
+        <td class='mb_header'>Pay</td>
+        <td class='mb_header' title='(Points * 0.0025) + (Pay/1.1)'>Value</td>
+        <td class='mb_header' title='(Value - fwac)'>Margin</td>
+        <td class='mb_header' title='((RRP - Pay)/Points)/1.1'>Pvpp</td>
+        </tr>
+
+        <?php
+        }
         $count_tiers=0;
 
             if(count($tier)==1){
@@ -103,8 +116,21 @@ function multi_pricing($price,$sku=null,$new=null){
                 if($new=="new"){
                 $points =".";  
                 $pay =" ";
+                $valu=" ";
+                $mar=" ";
+                $per=" ";
                 }
-                echo "<td class='cell_price'>".$points."</td><td class='cell_price'>".$pay."</td>";
+                if(!isset($new)){
+
+                 // Calculate pricing margins
+                $valu = round((($points*0.0025) + ($pay/1.1)),2);
+                $mar = round(($valu - $inv),2);
+                $per =round(((($rrp-$pay)/$points)/(1.1)),6);
+                //Set pricing margin values
+                }
+                echo "<td class='cell_price'>".$points."</td><td class='cell_price'>".$pay."</td>
+                    <td class='cell_price'>".$valu."</td><td class='cell_price'>".$mar."</td>
+                    <td class='cell_price'>".$per."</td>";
                 echo "</tr>"; 
                 $count_tiers++;    
                 }
