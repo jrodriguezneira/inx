@@ -307,6 +307,12 @@ function Check_Price(sku,key,tiers,type){
                    // Calculate the ppvv according to tier(key)
             if(key==0){
             ppvv = top_ppvv.toFixed(6);
+            points= (rrp) /(ppvv * 1.1 );
+            var tier_rounder_2=100;
+            res= points/tier_rounder_2;
+            points = Math.round(res)* tier_rounder_2;
+            document.getElementById(poi_nam).value=points;
+
             //document.getElementById(per_nam).value=ppvv; 
             }else{
             ppvv = (top_ppvv -(key*dec)).toFixed(6);
@@ -317,7 +323,8 @@ function Check_Price(sku,key,tiers,type){
             pay=0;
             }
             pay = pay.toFixed(0);
-            document.getElementById(pay_nam).value= pay;            
+            document.getElementById(pay_nam).value= pay; 
+                       
         }
 
         if(type=="new" && chk_ro){                        
