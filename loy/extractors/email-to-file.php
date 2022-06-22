@@ -4,7 +4,7 @@
 
 $server = '{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX';
 $username = 'topoagorax@gmail.com';
-$password = 'Metropolis123';
+$password = 'zuzkovzhgtdmoqdc';
 $imap = imap_open($server, $username, $password) or die("imap connection error");
 
 $message_count = imap_num_msg($imap);
