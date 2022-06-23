@@ -296,7 +296,8 @@ function Check_Price(sku,key,tiers,type){
                        
         }
 
-        if(type=="new" && chk_ro){                        
+        if(type=="new" && chk_ro){     
+            var tier_rounder=100;                   
             // Calculate the ppvv according to tier(key)
             if(key==0){
             ppvv = top_ppvv.toFixed(6);

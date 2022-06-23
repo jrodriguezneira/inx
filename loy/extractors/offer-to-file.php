@@ -544,6 +544,22 @@ function create_product_file($prod){
             ],
     
         ];
+        $tablehead4= [
+            'font' =>[
+                'color'=>[
+                    'rgb'=>'000000'
+                ],
+
+            ],
+            'fill'=>[
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' =>[
+                    'rgb' => 'C6EFCE'
+                ]
+
+            ],
+
+        ];
         //////Format fot table headers /////////////////////////////////////////
     
         //Divide received array to loop through each sku
@@ -628,7 +644,10 @@ function create_product_file($prod){
                 // Repeat RO option
                 $sheet->setCellValueByColumnAndRow(10,$tot_tiers+$key+2,$ro_des);
                 $cell_ro= "J" . strval($tot_tiers+$key+2);
-                $sheet->getStyle("$cell_ro")->applyFromArray($tablehead3);
+                if($ro=="true"){
+                $header_color=$tablehead4;}
+                else{$header_color=$tablehead3;}  
+                $sheet->getStyle("$cell_ro")->applyFromArray($header_color);
                 $sheet->getStyle("$cell_ro")->getAlignment()->setHorizontal('center');
                 
 
