@@ -39,6 +39,7 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_product_pricing="select concat(invoice_ex_gst,'-',dbp_ex_gst,'-',std_rrp_inc_gst,'-',std_rrp_ex_gst,'-',rebate,'-',invoice_price,'-',internal,'-',external)
     from product_pricing where orin='$sku';";
     $sql_rrp_new="select std_rrp_inc_gst from product_pricing where orin=$sku;";
+    $sql_last_launch="select count(launch_date),launch_date from (select sku,name,min(date(date_report)) as launch_date from products group by sku,name order by launch_date desc)  as t group by launch_date limit 1";
  
     $query="sql_".$parameter;
     //echo  ${$query};

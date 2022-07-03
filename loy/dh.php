@@ -305,9 +305,14 @@
                                 <?php
                                 $off_oos=get_trend("offer_oos");
                                 if($off_oos>0){                    
-                                echo "<p>There are <a style='color=red; 'href='https://staging-sr9-loy-ing-awsserv.site/inx/loy/off.php'>". $off_oos. " </a> offers with no stock </p>";
+                                echo "<p>There are <a style='color=red; 'href='off.php'>". $off_oos. " </a> offers with no stock </p>";
+                                //$launch= explode("-",get_trend("last_launch"));
+                                //$count= $launch[0];
+                                //$datex=$launch[1]."-".$launch[2]."-".$launch[3];
+
                                 }
                                 ?>
+                                <p>Last <?php //echo $count; ?> Last products launched <a href="prod_lau.php">(View Products)<?php //echo $datex;?></a></p>
                                     
                                     
                                     
