@@ -41,6 +41,8 @@
                         <h6 class="collapse-header">Products:</h6>                
                         <a class="collapse-item" href="prod_all.php">Products </a>
                         <a class="collapse-item" href="newpro.php">New products</a>
+                        <a class="collapse-item" href="eol.php">EOL</a>
+
                       <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
                         <a class="collapse-item" href="pro.php">Products</a> -->
                     </div>

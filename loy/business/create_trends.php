@@ -28,14 +28,14 @@ function multi_boxes($price,$sku){
         echo "<tr>";
         $tier_price = explode('-',$element);       
         //Cells for pricing and price calculation labels
-        echo "<td class='cell_price'><input onchange='javascript:Check_Price(".$sku.",".$key.")' onpaste='javascript:Paste_Offer(".$sku.")' id='".$sku."_txt_poi_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_pri'></td>
-        <td class='cell_price'><input onchange='javascript:Check_Price(".$sku.",".$key.")'  id='".$sku."_txt_pay_".$key."' style='width:50px;height:22px;' type='text' class='".$sku."_txt_pri' ></td>
+        echo "<td class='cell_price'><input onkeydown='javascript:Jump_Cell(event.key,".$sku.",".$key.",\"poi\")' onchange='javascript:Check_Price(".$sku.",".$key.")' onpaste='javascript:Paste_Offer(".$sku.")' id='".$sku."_txt_poi_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_pri'></td>
+        <td class='cell_price'><input onkeydown='javascript:Jump_Cell(event.key,".$sku.",".$key.",\"pay\")' onchange='javascript:Check_Price(".$sku.",".$key.")'  id='".$sku."_txt_pay_".$key."' style='width:50px;height:22px;' type='text' class='".$sku."_txt_pri' ></td>
         <td class='cell_price'><label style='height:12px;' id='".$sku."_lab_pri_".$key."'></label></td>
         <td class='cell_price'><label style='height:12px;' id='".$sku."_ro_12_".$key."'></label></td>
         <td class='cell_price'><label style='height:12px;' id='".$sku."_ro_24_".$key."'></label></td>
-        <td class='cell_price'><input id='".$sku."_txt_val_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_val'></td>
-        <td class='cell_price'><input id='".$sku."_txt_mar_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_mar' ></td>
-        <td class='cell_price'><input id='".$sku."_txt_per_".$key."' style='width:80px;height:22px;' type='text' class='".$sku."_txt_per' ></td>" 
+        <td class='cell_price'><input readonly tabindex='-1' id='".$sku."_txt_val_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_val'></td>
+        <td class='cell_price'><input readonly tabindex='-1' id='".$sku."_txt_mar_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_mar' ></td>
+        <td class='cell_price'><input readonly tabindex='-1' id='".$sku."_txt_per_".$key."' style='width:80px;height:22px;' type='text' class='".$sku."_txt_per' ></td>" 
         ;
         echo "</tr>";     
         }
