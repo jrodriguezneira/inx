@@ -133,7 +133,24 @@ function Add_Boxes(sku){
     }
 ////////////////////// End Add boxes to offer table////////////////////////////
 
+function Jump_Cell(keycode,sku,key,type){ 
 
+
+    if(keycode == "ArrowDown"){
+        var txt_box= sku + '_txt_' + type + '_' + (Number(key) + 1);
+        document.getElementById(txt_box).focus();
+
+    }
+    if(keycode == "ArrowUp"){
+        var txt_box= sku + '_txt_' + type + '_' + (Number(key) - 1);
+        document.getElementById(txt_box).focus();
+
+    }
+
+
+    
+    
+}
 
 ////////////////////// Remove boxes to offer table ////////////////////////////
 function Remove_Boxes(sku){ 

@@ -274,11 +274,12 @@ function Check_Price(sku,key,tiers,type){
         }
         
         if(type=="new" && !chk_ro){
-                   // Calculate the ppvv according to tier(key)
+            // Calculate the ppvv according to tier(key)
+            var tier_rounder=100;   
             if(key==0){
             ppvv = top_ppvv.toFixed(6);
             points= (rrp) /(ppvv * 1.1 );
-            var tier_rounder_2=100;
+            var tier_rounder_2=50;
             res= points/tier_rounder_2;
             points = Math.round(res)* tier_rounder_2;
             document.getElementById(poi_nam).value=points;
@@ -690,3 +691,5 @@ function Check_Rebate(sku){
     document.getElementById(sku + '_fwac').value=Number(newreb).toFixed(2);
 }
 ///////////////////// End function to verify rebate value and update pricing details
+
+    
