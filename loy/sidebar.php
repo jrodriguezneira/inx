@@ -47,7 +47,7 @@
                         <a class="collapse-item" href="pro.php">Products</a> -->
                     </div>
                 </div>
-            </li>
+</li>
 
 <!-- Nav Item - Utilities Collapse Menu -->
 
@@ -84,10 +84,36 @@
 <!-- Nav Item - Utilities Collapse Menu -->
 
 
-<li class="nav-item active">
+<!-- <li class="nav-item active">
     <a class="nav-link" href="off.php">
     <i class="fas fa-fw fa-chart-area"></i>
         <span>Offers</span></a>
+</li>
+
+<li class="nav-item active">
+    <a class="nav-link" href="off_his.php">
+    <i class="fas fa-fw fa-chart-area"></i>
+        <span>Offers History</span></a>
+</li> -->
+
+<!-- Nav Item - Pages Collapse Menu -->
+
+<li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Offers</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Offers:</h6>                
+                        <a class="collapse-item" href="off.php">Active </a>
+                        <a class="collapse-item" href="off_his.php">History</a>
+
+                      <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
+                        <a class="collapse-item" href="pro.php">Products</a> -->
+                    </div>
+                </div>
 </li>
 
 <li class="nav-item active">

@@ -169,9 +169,9 @@ function Remove_Boxes(sku){
 ////////////////////// Remove boxes to offer table ////////////////////////////
 function Paste_Offer(sku){ 
       
-    var txt= sku + '_txt_poi_0';
+        var txt= sku + '_txt_poi_0';
      
-    var input= document.getElementById(txt);
+        var input= document.getElementById(txt);
             
         console.log(event.clipboardData.getData('text/plain'));
         var excel= event.clipboardData.getData('text/plain');
@@ -198,7 +198,7 @@ function Paste_Offer(sku){
         input.oncut = input.oncopy = function(event) {
         alert(event.type + '-' + document.getSelection());
         event.preventDefault();
-    };        
+        };        
     var points= sku + '_txt_poi_' + i;
     var pay= sku + '_txt_pay_' + i;
     var pointspay = tiers[i].split("\t");
@@ -214,6 +214,32 @@ function Paste_Offer(sku){
     Check_Price(sku,i);
 }
 ////////////////////// End remove boxes to offer table////////////////////////////
+
+
+////////////////////// Fill price from offer match ////////////////////////////
+function Fill_Price(sku,prices){ 
+
+    var price = prices.split(",");
+      
+  
+            for (var i = 0; i < price.length-1; i++) {
+                var points= sku + '_txt_poi_' + i;
+                var pay= sku + '_txt_pay_' + i;
+
+                var pointspay = price[i].split('-');
+                var stdpoints = pointspay[0];
+                var stdpay = pointspay[1];
+              
+                document.getElementById(points).value=Number(stdpoints);
+                document.getElementById(pay).value=Math.trunc(stdpay);
+                Check_Price(sku,i);
+                console.log(price[i]);
+
+            }
+    
+        $('#offerModal').modal('hide');
+}
+////////////////////// End fill price from offer match////////////////////////////
 
 
 

@@ -93,6 +93,7 @@ function create_offer_file($prod){
     //Loop through skus
     for ($i = 0; $i < $z; $i++) {
 
+
         //Obtain details for each sku
         $tier = explode('*',$skus[$i]);
 
@@ -237,7 +238,7 @@ function create_offer_file($prod){
 
         }
         //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
-        $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
+        $tot_tiers =  $tot_tiers + 2 + $tier[2];    
     }
 
     // Write an .xlsx file  
@@ -258,6 +259,7 @@ function create_offer_file($prod){
     </script>
 
 <?php
+//return $filename;
 }
 //End Function
  
@@ -319,7 +321,7 @@ function create_shop_file($prod){
               $sheet->setCellValueByColumnAndRow($j+1,$tot_tiers + $key+3,(int)$tier_price[1]);
               }
         //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
-        $tot_tiers =  $tot_tiers + $tier[2]/2;    
+        $tot_tiers =  $tot_tiers + $tier[2];    
         }
     
     // Write an .xlsx file  
@@ -480,6 +482,7 @@ function create_catalog_file(){
         var urlx= flname;
         //Function to download the file
         download(urlx , flname);
+        
         </script>
     <?php   
 }
@@ -687,7 +690,7 @@ function create_product_file($prod){
           
           
         //Counter to set the starting point for new product $tier[2] needs to be divided by 2 to get the number of tiers   
-        $tot_tiers =  $tot_tiers + 2 + $tier[2]/2;    
+        $tot_tiers =  $tot_tiers + 2 + $tier[2];    
         }
     
     // Write an .xlsx file  
