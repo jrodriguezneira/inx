@@ -59,10 +59,13 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
     //Get value from UI for Top tier  
     var top= sku + '_txt_poi_0';   
     top_poi= document.getElementById(top).value;
+    if(top_poi > 0){
+    pv_top = newrrp/top_poi;   
+    }
+
     //If top tier value is empty, then is calculated based on RRP and points value
     if(top_poi.length===0){
-    
-        
+            
         //Set value for top tier
         top_poi = Math.round(newrrp/pv_top);
         if(type=="new"){
@@ -73,8 +76,6 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
         // Get rounded value
         top_poi = Math.round(res)* tier_rounder;
         // Create array with top and bottom tiers
-     
-
     }
     //Get value for bottom tier from UI
     var bot= sku + '_txt_poi_' + (tiers-1);
@@ -103,7 +104,7 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
         } 
     }  
    
-    var top_bottom= top_poi + "," + bot_poi;
+    var top_bottom= top_poi + "," + bot_poi + "," + pv_top;
 console.log("initial Top-bottom: " + top_bottom);
 return top_bottom;
 }
@@ -202,7 +203,7 @@ return [limit,fixer]
 
 
 ///////////////   Function to calculate the pricing margin////////////
-function Check_Price(sku,key,tiers,type){
+function Check_Price(sku,key,tiers,type,pv_top){
     //Set text field names for product
     var poi_nam= sku + '_txt_poi_' + key;
     var pay_nam= sku + '_txt_pay_' + key;
@@ -214,6 +215,7 @@ function Check_Price(sku,key,tiers,type){
     var bot_ppvv= 0.002500;
     //Set PPVV decrement for number of tiers 
     var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
+    
     //Variables for caculating new pricing 
     var last_pay;
     var ppvv;
@@ -313,10 +315,39 @@ function Check_Price(sku,key,tiers,type){
             document.getElementById(poi_nam).value=points;
         }
 
+        if(type!="new" && !chk_ro && pv_top){   
+
+            pv_top=0.003220;
+            var pv_bot=0.002828;
+
+            var dec= ((pv_top - pv_bot)/(Number(tiers))).toFixed(6);
+  
+            if(key==0){
+            // ppvv = top_ppvv.toFixed(6);
+            // points= (rrp) /(ppvv * 1.1 );
+            // var tier_rounder_2=50;
+            // res= points/tier_rounder_2;
+            // points = Math.round(res)* tier_rounder_2;
+            // document.getElementById(poi_nam).value=points;
+            // //document.getElementById(per_nam).value=ppvv; 
+            //pay = newrrp-(pv*points); 
+            }else{
+            ppvv = (pv_top -(key*dec)).toFixed(6);
+            }
+            //Recalculate pay component and update the value
+            pay = newrrp -(ppvv * points);
+            if(key==0){
+            pay=0;
+            }
+            pay = pay.toFixed(0);
+            document.getElementById(pay_nam).value= pay; 
+
+        }
+
      // Calculate pricing margins
      var valu = ((points*0.0025) + (pay/1.1)).toFixed(2);
      var mar = (valu - wac).toFixed(2);
-     var per =(((rrp-pay)/points)/(1.1)).toFixed(6);
+     var per =(((newrrp-pay)/points)/(1.1)).toFixed(6);
      //Set pricing margin values
      document.getElementById(valu_nam).value= valu;
      document.getElementById(valu_nam).setAttribute("Title", valu*1.1.toFixed(2));
@@ -518,6 +549,7 @@ function Create_Offer(sku,type){
   top_bottom= top_bottom.split(",");
   var top_tier = top_bottom[0];
   var bottom_tier = top_bottom[1];
+  var pv_top = top_bottom[2];
   //Obtain base increment 
   var inc = Tier_increment(top_tier,bottom_tier,tiers);
   console.log("Inc function: " + inc); 
@@ -563,7 +595,7 @@ function Create_Offer(sku,type){
                 document.getElementById(poi_nam).value=points;
                 document.getElementById(pay_nam).value=Math.round(pay); 
                 //Obtain pricing margins 
-                Check_Price(sku,x,tiers,type)
+                Check_Price(sku,x,tiers,type,pv_top)
                 tier_start++;           
             }
     }
@@ -628,6 +660,70 @@ function Create_File(target){
     window.open(url, '_blank'); 
   }
 ////////////////////// End Function to create URL containing product offer details for shop
+
+
+/////////////////////  Function to save pricing
+function Save_Pricing(target){            
+    var sku='';
+    var rrp;
+    var chk_rrp;
+    var chk_ro;
+    var prod='';
+    var tot_tiers;
+    var tiers='';
+    var dates;
+    var stock;
+    var fwac;
+    //Get number of products
+    var x = document.getElementsByClassName("sku_cel");
+    var k =0;
+    //Loop through number of products to create array
+      for (var i = 0; i < x.length; i++) { 
+        //Get SKU
+        sku = x[i].innerText.split('-').pop();
+        //Get RRP
+        rrp = document.getElementsByClassName("txt_new_rrp")[i].value;
+        //Get RO update for report
+        chk_rrp = document.getElementsByClassName("chk_rrp")[i].checked;
+        //Get RO options
+        chk_ro = document.getElementsByClassName("chk_ro")[i].checked;
+        //Get pricing tiers
+        tot_tiers = (document.getElementsByClassName("hid_tie")[i].value) * 2;
+        //Get Stock
+        stock = document.getElementsByClassName("hid_tie_stock")[i].value;
+        //Get Pricing
+        var w = document.getElementsByClassName(sku + '_txt_pri');
+        var tiers='';
+            //Loop through points/pay tiers cells
+            for (var s = 0; s < tot_tiers; s += 2) {
+                tiers += w[s].value + '-' + w[s+1].value + ',';
+            }
+            tiers= tiers.slice(0, -1);          
+        //Get Dates
+        var start = document.getElementsByClassName("date_pick")[k].value;
+        y= Format_Date(start);
+        var end = document.getElementsByClassName("date_pick")[k+1].value;
+        z= Format_Date(end);
+        dates= y + ',' + z;
+        k = k + 2;
+        fwac = document.getElementsByClassName("txt_fwac")[i].value;
+        // Create URL with information required to create the excel offer file
+        // Array with sku details: sku(0),rrp(1),tiers pricing(2), dates(3), check ro(4), fwac(5)
+        prod += 'sku' + i + '=' + sku + '*' + rrp + '*' + tiers + '*' + dates + '*' + chk_ro + '*' + fwac + '&';
+      } 
+    var pri_name = document.getElementById('name').value;
+    var stat = document.getElementsByClassName("hid_promos")[0].value;
+    //Flag to control insert , update( stat = value(id))
+    if(stat){stat= "&stat=" + stat;}
+    // Append number of skus to offer URL (skus array) and export file type(target)
+    prod= 'i=' + i + '&' + prod;
+    var url = 'off-cr2.php?&name=' + pri_name +'&' + prod + 'target=' + target + stat ;
+    //console.log(url);
+   // console.log("target" + target);
+    window.open(url, '_self'); 
+
+  }
+////////////////////// End Function to save pricing
 
 
 /////////////////////  Function to copy tiers directly from UI

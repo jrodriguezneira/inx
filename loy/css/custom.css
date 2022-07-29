@@ -151,3 +151,21 @@ text-align: center;
 .span_count{
   font-size: 12px;
 }
+#name{
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #d0d3d2;
+  outline:none;
+  box-shadow:none;
+  width:340px;
+  margin-right: 20px;
+}
+.lft{
+margin-right: 5px;
+float: left;
+}
+.head_buttons{
+  float:left;
+  display: block;
+  width: 50%;
+}

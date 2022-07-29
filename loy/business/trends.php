@@ -40,7 +40,13 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     from product_pricing where orin='$sku';";
     $sql_rrp_new="select std_rrp_inc_gst from product_pricing where orin=$sku;";
     $sql_last_launch="select count(launch_date),launch_date from (select sku,name,min(date(date_report)) as launch_date from products group by sku,name order by launch_date desc)  as t group by launch_date limit 1";
- 
+    $sql_id_promo="select max(id) from promotions";
+    $sql_rrp_saved="SELECT rrp FROM promotions where sku='$sku' and id=$date;";
+    $sql_promo_name="SELECT prom_name FROM promotions where id=$sku limit 1;";
+    $sql_promo_dates="SELECT concat(start_date,',',end_date) FROM promotions where sku='$sku' and id=$date;";
+    $sql_saved_price="select price from promotions where sku='$sku' and id=$date";
+
+
     $query="sql_".$parameter;
     //echo  ${$query};
     //echo $parameter;
@@ -91,10 +97,55 @@ function insert_trend($parameter, $row){
     values($values[1],$values[0],'$values[2]','$values[8]',$values[3],$values[4],$values[5],$values[6],$values[7],0,0,0)";
    //echo $query;
     mysqli_query($con, $query);
-  
 
 
 }
+
+function insert_price($row,$target,$name,$id,$crud){
+    include 'data/db_connection.php';
+
+    $values= explode("*",$row);
+    $dates=explode(",",$values[3]);
+    $date_dmy=explode(" ",$dates[0]);
+    $datex=explode("/",$date_dmy[0]);
+    $start_date= $datex[2]."-".$datex[1]."-".$datex[0];
+    $start_date .= " ".$date_dmy[2];
+    //echo $date_dmy[2];
+
+    $date_dmy2=explode(" ",$dates[1]);
+    $datex2=explode("/",$date_dmy2[0]);
+    $end_date= $datex2[2]."-".$datex2[1]."-".$datex2[0];
+    $end_date .= " ".$date_dmy2[2];
+
+        //sku(0),rrp(1),tiers pricing(2), dates(3), check ro(4), fwac(5)
+
+    if($crud=="update"){
+        $sku=trim($values[0]);
+       $query="UPDATE promotions SET 
+        `id` = $id,
+        `prom_name` = '$name',
+        `sku` = '$sku',
+        `prod_name` ='$name',
+        `type` = '$target',
+        `rrp` = $values[1],
+        `price` = '$values[2]',
+        `rebate` = $values[5],
+        `ro` = '$values[4]',
+        `start_date` = '$start_date',
+        `end_date` = '$end_date' 
+        WHERE sku='$sku' and id=$id";
+    }else{
+    $sku=trim($values[0]);
+    $query="INSERT INTO promotions (`id`,`prom_name`,`sku`,`prod_name`,`type`,`rrp`,`price`,`rebate`,`ro`,`start_date`,`end_date`) 
+    values($id,'$name','$sku',' ','$target',$values[1],'$values[2]',$values[5],'$values[4]','$start_date','$end_date')";
+    }
+    //echo $query . "<br>";
+    mysqli_query($con, $query);
+
+
+}
+
+
 
 
 ?>
