@@ -109,6 +109,8 @@
                         <h6 class="collapse-header">Offers:</h6>                
                         <a class="collapse-item" href="off.php">Active </a>
                         <a class="collapse-item" href="off_his.php">History</a>
+                        <a class="collapse-item" href="off_his_char.php">Charts</a>
+
 
                       <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
                         <a class="collapse-item" href="pro.php">Products</a> -->
