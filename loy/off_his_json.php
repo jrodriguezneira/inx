@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
-$sql=" select  t1.prom_name as promo_name,t1.sku as sku, t2.name as name, date(t1.start_date) as sta_date,date(t1.end_date) as end_date, t1.rrp as rrp
+$sql=" select  t1.id as id,t1.prom_name as promo_name,t1.sku as sku, t2.name as name, date(t1.start_date) as sta_date,date(t1.end_date) as end_date, t1.rrp as rrp
 from promotions as t1 inner join (select distinct sku,name from products_last where segment='LOYALTY_CON') as t2 on t1.`sku` = t2.`sku`
 order by t1.id desc";
 $response = array();
@@ -33,12 +33,11 @@ while($row=mysqli_fetch_array($result))
   $posts['promo_name']=$row['promo_name'];
   $posts['sta_date']=$row['sta_date'];
   $posts['end_date']=$row['end_date'];
+  $posts['id']=$row['id'];
   $names.= $row['sku']. " " . $row['name']. " " . $row['rrp']."<br>";
 
   }
   $i++;
 } 
 echo "{\"data\": ".json_encode($response)."}";
-//$file = 'file.json';
-//file_put_contents($file, $json);
 ?>

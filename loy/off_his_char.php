@@ -69,7 +69,7 @@
                         <!-- Area Chart -->
                         <div class="col-xl-9 col-lg-9">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
+                                <!-- Card Header - Dropdown --> 
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Active Offers</h6>
@@ -89,20 +89,8 @@
                                 <!-- Card Body content goes here -->
                                 <div class="card-body">
 
-                                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                        <th>ID</th>
-                                        <th>Name Offer</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-
-                                        
-                                        </tr> 
-                                    </thead>
-                                    
-                                    </table>
+                                <div id="chartDiv" style="max-width: 940px; min-width:330px; height: 450px;margin: 0px auto">
+                                </div>
                                     
 
                                 </div>
@@ -113,9 +101,7 @@
 
                         <!-- Pie Chart -->
                        
-                    </div>
-
-                    
+                    </div>                    
 
                 </div>
                 <!-- /.container-fluid -->
@@ -142,13 +128,6 @@
     <?php include 'logout.php'; ?>
     <!-- End Logout Modal-->
 
-   
-
-
-<!-- Modal Search-->
-<?php //include 'searchmodal.php'; ?>
-<!-- End Modal Search-->
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 
@@ -173,118 +152,164 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    
+    <!-- Gantt Char scripts  scripts -->
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script> 
 
 
 <script>
-/* Formatting function for row details - modify as you need */
-function format(d) {
-  // `d` is the original data object for the row
-  return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-    '<tr>' +
-    '<td>Products:</td>' +
-    '<td>' + d.name + '</td>' +
-    '</tr>' +
-    '</table>';
-}
 
-$(document).ready(function() {
-  var table = $('#example').DataTable({
-    'ajax': 'off_his_json.php',
-    'columns': [{
-        'className': 'details-control',
-        'orderable': false,
-        'data': null,
-        'defaultContent': ''
-      },
-      { "data": "name", "id": "name",
-        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-            $(nTd).html("<a onclick= 'javascript:View_Offer(\"" + oData.name+ "\"," + oData.id + ")' href='javascript:void(0)'>"+oData.id+"</a>");
-        }
-      },
-      {
-        'data': 'promo_name'
-      },
-      {
-        'data': 'sta_date'
-      },
-      {
-        'data': 'end_date'
-      }
-    ],
-    'order': [
-      [1, 'desc']
-    ]
-  });
-
-  // Add event listener for opening and closing details
-  $('#example tbody').on('click', 'td.details-control', function() {
-    var tr = $(this).closest('tr');
-    var row = table.row(tr);
-
-    if (row.child.isShown()) {
-      // This row is already open - close it
-      row.child.hide();
-      tr.removeClass('shown');
-    } else {
-      // Open this row
-      row.child(format(row.data())).show();
-      tr.addClass('shown');
-    }
-  });
-
-  // Handle click on "Expand All" button
-  // Handle click on "Expand All" button
-  $('#btn-show-all-children').on('click', function() {
-    let containers, user_name;
-    var count = 0;
-    table.rows().every(function() {
-    //get data from row this will return values in json object..
-      var d = this.data();
-      if (!this.child.isShown()) {
-        containers = document.createElement('div');
-        containers.setAttribute('id', `container_${d.name.replace(' ', '_')}`);
-        containers.innerHTML = d.name;//add value in inside div crated
-        this.child(containers).show();
-        $(this.node()).addClass('shown'); 
-      }
-    });
-  });
-
-  // Handle click on "Collapse All" button
-  $('#btn-hide-all-children').on('click', function() {
-    // Enumerate all rows
-    table.rows().every(function() {
-      // If row has details expanded
-      if (this.child.isShown()) {
-        // Collapse row details
-        this.child.hide();
-        $(this.node()).removeClass('shown');
-      }
-    });
-  });
-});
-
-function View_Offer(prods, id){
-  var skus='';
-
-  var products = prods.split('<br>');
-
-  for (var i = 0; i < products.length -1; i++) { 
-
-    skus += 'sku' + i + '=' + products[i].split(' ')[0] + '*' + 'In Stock' + '&';
-        
-      
+// JS 
   
+// Helper functions to create axisTick label template with two columns of text describing each task. 
+var columnWidths = [150, 30]; 
+var span = function(val, width) { 
+  return ( 
+    '<span style="width:' + 
+    width + 
+    'px;">' + 
+    val + 
+    '</span>'
+  ); 
+}; 
+var mapLabels = function(labels) { 
+  return labels 
+    .map(function(v, i) { 
+      return span(v, columnWidths[i]); 
+    }) 
+    .join(''); 
+}; 
+  
+var tickTemplate = mapLabels([ 
+  '%name', 
+  '{days(%high-%low):n0}d'
+]); 
+// tickTemplate -> '<span style="width:150px;">%name</span><span style="width:30px;">{days(%high-%low):n0}d</span>'; 
+  
+// Raw data 
+var data = [ 
+  { 
+    stage: 'Offers', 
+    substage: 'Offers', 
+    dates: ['1/1/2022', '4/15/2022'], 
+    complete: 0.7 
+  }, 
+  { 
+    stage: 'Offers', 
+    substage: 'Flash Sale July', 
+    dates: ['1/1/2022', '2/18/2022'] 
+  }, 
+  { 
+    stage: 'Offers', 
+    substage: 
+      'X4 headphones', 
+    dates: ['2/18/2022', '3/10/2022'] 
+  },  
+  { 
+    stage: 'Product Launches', 
+    substage: 'Product Launches', 
+    dates: ['4/15/2022', '7/8/2022'], 
+    complete: 0.05 
+  }, 
+  { 
+    stage: 'Product Launches', 
+    substage: 'Amazon ', 
+    dates: ['4/15/2022', '5/5/2022'] 
+  }, 
+  { 
+    stage: 'Product Launches', 
+    substage: 
+      'Pet Accessories', 
+    dates: ['5/5/2022', '7/8/2022'] 
+  }, 
+  { 
+    stage: 'Price Changes', 
+    substage: 'Price Changes', 
+    dates: ['7/8/2022', '9/28/2022'], 
+    complete: 0 
+  }, 
+  { 
+    stage: 'Price Changes', 
+    substage: 'BlueAnt', 
+    dates: ['7/8/2022', '8/31/2022'] 
   }
+]; 
+  
+// Process data into series. 
+// Creates a series for each 'stage' and a point for each 'substage' 
+var series = JSC.nest() 
+  .key('stage') 
+  .key('substage') 
+  .pointRollup(function(key, val) { 
+    var values = val[0]; 
+    return { 
+      name: values.substage, 
+      y: values.dates, 
+      complete_y: values.complete 
+    }; 
+  }) 
+  .series(data); 
+  
+var chart = JSC.chart('chartDiv', { 
+  debug: true, 
+  
+  // Gantt type setup 
+  type: 'horizontal column', 
+  zAxis_scale_type: 'stacked', 
+  
+  title_label_text: 
+    '',
+    //'Film Product Launches from %min to %max', 
+  
+  palette: 'fiveColor32', 
+  
+  // Y Axis settings 
+  yAxis: { 
+    scale_type: 'time', 
+    crosshair_enabled: true
+  }, 
+  
+  legend: { 
+    position: 'inside right top', 
+    template: '%icon %name'
+  }, 
+  
+  defaultSeries: { 
+    // Settings for the first point of each series. 
+    firstPoint: { 
+      xAxisTick: { 
+        fill: '#4e73df', 
+        padding: 5, 
+        label: { 
+          text: tickTemplate, 
+          style: { fontWeight: 'bold',color: '#FFFFFF',fontSize: '14  px' } 
+        } 
+      }, 
+      outline: { color: 'darkenMore', width: 2 }, 
+      complete: { 
+        fill: 'rgba(255,255,255,.4)', 
+        hatch: { style: 'none' } 
+      }, 
+      label: { text: '%complete' } 
+    }, 
+    // Settings for all points 
+    defaultPoint: { 
+      // Large radius to ensure bars are rounded. 
+      radius: 100, 
+      outline_width: 0, 
+      label: { 
+        placement: 'inside', 
+        align: 'left'
+      }, 
+      xAxisTick_label_text: tickTemplate, 
+      tooltip: 
+        '<b>%name</b> <br/>%low - %high<br/>{days(%high-%low)} days'
+    } 
+  }, 
+  
+  series: series 
+}); 
 
-var url = 'off-cr.php?' + skus + 'q=' + (products.length -1) + '&stat=' + id;
-console.log( url ); 
-//window.location.href = url;
-window.open(url, '_blank'); 
-
-
-//alert(url);
-}
 </script>
 
     
