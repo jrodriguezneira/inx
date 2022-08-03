@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
-$sql=" select prod_name,start_date,date(end_date) 
-from promotions 
+$sql="select sku,name,min(date(date_report)) as launch_date
+from products
 group by sku,name
 order by launch_date desc";
 $response = array();

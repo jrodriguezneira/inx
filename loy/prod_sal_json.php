@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
-$sql="SELECT sku,`name`,day_sales FROM product_sales  where date_report=DATE_SUB(CURDATE(), INTERVAL 2 DAY);";
+$sql="SELECT sku,`name`,day_sales FROM product_sales ;";
 $response = array();
 $posts = array();
 $result=mysqli_query($con,$sql);
