@@ -196,7 +196,7 @@ $(document).ready(function() {
         'data': null,
         'defaultContent': ''
       },
-      { "data": "name", "id": "name",
+      { "data": "id", "name": "id",
         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
             $(nTd).html("<a onclick= 'javascript:View_Offer(\"" + oData.name+ "\"," + oData.id + ")' href='javascript:void(0)'>"+oData.id+"</a>");
         }

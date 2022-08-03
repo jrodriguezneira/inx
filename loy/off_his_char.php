@@ -1,5 +1,7 @@
 <?php include 'business/trends.php'; ?>
-<?php include 'business/read_trends.php'; ?>
+<?php include 'business/read_trends.php'; 
+      include 'off_his_char_json.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,7 +161,20 @@
 
 <script>
 
-// JS 
+// function Clear_JSON(data){
+//   console.log(data[0]);
+//   let datax= [];
+
+// //datax[0]= String(data[0]).split('"');
+// datax[0] = toString(data[0]).replace(/"/g, "");
+// //datax[0]= data[0].split(String(data[0]).fromCharCode(92)).join(String(data[0]).fromCharCode(92,92))
+// //datax[0]=data[0];
+// console.log(datax);
+
+// return data;
+// }
+
+
   
 // Helper functions to create axisTick label template with two columns of text describing each task. 
 var columnWidths = [150, 30]; 
@@ -187,54 +202,46 @@ var tickTemplate = mapLabels([
 // tickTemplate -> '<span style="width:150px;">%name</span><span style="width:30px;">{days(%high-%low):n0}d</span>'; 
   
 // Raw data 
-var data = [ 
-  { 
-    stage: 'Offers', 
-    substage: 'Offers', 
-    dates: ['1/1/2022', '4/15/2022'], 
-    complete: 0.7 
-  }, 
-  { 
-    stage: 'Offers', 
-    substage: 'Flash Sale July', 
-    dates: ['1/1/2022', '2/18/2022'] 
-  }, 
-  { 
-    stage: 'Offers', 
-    substage: 
-      'X4 headphones', 
-    dates: ['2/18/2022', '3/10/2022'] 
-  },  
-  { 
-    stage: 'Product Launches', 
-    substage: 'Product Launches', 
-    dates: ['4/15/2022', '7/8/2022'], 
-    complete: 0.05 
-  }, 
-  { 
-    stage: 'Product Launches', 
-    substage: 'Amazon ', 
-    dates: ['4/15/2022', '5/5/2022'] 
-  }, 
-  { 
-    stage: 'Product Launches', 
-    substage: 
-      'Pet Accessories', 
-    dates: ['5/5/2022', '7/8/2022'] 
-  }, 
-  { 
-    stage: 'Price Changes', 
-    substage: 'Price Changes', 
-    dates: ['7/8/2022', '9/28/2022'], 
-    complete: 0 
-  }, 
-  { 
-    stage: 'Price Changes', 
-    substage: 'BlueAnt', 
-    dates: ['7/8/2022', '8/31/2022'] 
-  }
+
+<?php //echo Data_JSON(); 
+$dates= "'7-1-2022','8-30-2022'";
+$dates2= "'7-1-2022','9-30-2022'";
+
+?>
+
+var data = [ {   
+  stage: 'Offers', 
+  substage: 'Offers', 
+  dates: [<?php echo $dates; ?>],  
+  complete: 'Hot Offers'
+},
+<?php echo Data_JSON(); ?>
+
+// {
+//     stage: 'Product Launches', 
+//     substage: 'Product Launches', 
+//     dates: [<?php echo $dates2; ?>],  
+//     complete: 0
+//   }
+  // { 
+  //   stage: 'Product Launches', 
+  //   substage: 'Amazon ', 
+  //   dates: ['4/15/2022', '5/5/2022'] 
+  // }, 
+  // { 
+  //   stage: 'Product Launches', 
+  //   substage: 
+  //     'Pet Accessories', 
+  //   dates: ['5/5/2022', '7/8/2022'] 
+  // }, 
+  // { 
+  //   stage: 'Price Changes', 
+  //   substage: 'Price Changes', 
+  //   dates: ['7/8/2022', '9/28/2022'], 
+  //   complete: 0 
+  // }
 ]; 
-  
+
 // Process data into series. 
 // Creates a series for each 'stage' and a point for each 'substage' 
 var series = JSC.nest() 
@@ -248,7 +255,9 @@ var series = JSC.nest()
       complete_y: values.complete 
     }; 
   }) 
+  // .series(jString3); 
   .series(data); 
+
   
 var chart = JSC.chart('chartDiv', { 
   debug: true, 
@@ -303,12 +312,13 @@ var chart = JSC.chart('chartDiv', {
       }, 
       xAxisTick_label_text: tickTemplate, 
       tooltip: 
-        '<b>%name</b> <br/>%low - %high<br/>{days(%high-%low)} days'
+        '<b>%name</b> <br/>%complete<br/>%low - %high<br/>{days(%high-%low)} days'
     } 
   }, 
   
   series: series 
 }); 
+
 
 </script>
 
