@@ -31,7 +31,6 @@ while($row = mysqli_fetch_array($result)){
     $datex=explode("-",$date_dmy[0]);
     $start_date= trim($datex[2])."/".$datex[1]."/".$datex[0];
     $start_date .= " ".$date_dmy[1];
-    $start_date=substr($start_date, 1);
 
     $end_date= $row['end_date'];
 
@@ -39,8 +38,6 @@ while($row = mysqli_fetch_array($result)){
     $datex2=explode("-",$date_dmy2[0]);
     $end_date= $datex2[2]."/".$datex2[1]."/".$datex2[0];
     $end_date .= " ".$date_dmy2[1];
-    $end_date=substr($end_date, 1);
-
 
     //Get # tiers and dates & stock
 
