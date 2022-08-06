@@ -310,8 +310,9 @@ function create_shop_file($prod){
               }
           // Obtain staert and end date
           $dates = explode(',',$tier[4]);
-          $sheet->setCellValueByColumnAndRow(5,$tot_tiers+3,$dates[0]);
-          $sheet->setCellValueByColumnAndRow(6,$tot_tiers+3,$dates[1]);
+          $sheet->setCellValueByColumnAndRow(5,$tot_tiers+3,trim($dates[0]));
+          $sheet->setCellValueByColumnAndRow(6,$tot_tiers+3,trim($dates[1]));
+          echo trim($dates[0]);
           //Set Current pricing 
               $tier2 = explode(',',$tier[9]);
               foreach( $tier2 as $key=>$element) {
