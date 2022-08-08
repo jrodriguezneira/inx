@@ -26,7 +26,7 @@ $worksheetData = $reader->listWorksheetInfo($inputFileName);
 $i=0;
     foreach ($worksheetData as $worksheet) {
     
-        if($i==1){
+        //if($i==1){
         $sheetName = $worksheet['worksheetName']; 
 
         /**  Load $inputFileName to a Spreadsheet Object  **/
@@ -35,7 +35,7 @@ $i=0;
         $worksheet = $spreadsheet->getActiveSheet();
         //print_r($worksheet->toArray());
         $array= $worksheet->toArray();
-        }
+        //}
     $i++;
     }
 
@@ -45,16 +45,9 @@ return $array;
 
 ////////////////////Results table 
 
-function build_table($array,$filenamex){
+function build_table_sales($array,$filenamex){
     include '/home2/stagierv/public_html/inx/loy/data/db_connection.php';
     $header=0;
-
-    $sql2="truncate table products_last";
-                    if(mysqli_query($con, $sql2)){
-                        //echo "Records inserted successfully.";
-                    } else{
-                            echo "ERROR: Could not able to execute $sql2" . mysqli_error($con);
-                    }
 
     $date= get_file_date($filenamex);
     foreach( $array as $key=>$value){
@@ -69,33 +62,11 @@ function build_table($array,$filenamex){
                 $name= $value2;
                 break;
             case 2:
-                $stock= $value2;
+                $day_sales= $value2;
                 break;
             case 3:
-                $ro= $value2;
-                break;
-            case 4:
-                $rrp= $value2;
-                break;
-            case 5:
-                $price= $value2;
-                break;
-            case 6:
-                $offer= $value2;
-                break;
-            case 7:
-                $family= $value2;
-                break;
-            case 8:
-                $category= $value2;
-                break;
-            case 9:
-                $segment= $value2;
-                break;
-            case 10:
-                $stock_notice= $value2;
-                break;
-                        
+                $day_sales_loy= $value2;
+                break;           
 
             }
         }
@@ -104,10 +75,10 @@ function build_table($array,$filenamex){
             if($header>0){
             //Insert product details into products table products
             
-            $stock_notice= str_replace('"',' ',$stock_notice);
+            // $stock_notice= str_replace('"',' ',$stock_notice);
                                
-            $sql1="insert into products (sku,date_report,name,stock,ro,rrp,price,offer,family,category,segment,stock_notice,launch_date) 
-             values ('$sku','$date','$name','$stock','$ro','$rrp',\"$price\",'$offer',\"$family\",\"$category\",'$segment',\"$stock_notice\",null)";
+            $sql1="insert into product_sales (sku,name,day_sales,day_sales_loy,date_report) 
+             values ('$sku','$name',$day_sales,$day_sales_loy,'$date')";
                 
                     if(mysqli_query($con, $sql1)){
                         //echo "Records inserted successfully.";
@@ -115,14 +86,6 @@ function build_table($array,$filenamex){
                             echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
                     }
 
-	    $sql3="insert into products_last (sku,date_report,name,stock,ro,rrp,price,offer,family,category,segment,stock_notice,launch_date)
-             values ('$sku','$date','$name','$stock','$ro','$rrp',\"$price\",'$offer',\"$family\",\"$category\",'$segment',\"$stock_notice\",null)";
-
-                    if(mysqli_query($con, $sql3)){
-                        //echo "Records inserted successfully.";
-                    } else{
-                            echo "ERROR: Could not able to execute $sql3" . mysqli_error($con);
-                    }
 
 
 	    }
@@ -150,26 +113,10 @@ return $filenamex;
 //Get last file date
 function get_file_date($filenamex){
 
-    $datex= explode(' ',$filenamex);
-    foreach( $datex as $key => $datetime) {
-        
-        switch($key){
-            case 1:
-                $dates= $datetime;
-                $newdate=explode('-',$dates);
-                $datex=$newdate[2]."-".$newdate[1]."-".$newdate[0];
-                break;
-            case 2:
-                $times= $datetime;
-                $newtime=explode('_',$times);
-                $seconds=explode('.',$newtime[2]);
-
-                $timex=$newtime[0].":".$newtime[1].":".$seconds[0];
-                break;
-        }       
-    }
-    $date= $datex." ".$timex;
-
+    $datex= explode('_',$filenamex);
+    $year= explode(".",$datex[4]);
+    $date = "20".$year[0]."-".$datex[2]."-".$datex[3];
+    
 return $date;
 
 }
@@ -177,7 +124,7 @@ return $date;
 function bulk_loader(){
 
     // set file pattern
-    $dirpath = "/home2/stagierv/*.xlsx";
+    $dirpath = "/home2/stagierv/sales/*.xlsx";
      // copy filenames to array
     $files = array();
     $files = glob($dirpath);
@@ -196,21 +143,21 @@ function bulk_loader(){
             if (strpos($file, 'xlsx') !== false) {
                 $filenamex= $file;
                 $name=explode("/",$filenamex);
-                $name=$name[3];
+                $name=$name[4];
                 //echo "name ".$name."/n";
-                $currentfilepath = "/home2/stagierv/".$name;
-                $excelfilepath="/home2/stagierv/excel/".$name;
+                $currentfilepath = "/home2/stagierv/sales/".$name;
+                $excelfilepath="/home2/stagierv/sales/sales_bk/".$name;
                 
-                if(!is_file($excelfilepath)){                         
+                if(!is_file($excelfilepath)){  
 
-                            build_table(build_excel_data($filenamex),"$filenamex");
+                                
+                            build_table_sales(build_excel_data($filenamex),"$filenamex");
                             echo "#".$key." File inserted". $filenamex;
                             
                             $fileMoved = rename($currentfilepath,$excelfilepath);
                             if($fileMoved){ 
-                            echo "File moved to ".$excelfilepath."\n";   
-                            }                
-                    
+                            echo "File moved to ".$excelfilepath."\n";                 
+                            }
                 }else{
                 echo "File".$filenamex."already exists"."\n";   
                 

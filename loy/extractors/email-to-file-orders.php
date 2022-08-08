@@ -2,7 +2,7 @@
 
 //echo "hola";
 
-$server = '{imap.gmail.com:993/imap/ssl/novalidate-cert}ORDERS';
+$server = '{imap.gmail.com:993/imap/ssl/novalidate-cert}orders';
 $username = 'topoagorax@gmail.com';
 $password = 'zuzkovzhgtdmoqdc';
 $imap = imap_open($server, $username, $password) or die("imap connection error");
@@ -76,7 +76,8 @@ for ($m = $message_count; $m <= $message_count; ++$m){
         foreach ($attachments as $key => $attachment) {
             $name = $attachment['name'];
             $contents = $attachment['attachment'];
-           file_put_contents("$name", $contents);
+            file_put_contents("/home2/stagierv/sales/".$name, $contents);
+
 
         }
 	echo "Email downloaded";
