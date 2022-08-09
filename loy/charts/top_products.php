@@ -1,17 +1,19 @@
 <?php
 header('Content-Type: application/javascript');
 include '../data/db_connection.php'; 
-$sql="select count(distinct sku) as total,monthname(date_report) as months from products where segment='LOYALTY_CON' 
-and date_report >= date_sub(now(), interval 10 month) and day(date_report) =15 group by month(date_report) order by date_report asc;";
+$sql="SELECT name,day_sales_loy
+from product_sales
+where date_report=DATE_SUB(CURDATE(), INTERVAL 3 DAY) 
+order by day_sales_loy desc
+limit 10;";
 $result=mysqli_query($con,$sql);
 while($row=mysqli_fetch_array($result)) 
 { 
-$stats.=$row['total'].",";
-$months.="\"".$row['months']."\",";
+$sales.=$row['day_sales_loy'].",";
+$products.="\"".$row['name']."\",";
 }
-$cat=substr($stats, 0, -1); 
-echo $cat;
-$mon=substr($months, 0, -1); 
+$sales=substr($sales, 0, -1); 
+$products=substr($products, 0, -1); 
 ?>
 
 // Set new default font family and font color to mimic Bootstrap's default styling
@@ -44,17 +46,17 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+var ctx = document.getElementById("myBarChart4");
 var myBarChart = new Chart(ctx, {
-  type: 'bar',
+  type: 'horizontalBar',
   data: {
-    labels: [<?php echo $mon;?>],
+    labels: [<?php echo $products;?>],
     datasets: [{
       label: "Orders",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [<?php echo $cat;?>],
+      backgroundColor: "#4763df",
+      hoverBackgroundColor: "#4763df",
+      borderColor: "#4763df",
+      data: [<?php echo $sales;?>],
     }],
   },
   options: {
@@ -70,7 +72,7 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'sales'
         },
         gridLines: {
           display: false,
@@ -84,12 +86,12 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 900,
-          maxTicksLimit: 5,
+          max: 300,
+          maxTicksLimit: 10,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return ' ' + number_format(value);
+            return ' ' + value;
           }
         },
         gridLines: {
@@ -119,7 +121,7 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ':  ' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ':  ' + number_format(tooltipItem.xLabel);
         }
       }
     },
