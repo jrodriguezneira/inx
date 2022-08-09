@@ -52,16 +52,24 @@
 <!-- Nav Item - Utilities Collapse Menu -->
 
 
-<li class="nav-item active">
-    <a class="nav-link" href="cat.php">
-    <i class="fas fa-fw fa-chart-area"></i>
-        <span>Categories</span></a>
-</li>
+<!-- Categories submenu -->
 
-<li class="nav-item active">
-    <a class="nav-link" href="fam.php">
-    <i class="fas fa-fw fa-wrench"></i>
-        <span>Families</span></a>
+<li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefive"
+                    aria-expanded="true" aria-controls="collapsefive">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Categories</span>
+                </a>
+                <div id="collapsefive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Offers:</h6>                
+                        <a class="collapse-item" href="cat.php">Categories </a>
+                        <a class="collapse-item" href="fam.php">Families</a>
+
+                      <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
+                        <a class="collapse-item" href="pro.php">Products</a> -->
+                    </div>
+                </div>
 </li>
 
 <!-- Divider -->
@@ -82,19 +90,6 @@
 </li>
 
 <!-- Nav Item - Utilities Collapse Menu -->
-
-
-<!-- <li class="nav-item active">
-    <a class="nav-link" href="off.php">
-    <i class="fas fa-fw fa-chart-area"></i>
-        <span>Offers</span></a>
-</li>
-
-<li class="nav-item active">
-    <a class="nav-link" href="off_his.php">
-    <i class="fas fa-fw fa-chart-area"></i>
-        <span>Offers History</span></a>
-</li> -->
 
 <!-- Nav Item - Pages Collapse Menu -->
 
@@ -124,6 +119,26 @@
         <span>Prices</span></a>
 </li>
 
+<!-- Orders submenu -->
+
+<li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefour"
+                    aria-expanded="true" aria-controls="collapsefour">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Orders</span>
+                </a>
+                <div id="collapsefour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Offers:</h6>                
+                        <a class="collapse-item" href="prod_sal.php">Daily </a>
+                        <a class="collapse-item" href="sal_dash.php">Stats</a>
+
+                      <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
+                        <a class="collapse-item" href="pro.php">Products</a> -->
+                    </div>
+                </div>
+</li>
+<!-- Orders submenu  -->
 
 
 <!-- Divider -->

@@ -1,17 +1,18 @@
 <?php
 header('Content-Type: application/javascript');
 include '../data/db_connection.php'; 
-$sql="select count(distinct sku) as total,monthname(date_report) as months from products where segment='LOYALTY_CON' 
-and date_report >= date_sub(now(), interval 10 month) and day(date_report) =15 group by month(date_report) order by date_report asc;";
+$sql="SELECT date_report, SUM(day_sales_loy) AS daily_total
+FROM product_sales
+GROUP BY date_report
+order by date_report;";
 $result=mysqli_query($con,$sql);
 while($row=mysqli_fetch_array($result)) 
 { 
-$stats.=$row['total'].",";
-$months.="\"".$row['months']."\",";
+$sales.=$row['daily_total'].",";
+$dates.="\"".$row['date_report']."\",";
 }
-$cat=substr($stats, 0, -1); 
-echo $cat;
-$mon=substr($months, 0, -1); 
+$sales=substr($sales, 0, -1); 
+$dates=substr($dates, 0, -1); 
 ?>
 
 // Set new default font family and font color to mimic Bootstrap's default styling
@@ -44,17 +45,17 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+var ctx = document.getElementById("myBarChart2");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: [<?php echo $mon;?>],
+    labels: [<?php echo $dates;?>],
     datasets: [{
       label: "Orders",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [<?php echo $cat;?>],
+      data: [<?php echo $sales;?>],
     }],
   },
   options: {
@@ -84,7 +85,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 900,
+          max: 7000,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

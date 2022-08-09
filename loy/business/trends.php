@@ -45,6 +45,7 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_promo_name="SELECT prom_name FROM promotions where id=$sku limit 1;";
     $sql_promo_dates="SELECT concat(start_date,',',end_date) FROM promotions where sku='$sku' and id=$date;";
     $sql_saved_price="select price from promotions where sku='$sku' and id=$date";
+    $sql_cat_orders="SELECT t2.category,sum(t1.day_sales_loy) as tot_sales FROM product_sales t1 inner join (select distinct sku,category from products_last) t2 on  t1.sku = t2.sku where t1.date_report=DATE_SUB(CURDATE(), INTERVAL 3 DAY) and category <> 'Miscellaneous' group by t2.category order by tot_sales desc;";
 
 
     $query="sql_".$parameter;
