@@ -26,8 +26,8 @@ $dates.="\"".$row['date_report']."\",";
 
 }
 $sales=substr($sales, 0, -1); 
-$sales1=substr($sales, 0, -1); 
-$sales2=substr($sales, 0, -1); 
+$sales1=substr($sales1, 0, -1); 
+$sales2=substr($sales2, 0, -1); 
 $dates=substr($dates, 0, -1); 
 ?>
 
