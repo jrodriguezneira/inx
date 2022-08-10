@@ -268,8 +268,8 @@
                         
 
                                 <!-- Top ten products -->
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
+                            <div class="col-xl-6 col-lg-5">
+                                <div class="card shadow mb-5">
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -286,6 +286,30 @@
                                     <div class="card-body">
                                         <div class="chart-bar">
                                             <canvas id="myBarChart4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                 <!-- Top ten products -->
+                                 <div class="col-xl-6 col-lg-5">
+                                <div class="card shadow mb-5">
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Orders per day BAU vs Offer</h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-bar">
+                                            <canvas id="myBarChart5"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -336,6 +360,7 @@
 
     <!-- Page level custom scripts -->
     <script src="charts/orders-per-day.php" ></script>
+    <script src="charts/orders-per-day-bau-off.php" ></script>
     <script src="charts/top_products.php" ></script>
 
 
