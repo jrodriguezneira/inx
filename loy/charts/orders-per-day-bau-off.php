@@ -3,6 +3,7 @@ header('Content-Type: application/javascript');
 include '../data/db_connection.php'; 
 $sql="SELECT date_report, SUM(day_sales_loy) AS daily_total
 FROM product_sales
+WHERE weekday(date_report) not in (5,6)
 GROUP BY date_report
 order by date_report limit 7;";
 $result=mysqli_query($con,$sql);
