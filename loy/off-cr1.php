@@ -50,7 +50,12 @@ while($row = mysqli_fetch_array($result)){
      // Array with sku details: sku(0),rrp(1), number of tiers(2),tiers pricing(3), dates(4), stock(5), check rrp(6), check_ro(7), fwac(8)
     $skux.= $sku.'*'.$rrp .'*'.$tot_tiers.'*'.$price.'*'.$dates.'*'.$stock.'*'.$chk_rrp.'*'.$chk_ro.'*'.$fwac;
     // Get initial pricing
+    $hot_offer= get_trend("hot_offer",$sku);
+    if($hot_offer== "Hot Offer"){
+    $loy_price=extract_pricing(get_trend("old_price",trim($sku)));
+    }else{
     $loy_price=extract_pricing(get_trend("loy_price",trim($sku)));  
+    }
     //Get name
     $name= get_trend("name",trim($sku));
     // If the target is for new products change the query source

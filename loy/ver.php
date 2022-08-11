@@ -48,13 +48,16 @@
                 <!-- Topbar -->
                 <?php include 'topbar.php'; ?>
                 <!-- End of Topbar -->
+                <script>
+                    document.getElementById('form_sku_search').style.visibility='hidden';
+                </script>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><b>Hot Offers</b> </h1>
+                        <h1 class="h3 mb-0 text-gray-800"><b>Current 1.7</b> </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> <?php echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
                     </div>
@@ -72,7 +75,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Active Offers</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Versions</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,20 +92,39 @@
                                 <!-- Card Body content goes here -->
                                 <div class="card-body">
 
-                                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                        <th>ID</th>
-                                        <th>Name Offer</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
+                                   
+                                    <p><b>Ver 1.7</b></p>
+                                    <ul>
+                                    <li>Detailed sales per day per product</li>
+                                    <li>Product order analysis and dashboards</li>
+                                    <li>Fix layout when loading saved offers</li>
+                                    <li>View offer on update mode</li>
+                                    <li>Gantt Chartt for promotions per quarter</li>
+                                    <li>Validate pricing values when saving an offer</li>
+                                    <li>Export base price for offers when product is already on offer</li>
+                                    <li>UI improvements</li>
 
-                                        
-                                        </tr> 
-                                    </thead>
-                                    
-                                    </table>
+                                    </ul>
+
+                                    <p><b>Ver 1.5</b></p>
+                                    <ul>
+                                    <li>Option to select closest pricing for outright offers and RO</li>
+                                    <li>EOL products history</li>
+                                    <li>Offers history by product and by campaign</li>
+                                    <li>New products history by product and by launch date</li>
+                                    <li>Save and edit offers and product launches.</li>
+                                    <li>Unlimited number of products per offer or product launch.</li>
+                                    <li>Daily product sales per product</li>
+                                    </ul>
+                                    <p><b>Ver 1.0</b></p>
+                                    <ul>
+                                    <li>Points pay engine updated for new products with RO</li>
+                                    <li>Points pay engine updated for offers with RO</li>
+                                    <li>Merged view for products details ( shop &amp; master pricing)</li>
+                                    <li>New products list automatically updated once a product goes live</li>
+                                    <li>Change price history</li>
+                                    <li>Main functionality for creating and exporting pricing for new products and offers</li>
+                                    </ul>
                                     
 
                                 </div>
@@ -175,117 +197,7 @@
     <script src="js/demo/datatables-demo.js"></script>
 
 
-<script>
-/* Formatting function for row details - modify as you need */
-function format(d) {
-  // `d` is the original data object for the row
-  return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-    '<tr>' +
-    '<td>Products:</td>' +
-    '<td>' + d.name + '</td>' +
-    '</tr>' +
-    '</table>';
-}
 
-$(document).ready(function() {
-  var table = $('#example').DataTable({
-    'ajax': 'off_his_json.php',
-    'columns': [{
-        'className': 'details-control',
-        'orderable': false,
-        'data': null,
-        'defaultContent': ''
-      },
-      { "data": "id", "name": "id",
-        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-            $(nTd).html("<a onclick= 'javascript:View_Offer(\"" + oData.name+ "\"," + oData.id + ")' href='javascript:void(0)'>"+oData.id+"</a>");
-        }
-      },
-      {
-        'data': 'promo_name'
-      },
-      {
-        'data': 'sta_date'
-      },
-      {
-        'data': 'end_date'
-      }
-    ],
-    'order': [
-      [1, 'desc']
-    ]
-  });
-
-  // Add event listener for opening and closing details
-  $('#example tbody').on('click', 'td.details-control', function() {
-    var tr = $(this).closest('tr');
-    var row = table.row(tr);
-
-    if (row.child.isShown()) {
-      // This row is already open - close it
-      row.child.hide();
-      tr.removeClass('shown');
-    } else {
-      // Open this row
-      row.child(format(row.data())).show();
-      tr.addClass('shown');
-    }
-  });
-
-  // Handle click on "Expand All" button
-  // Handle click on "Expand All" button
-  $('#btn-show-all-children').on('click', function() {
-    let containers, user_name;
-    var count = 0;
-    table.rows().every(function() {
-    //get data from row this will return values in json object..
-      var d = this.data();
-      if (!this.child.isShown()) {
-        containers = document.createElement('div');
-        containers.setAttribute('id', `container_${d.name.replace(' ', '_')}`);
-        containers.innerHTML = d.name;//add value in inside div crated
-        this.child(containers).show();
-        $(this.node()).addClass('shown'); 
-      }
-    });
-  });
-
-  // Handle click on "Collapse All" button
-  $('#btn-hide-all-children').on('click', function() {
-    // Enumerate all rows
-    table.rows().every(function() {
-      // If row has details expanded
-      if (this.child.isShown()) {
-        // Collapse row details
-        this.child.hide();
-        $(this.node()).removeClass('shown');
-      }
-    });
-  });
-});
-
-function View_Offer(prods, id){
-  var skus='';
-
-  var products = prods.split('<br>');
-
-  for (var i = 0; i < products.length -1; i++) { 
-
-    skus += 'sku' + i + '=' + products[i].split(' ')[0] + '*' + 'In Stock' + '&';
-        
-      
-  
-  }
-
-var url = 'off-cr.php?' + skus + 'q=' + (products.length -1) + '&stat=' + id + '&action=update';
-console.log( url ); 
-//window.location.href = url;
-window.open(url, '_blank'); 
-
-
-//alert(url);
-}
-</script>
 
     
 </body>
