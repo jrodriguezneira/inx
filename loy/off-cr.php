@@ -86,6 +86,7 @@
                     <?php 
                     //Promo id when available
                     $stat=$_GET['stat'];
+                    $action=$_GET['action'];
                     if($stat){$prom_name=get_trend("promo_name",$stat);}
                     //Type for new product or offer
                     if($_GET['a'] == "new"){
@@ -101,7 +102,7 @@
                     <!-- Promo ID when available -->
                     <input id='hid_prom' type='hidden' class='hid_promos'  value="<?php echo $stat; ?>">
                     <!-- Insert or Update offer  -->
-                    <input id='hid_type' type='hidden' class='hid_types'  value=''>
+                    <input id='hid_type' type='hidden' class='hid_types'  value="<?php echo $action; ?>">
                     <!-- New product or offer type -->
                     <input id='hid_prod' type='hidden' class='hid_prods'  value="<?php echo $a;?>">
                     <!-- Input to insert name, save offer and export file -->
@@ -174,7 +175,7 @@
                                         <?php
                                         $hot_offer= get_trend('hot_offer',$sku,$last_date);
                                         if($hot_offer== "Hot Offer"){
-                                        echo "<span class='price'> (Before Hot Offer)</span>";
+                                        echo "<span class='price_offer'> (Before Hot Offer)</span>";
                                         }
                                         ?> 
                                         <?php
@@ -254,6 +255,7 @@
                                         if($a=="new"){echo $rrp;} 
                                         if($stat){
                                         $rrp_saved= get_trend("rrp_saved",$sku,$stat);
+                                        $ro_saved= get_trend("ro_saved",$sku,$stat);
                                         echo $rrp_saved;
                                         }
                                         
@@ -266,7 +268,18 @@
                                         </div>
                                         
                                         <div id="ro_offer">
-                                        <input type="checkbox" class="chk_ro" title="Offer" <?php if($ro== "[12, 24]"){ echo "checked ";}?> id="<?php echo $sku; ?>_chk_ro" value="ro"><label for="ro"> &nbsp; RO </label>
+                                        <input type="checkbox" class="chk_ro" title="Offer" <?php
+                                        if($stat){                                            
+                                            if($ro_saved=="true"){                                                 
+                                            echo "checked ";
+                                            }
+                                        }else{
+                                            if($ro== "[12, 24]"){
+                                            echo "checked ";
+                                            }
+                                        }
+                                         
+                                         ?> id="<?php echo $sku; ?>_chk_ro" value="ro"><label for="ro"> &nbsp; RO </label>
                                         </div>
                                     </div>
                                     
@@ -516,6 +529,19 @@ function Save_Price(target){
     var stat;
     //Get number of products
     var x = document.getElementsByClassName("sku_cel");
+    //Validate RRP for all products
+        var z=0;
+        for (var i = 0; i < x.length; i++) { 
+            if(document.getElementsByClassName("txt_new_rrp")[i].value == ''){
+            alert("Insert RRP for all products");
+            return
+            }
+            if(document.getElementsByClassName("date_pick")[z].value == '' || document.getElementsByClassName("date_pick")[z+1].value==''){
+                alert("Insert start/end date for all products");
+            return  
+            }           
+        z = z + 2;
+        }
     var k =0;
     //Loop through number of products to create array
       for (var i = 0; i < x.length; i++) { 
@@ -556,6 +582,10 @@ function Save_Price(target){
         fwac = document.getElementsByClassName("txt_fwac")[i].value;
         
         var pri_name = document.getElementById('name').value;
+        if(pri_name==""){
+        alert("Insert Offer Name");
+        return
+        }
         stat = document.getElementById('hid_prom').value;
         var type = document.getElementById('hid_type').value;
         console.log({stat});
