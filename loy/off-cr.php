@@ -529,6 +529,8 @@ function Save_Price(target){
     var stat;
     //Get number of products
     var x = document.getElementsByClassName("sku_cel");
+    //Flag for new products
+    var new_prod= document.getElementById('hid_prod').value;  
     //Validate RRP for all products
         var z=0;
         for (var i = 0; i < x.length; i++) { 
@@ -536,10 +538,12 @@ function Save_Price(target){
             alert("Insert RRP for all products");
             return
             }
-            if(document.getElementsByClassName("date_pick")[z].value == '' || document.getElementsByClassName("date_pick")[z+1].value==''){
-                alert("Insert start/end date for all products");
-            return  
-            }           
+            if(!new_prod){ 
+                if(document.getElementsByClassName("date_pick")[z].value == '' || document.getElementsByClassName("date_pick")[z+1].value==''){
+                    alert("Insert start/end date for all products");
+                return  
+                }    
+            }       
         z = z + 2;
         }
     var k =0;
@@ -566,7 +570,7 @@ function Save_Price(target){
                 tiers += w[s].value + '-' + w[s+1].value + ',';
             }
             tiers= tiers.slice(0, -1);
-        var new_prod= document.getElementById('hid_prod').value;   
+         
             if(!new_prod){     
             //Get Dates
             var start = document.getElementsByClassName("date_pick")[k].value;
