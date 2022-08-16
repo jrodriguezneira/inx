@@ -1,5 +1,6 @@
 <?php include 'business/trends.php'; ?>
-<?php include 'business/read_trends.php'; ?>
+<?php include 'business/read_trends.php';
+      include 'prod_his_char_json.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +55,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><b>Categories</b> </h1>
+                        <h1 class="h3 mb-0 text-gray-800"><b>Products Launched </b> <a href="prod_his_char.php">(Chart)</a></h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> <?php echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
                     </div>
@@ -66,49 +67,61 @@
 
                     <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-9 col-lg-9">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header"></div>
-                                            <a class="dropdown-item" href="#"></a>
-                                            <a class="dropdown-item" href="#"></a>
-                                            </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body content goes here -->
-                                <div class="card-body">
 
-                                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                        <th></th>
-                                        <th>Launch Date</th>
-
-                                        
-                                        </tr>
-                                    </thead>
-                                    
-                                    </table>
-                                    
-
-                                </div>
-                            </div>
-                        </div>
-
-                     
 
                         <!-- Pie Chart -->
+
+
+                              <div class="col-xl-9 col-lg-9">
+                                      <div class="card shadow mb-4">
+                                          <div class="card-header">
+                                              <ul class="nav nav-tabs card-header-tabs" id="myTab">
+                                                  <li class="nav-item">
+                                                      <a href="#bydate" class="nav-link active" data-bs-toggle="tab">By Date</a>
+                                                  </li>
+                                                  <li class="nav-item">
+                                                      <a href="#all" class="nav-link" data-bs-toggle="tab">All</a>
+                                                  </li>
+                                                 
+                                              </ul>
+                                          </div>
+                                          <div class="card-body">
+                                              <div class="tab-content">
+                                                  <div class="tab-pane fade show active" id="bydate">
+                                                      <table id="prod_launches" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                      <thead>
+                                                          <tr>
+                                                          <th></th>
+                                                          <th>Launch Date</th>
+
+                                                          
+                                                          </tr>
+                                                      </thead>
+                                                      
+                                                      </table>
+
+
+                                                  </div>
+                                                  <div class="tab-pane fade" id="all">
+                                                      <table id="prod_launches_tot" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                      <thead>
+                                                          <tr>
+                                                          <!-- <th></th> -->
+                                                          <th>SKU</th>
+                                                          <th>Name</th>
+                                                          <th>Date</th>                                                          
+                                                          </tr>
+                                                      </thead>
+                                                      
+                                                      </table>
+                                                  </div>
+                                                  
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+
                        
                     </div>
 
@@ -171,8 +184,17 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+      <!-- Gantt Char scripts  scripts -->
+      <script src="https://code.jscharting.com/latest/jscharting.js"></script> 
+
 
 <script>
+
+$('#myTab a').click(function (e) {
+	 e.preventDefault();
+	 $(this).tab('show');
+}); 
+
 /* Formatting function for row details - modify as you need */
 function format(d) {
   // `d` is the original data object for the row
@@ -185,7 +207,7 @@ function format(d) {
 }
 
 $(document).ready(function() {
-  var table = $('#example').DataTable({
+  var table = $('#prod_launches').DataTable({
     'ajax': 'prod_lau_json.php',
     'columns': [{
         'className': 'details-control',
@@ -202,8 +224,28 @@ $(document).ready(function() {
     ]
   });
 
+
+  var table2 = $('#prod_launches_tot').DataTable({
+    'ajax': 'prod_lau_tot_json.php',
+    'columns': [
+      {
+        'data': 'sku'
+      },
+      {
+        'data': 'name'
+      },
+      {
+        'data': 'launch_date'
+      }
+
+    ],
+    'order': [
+      [2, 'desc']
+    ]
+  });
+
   // Add event listener for opening and closing details
-  $('#example tbody').on('click', 'td.details-control', function() {
+  $('#prod_launches tbody').on('click', 'td.details-control', function() {
     var tr = $(this).closest('tr');
     var row = table.row(tr);
 
