@@ -1,6 +1,6 @@
 <?php include 'business/trends.php'; ?>
 <?php include 'business/read_trends.php'; 
-      include 'off_his_char_json.php';
+      include 'prod_his_char_json.php';
 ?>
 
 <!DOCTYPE html>
@@ -56,9 +56,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><b>Hot Offers</b> </h1>
+                        <h1 class="h3 mb-0 text-gray-800"><b>Product Launches</b> </h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> <?php echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
+                                class="fas fa-download fa-sm text-white-50"></i> <?php //echo get_trend('date_last',$_GET['text_sku_search']); ?></a>
                     </div>
 
                     <!-- Content Row -->
@@ -74,7 +74,7 @@
                                 <!-- Card Header - Dropdown --> 
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Active Offers</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Launches</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -204,18 +204,18 @@ var tickTemplate = mapLabels([
 // Raw data 
 
 <?php //echo Data_JSON(); 
-$dates= "'7-1-2022','12-30-2022'";
-$dates2= "'7-1-2022','12-30-2022'";
+$dates= "'6-1-2022','12-30-2022'";
+$dates2= "'6-1-2022','12-30-2022'";
 
 ?>
 
 var data = [ {   
-  stage: 'Offers', 
-  substage: 'Offers', 
+  stage: 'Launches', 
+  substage: 'launches', 
   dates: [<?php echo $dates; ?>],  
-  complete: 'Hot Offers'
+  complete: 'Product Launches'
 },
-<?php echo Data_JSON(); ?>
+<?php echo Data_prod_JSON(); ?>
 
 // {
 //     stage: 'Product Launches', 
