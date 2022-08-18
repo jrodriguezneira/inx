@@ -68,6 +68,7 @@ function Add_Boxes(sku){
     var newinputbox = document.createElement("input");
     newinputbox.setAttribute("type", "text");
     newinputbox.setAttribute("id", sku + "_txt_poi_" + tiers);
+    newinputbox.setAttribute("class", sku + "_txt_pri");
     newinputbox.style.width='70px';
     newinputbox.style.height='22px';   
     
@@ -75,6 +76,7 @@ function Add_Boxes(sku){
      var newinputbox1 = document.createElement("input");
      newinputbox1.setAttribute("type", "text");
      newinputbox1.setAttribute("id", sku + "_txt_pay_" + tiers);
+     newinputbox1.setAttribute("class", sku + "_txt_pri");
      newinputbox1.style.width='50px';
      newinputbox1.style.height='22px'; 
 

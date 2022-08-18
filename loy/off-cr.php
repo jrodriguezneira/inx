@@ -560,6 +560,7 @@ function Save_Price(target){
         chk_ro = document.getElementsByClassName("chk_ro")[i].checked;
         //Get pricing tiers
         tot_tiers = (document.getElementsByClassName("hid_tie")[i].value) * 2;
+        console.log(tot_tiers);
         //Get Stock
         stock = document.getElementsByClassName("hid_tie_stock")[i].value;
         //Get Pricing
@@ -568,6 +569,7 @@ function Save_Price(target){
             //Loop through points/pay tiers cells
             for (var s = 0; s < tot_tiers; s += 2) {
                 tiers += w[s].value + '-' + w[s+1].value + ',';
+                //console.log(s);
             }
             tiers= tiers.slice(0, -1);
          
