@@ -59,6 +59,19 @@ function Top_Bottom_Tiers(newrrp,tiers,sku,type){
     //Get value from UI for Top tier  
     var top= sku + '_txt_poi_0';   
     top_poi= document.getElementById(top).value;
+            // Get pricing from Pvpp
+            var per_nam_0 = sku + '_txt_per_0';
+            if(document.getElementById(per_nam_0).value!=""){
+            top_ppvv = Number(document.getElementById(per_nam_0).value);
+            var ppvv = top_ppvv.toFixed(6);
+            var points= (newrrp) /(ppvv * 1.1 );
+            var tier_rounder_2=50;
+            res= points/tier_rounder_2;
+            points = Math.round(res)* tier_rounder_2;
+            top_poi = points;
+            //document.getElementById(poi_nam).value=points;
+            }
+
     if(top_poi > 0){
     pv_top = newrrp/top_poi;   
     }
@@ -210,8 +223,15 @@ function Check_Price(sku,key,tiers,type,pv_top){
     var valu_nam = sku + '_txt_val_' + key;
     var mar_nam = sku + '_txt_mar_' + key;
     var per_nam = sku + '_txt_per_' + key;
+    var per_nam_0 = sku + '_txt_per_0';
+
+    var top_ppvv;
     //Top and bottom ppvv values
-    var top_ppvv= 0.002750;
+    if(document.getElementById(per_nam_0).value==""){
+    top_ppvv= 0.002750;}
+    else{
+    top_ppvv = Number(document.getElementById(per_nam_0).value);}
+    console.log("Pvpp Value" + document.getElementById(per_nam_0).value);
     var bot_ppvv= 0.002500;
     //Set PPVV decrement for number of tiers 
     var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
@@ -323,14 +343,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
             var dec= ((pv_top - pv_bot)/(Number(tiers))).toFixed(6);
   
             if(key==0){
-            // ppvv = top_ppvv.toFixed(6);
-            // points= (rrp) /(ppvv * 1.1 );
-            // var tier_rounder_2=50;
-            // res= points/tier_rounder_2;
-            // points = Math.round(res)* tier_rounder_2;
-            // document.getElementById(poi_nam).value=points;
-            // //document.getElementById(per_nam).value=ppvv; 
-            //pay = newrrp-(pv*points); 
+            
             }else{
             ppvv = (pv_top -(key*dec)).toFixed(6);
             }
@@ -503,6 +516,37 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
 //Bottom tier to be added to tiers array ( not last tier)
 bot_tier= inc + "-" + (tiers-1);
 // Return the tier increment changes to fill the pricing points and tier gap to fulfill the difference 
+
+var checker = top_tier-(tier_gap + ( Number(tier_change.split("-")[0])*(tiers-4)));
+var checker2 = top_tier-(tier_gap + ( Number(tier_change.split("-")[0])*(tiers-3)));
+
+var pos = tier_change.split(",");
+if(pos.length>1){
+var pos1= (pos[0].split("-")[1]) - 1;
+var pos2= Number(pos[1].split("-")[1]) + 1;
+}
+
+if(checker==12500 && inc==5000){
+     tier_gap= tier_gap + 2500;     
+     tier_change= inc + "-" + pos1 + "," + (inc/2) + "-" + pos2;
+}
+
+
+if((checker2==7000 && inc==2500) ){
+    tier_gap= tier_gap - 500;     
+   // tier_change= inc + "-" + pos1 + "," + (inc/2) + "-" + pos2;
+}
+
+
+if((checker2== bottom_tier) ){
+    var inc_fix= (checker - bottom_tier)/2;
+    var pos0= (tier_change.split("-")[1])-1;   
+    tier_change= tier_change.split("-")[0] + "-" + pos0 + "," + (tier_change.split("-")[0]/2) + "-" + 3;
+}
+
+
+
+
 return tier_change + "," + bot_tier + "," + tier_gap ;
 }
 ///////////////   End Function to calculate tier changers ////////////
@@ -520,12 +564,16 @@ function Clear_Offer(sku){
         var valu_nam = sku + '_txt_val_' + i;
         var mar_nam = sku + '_txt_mar_' + i;
         var per_nam = sku + '_txt_per_' + i;
+        var ro_12= sku + '_ro_12_' + i;
+        var ro_24= sku + '_ro_24_' + i;
 
         document.getElementById(poi_nam).value="";
         document.getElementById(pay_nam).value=""; 
         document.getElementById(valu_nam).value= "";
         document.getElementById(mar_nam).value= "";
-        document.getElementById(per_nam).value="";     
+        document.getElementById(per_nam).value="";  
+        document.getElementById(ro_12).innerHTML = "";
+        document.getElementById(ro_24).innerHTML = "";   
 
     }
 
@@ -556,6 +604,7 @@ function Create_Offer(sku,type){
   // Obtain the number of layers per increment to fulfill pricing points 
   var tier_changers= Tiers_Change(tiers,inc,top_tier,bottom_tier,sku);
   console.log("tier_changers: " + tier_changers); 
+
   // Split each layer by the increment and tier number to make the change
   var layers= tier_changers.split(",");
   // Get tier gap from last element on layers array
@@ -689,6 +738,7 @@ function Save_Pricing(target){
         chk_ro = document.getElementsByClassName("chk_ro")[i].checked;
         //Get pricing tiers
         tot_tiers = (document.getElementsByClassName("hid_tie")[i].value) * 2;
+       // console.log({tot_tiers});
         //Get Stock
         stock = document.getElementsByClassName("hid_tie_stock")[i].value;
         //Get Pricing
@@ -697,6 +747,7 @@ function Save_Pricing(target){
             //Loop through points/pay tiers cells
             for (var s = 0; s < tot_tiers; s += 2) {
                 tiers += w[s].value + '-' + w[s+1].value + ',';
+                //console.log(tiers);
             }
             tiers= tiers.slice(0, -1);          
         //Get Dates

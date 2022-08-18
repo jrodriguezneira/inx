@@ -44,7 +44,7 @@ function multi_boxes($price,$sku,$stat=null){
         <td class='cell_price'><label style='height:12px;' id='".$sku."_ro_24_".$key."'></label></td>
         <td class='cell_price'><input readonly tabindex='-1' id='".$sku."_txt_val_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_val'></td>
         <td class='cell_price'><input readonly tabindex='-1' id='".$sku."_txt_mar_".$key."' style='width:70px;height:22px;' type='text' class='".$sku."_txt_mar' ></td>
-        <td class='cell_price'><input readonly tabindex='-1' id='".$sku."_txt_per_".$key."' style='width:80px;height:22px;' type='text' class='".$sku."_txt_per' ></td>" 
+        <td class='cell_price'><input tabindex='-1' id='".$sku."_txt_per_".$key."' style='width:80px;height:22px;' type='text' class='".$sku."_txt_per' ></td>" 
         ;
         echo "</tr>";
         if($stat){
