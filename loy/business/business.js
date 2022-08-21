@@ -226,13 +226,25 @@ function Check_Price(sku,key,tiers,type,pv_top){
     var per_nam_0 = sku + '_txt_per_0';
 
     var top_ppvv;
+    var bot_ppvv;
     //Top and bottom ppvv values
     if(document.getElementById(per_nam_0).value==""){
     top_ppvv= 0.002750;}
     else{
     top_ppvv = Number(document.getElementById(per_nam_0).value);}
-    console.log("Pvpp Value" + document.getElementById(per_nam_0).value);
-    var bot_ppvv= 0.002500;
+
+        if(document.getElementById(per_nam_0).value==""){
+        top_ppvv= 0.002750;}
+        else{
+        top_ppvv = Number(document.getElementById(per_nam_0).value);}
+    
+    var per_bot_last = sku + '_txt_per_' + (tiers -1) ;
+
+        if(document.getElementById(per_bot_last).value==""){
+        bot_ppvv= 0.002500;}
+        else{
+        bot_ppvv = Number(document.getElementById(per_bot_last).value);}
+   
     //Set PPVV decrement for number of tiers 
     var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
     
@@ -337,18 +349,24 @@ function Check_Price(sku,key,tiers,type,pv_top){
 
         if(type!="new" && !chk_ro && pv_top){   
 
-            pv_top=0.003220;
-            var pv_bot=0.002828;
+            //pv_top=0.003220;
+            var pv_bot;
+            var per_bot_last = sku + '_txt_per_' + (tiers -1) ;
+            //console.log(per_bot_last);        
 
-            var dec= ((pv_top - pv_bot)/(Number(tiers))).toFixed(6);
-  
-            if(key==0){
-            
-            }else{
-            ppvv = (pv_top -(key*dec)).toFixed(6);
+                if(document.getElementById(per_bot_last).value==""){
+                pv_bot=0.002828;}
+                else{
+                pv_bot = Number(document.getElementById(per_bot_last).value);}
+                //console.log({pv_bot});
+
+            var dec= ((top_ppvv - pv_bot)/(Number(tiers))).toFixed(6);  
+            if(key!=0){
+            ppvv = (top_ppvv -(key*dec)).toFixed(6);
             }
             //Recalculate pay component and update the value
-            pay = newrrp -(ppvv * points);
+            pay = newrrp-(ppvv * 1.1 * points);
+            console.log(ppvv + " " + pay);
             if(key==0){
             pay=0;
             }
