@@ -226,7 +226,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
     var per_nam_0 = sku + '_txt_per_0';
 
     var top_ppvv;
-    var bot_ppvv= 0.002500;
+   // var bot_ppvv= 0.002500;
     //Top and bottom ppvv values
     if(document.getElementById(per_nam_0).value==""){
     top_ppvv= 0.002750;}
@@ -238,13 +238,14 @@ function Check_Price(sku,key,tiers,type,pv_top){
         else{
         top_ppvv = Number(document.getElementById(per_nam_0).value);}
     
-    // var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ;
-    // console.log(tiers);
+    var tiers = document.getElementById(sku + '_hid_tie').value;
+    var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ;
+    console.log(tiers);
 
-    //     if(document.getElementById(per_bot_last).value==""){
-    //     bot_ppvv= 0.002500;}
-    //     else{
-    //     bot_ppvv = Number(document.getElementById(per_bot_last).value);}
+        if(document.getElementById(per_bot_last).value==""){
+        bot_ppvv= 0.002500;}
+        else{
+        bot_ppvv = Number(document.getElementById(per_bot_last).value);}
    
     //Set PPVV decrement for number of tiers 
     var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
