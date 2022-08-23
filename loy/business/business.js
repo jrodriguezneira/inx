@@ -243,7 +243,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
         
         var tiers = document.getElementById(sku + '_hid_tie').value;
         var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ;
-        console.log(per_bot_last);
+        //console.log(per_bot_last);
 
             if(document.getElementById(per_bot_last).value==""){
             bot_ppvv= 0.002500;}
@@ -376,7 +376,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
             }
             //Recalculate pay component and update the value
             pay = newrrp-(ppvv * 1.1 * points);
-            console.log(ppvv + " " + pay);
+            //console.log(ppvv + " " + pay);
             if(key==0){
             pay=0;
             }
@@ -453,7 +453,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
             var tier_1_check = true;
         }
 
-         }
+    }
         
  
     //Select base gap with initial increment to define 
@@ -541,12 +541,16 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
 
         }
     }
+
+    console.log({tier_change});
 //Bottom tier to be added to tiers array ( not last tier)
 bot_tier= inc + "-" + (tiers-1);
 // Return the tier increment changes to fill the pricing points and tier gap to fulfill the difference 
 
 var checker = top_tier-(tier_gap + ( Number(tier_change.split("-")[0])*(tiers-4)));
+console.log({checker});
 var checker2 = top_tier-(tier_gap + ( Number(tier_change.split("-")[0])*(tiers-3)));
+console.log({checker2});
 
 var pos = tier_change.split(",");
 if(pos.length>1){
@@ -554,7 +558,7 @@ var pos1= (pos[0].split("-")[1]) - 1;
 var pos2= Number(pos[1].split("-")[1]) + 1;
 }
 
-if(checker==12500 && inc==5000){
+if(checker==12500 && inc=5000){
      tier_gap= tier_gap + 2500;     
      tier_change= inc + "-" + pos1 + "," + (inc/2) + "-" + pos2;
 }
@@ -567,13 +571,19 @@ if((checker2==7000 && inc==2500) ){
 
 
 if((checker2== bottom_tier) ){
-    var inc_fix= (checker - bottom_tier)/2;
-    var pos0= (tier_change.split("-")[1])-1;   
+    //console.log(pos.length);
+    if(pos.length>1){
+    console.log(pos[0]);
+    var pos0= (pos[0].split("-")[1]) - 1;
+    }else{
+    var pos0= (tier_change.split("-")[1])-1;  
+    }
+    console.log({pos0});
     tier_change= tier_change.split("-")[0] + "-" + pos0 + "," + (tier_change.split("-")[0]/2) + "-" + 3;
 }
 
 
-
+console.log({tier_change});
 
 return tier_change + "," + bot_tier + "," + tier_gap ;
 }
