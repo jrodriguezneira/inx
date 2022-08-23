@@ -277,7 +277,7 @@ function View_Offer(prods, id){
   
   }
 
-var url = 'off-cr.php?' + skus + 'q=' + (products.length -1) + '&stat=' + id + '&action=update';
+var url = 'off-cr.php?' + skus + 'q=' + (products.length -1) + '&stat=' + id + '&action=update&mode=view';
 console.log( url ); 
 //window.location.href = url;
 window.open(url, '_blank'); 

@@ -224,31 +224,36 @@ function Check_Price(sku,key,tiers,type,pv_top){
     var mar_nam = sku + '_txt_mar_' + key;
     var per_nam = sku + '_txt_per_' + key;
     var per_nam_0 = sku + '_txt_per_0';
-
     var top_ppvv;
-   // var bot_ppvv= 0.002500;
-    //Top and bottom ppvv values
-    if(document.getElementById(per_nam_0).value==""){
-    top_ppvv= 0.002750;}
-    else{
-    top_ppvv = Number(document.getElementById(per_nam_0).value);}
 
+    var mode = document.getElementById('hid_mod').value;
+    if(mode!="view"){
+
+    // var bot_ppvv= 0.002500;
+        //Top and bottom ppvv values
         if(document.getElementById(per_nam_0).value==""){
         top_ppvv= 0.002750;}
         else{
         top_ppvv = Number(document.getElementById(per_nam_0).value);}
-    
-    var tiers = document.getElementById(sku + '_hid_tie').value;
-    var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ;
-    console.log(tiers);
 
-        if(document.getElementById(per_bot_last).value==""){
-        bot_ppvv= 0.002500;}
-        else{
-        bot_ppvv = Number(document.getElementById(per_bot_last).value);}
-   
-    //Set PPVV decrement for number of tiers 
-    var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
+            if(document.getElementById(per_nam_0).value==""){
+            top_ppvv= 0.002750;}
+            else{
+            top_ppvv = Number(document.getElementById(per_nam_0).value);}
+        
+        var tiers = document.getElementById(sku + '_hid_tie').value;
+        var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ;
+        console.log(per_bot_last);
+
+            if(document.getElementById(per_bot_last).value==""){
+            bot_ppvv= 0.002500;}
+            else{
+            bot_ppvv = Number(document.getElementById(per_bot_last).value);}
+    
+        //Set PPVV decrement for number of tiers 
+        var dec= ((top_ppvv - bot_ppvv)/(Number(tiers))).toFixed(6);
+
+    }
     
     //Variables for caculating new pricing 
     var last_pay;
@@ -264,6 +269,9 @@ function Check_Price(sku,key,tiers,type,pv_top){
     var pv=0.003030;
     //If RO option is selected 
     var chk_ro = document.getElementById(sku + '_chk_ro').checked;
+
+
+
         
         if(chk_ro){            
            // tier_rounder=500; 
@@ -376,7 +384,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
             document.getElementById(pay_nam).value= pay; 
 
         }
-
+    
      // Calculate pricing margins
      var valu = ((points*0.0025) + (pay/1.1)).toFixed(2);
      var mar = (valu - wac).toFixed(2);
