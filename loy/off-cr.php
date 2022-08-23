@@ -87,6 +87,7 @@
                     //Promo id when available
                     $stat=$_GET['stat'];
                     $action=$_GET['action'];
+                    $mode=$_GET['mode'];
                     if($stat){$prom_name=get_trend("promo_name",$stat);}
                     //Type for new product or offer
                     if($_GET['a'] == "new"){
@@ -105,6 +106,8 @@
                     <input id='hid_type' type='hidden' class='hid_types'  value="<?php echo $action; ?>">
                     <!-- New product or offer type -->
                     <input id='hid_prod' type='hidden' class='hid_prods'  value="<?php echo $a;?>">
+                    <!-- Load initial margins and avoid new calculations-->
+                    <input id='hid_mod' type='hidden' class='hid_prods'  value="<?php echo $mode;?>">
                     <!-- Input to insert name, save offer and export file -->
                     <div class="head_buttons">
                         <h2 class="h3 mb-0 text-gray-800 lft"><input id='name' type='text' placeholder="<?php echo $title; ?>" value="<?php echo $prom_name; ?>"></h2>
