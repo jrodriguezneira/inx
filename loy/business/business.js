@@ -558,7 +558,7 @@ var pos1= (pos[0].split("-")[1]) - 1;
 var pos2= Number(pos[1].split("-")[1]) + 1;
 }
 
-if(checker==12500 && inc=5000){
+if(checker==12500 && inc==5000){
      tier_gap= tier_gap + 2500;     
      tier_change= inc + "-" + pos1 + "," + (inc/2) + "-" + pos2;
 }
