@@ -242,7 +242,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
             top_ppvv = Number(document.getElementById(per_nam_0).value);}
         
         var tiers = document.getElementById(sku + '_hid_tie').value;
-        var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ;
+        var per_bot_last = sku + '_txt_per_' + (Number(tiers) - 1) ; 
         //console.log(per_bot_last);
 
             if(document.getElementById(per_bot_last).value==""){
@@ -280,7 +280,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
             
             if(key!=0){
                 //Validate if checking price comes from create offer(multi tiers) or for a single tier
-                if(tiers){
+                if(tiers && newrrp){
                     payment= Pay_Increment(newrrp); 
                     pay_ini= payment[0];
                     pay_inc= payment[1];
