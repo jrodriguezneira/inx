@@ -148,6 +148,194 @@ return inc;
 }
 ///////////////  End function to calculate points increment per tier
 
+///////////////   Function to calculate points increment per tier
+function Price_Flat_Live_Vpp(sku,type=null){
+    
+    //Calculate total points
+    //Obtain new RRP from text box
+    var newrrp = document.getElementById(sku + '_txt_new_rrp').value;
+    var newvpp = document.getElementById(sku + '_txt_vpp').value;
+    var points = newrrp/(newvpp*1.1);
+    var tierscount = document.getElementById('tiers_count').value;
+    console.log(newrrp);
+    console.log(newvpp);
+
+
+    //Calculate number of tiers 
+
+
+    switch(true){
+        case points > 0 && points <6000: tiers=6; break;
+        case points > 6000 && points <30000: tiers=18; break;
+        case points > 30000 && points <50000:  tiers=22; break;
+        case points > 50000 && points <100000:  tiers=27; break;
+        case points > 100000 && points <200000:  tiers=32; break;
+        case points > 200000 && points <500000:  tiers=38; break;
+        case points > 500000 && points <2000000:  tiers=53; break;
+    }
+
+    switch(true){
+        case tiers == 6 :
+            switch(true){
+                case points > 0 && points <1000: tiers=1; break;
+                case points > 1000 && points <2000: tiers=2; break;
+                case points > 2000 && points <3000: tiers=3; break;
+                case points > 3000 && points <4000: tiers=4; break;
+                case points > 4000 && points <5000: tiers=5; break;
+                case points > 5000 && points <6000: tiers=6; break;
+            }
+        break;
+        
+        case tiers == 18: 
+           
+            switch(true){
+            case points > 6000 && points <8000: tiers=7; break;
+            case points > 8000 && points <10000: tiers=8; break;
+            case points > 10000 && points <12000: tiers=9; break;
+            case points > 12000 && points <14000: tiers=10; break;
+            case points > 14000 && points <16000: tiers=11; break;
+            case points > 16000 && points <18000: tiers=12; break;
+            case points > 18000 && points <20000: tiers=13; break;
+            case points > 20000 && points <22000: tiers=14; break;
+            case points > 22000 && points <24000: tiers=15; break;
+            case points > 24000 && points <26000: tiers=16; break;
+            case points > 26000 && points <28000: tiers=17; break;
+            case points > 28000 && points <30000: tiers=18; break;
+            }
+        break;
+        
+        case tiers == 22:  
+            switch(true){
+            case points > 30000 && points <35000: tiers=19; break;
+            case points > 35000 && points <40000: tiers=20; break;
+            case points > 40000 && points <45000: tiers=21; break;
+            case points > 45000 && points <50000: tiers=22; break;
+            }
+        break;
+
+        case tiers == 27: 
+            switch(true){
+            case points > 50000 && points <60000: tiers=23; break;
+            case points > 60000 && points <70000: tiers=24; break;
+            case points > 70000 && points <80000: tiers=25; break;
+            case points > 80000 && points <90000: tiers=26; break;
+            case points > 90000 && points <100000: tiers=27; break;
+            }
+        
+        break;
+        case tiers == 32:  
+        
+            switch(true){
+            case points > 100000 && points <120000: tiers=28; break;
+            case points > 120000 && points <140000: tiers=29; break;
+            case points > 140000 && points <160000: tiers=30; break;
+            case points > 160000 && points <180000: tiers=31; break;
+            case points > 180000 && points <200000: tiers=32; break;
+            }
+        
+        break;
+
+        case tiers == 38:  
+        
+            switch(true){
+            case points > 200000 && points <250000: tiers=33; break;
+            case points > 250000 && points <300000: tiers=34; break;
+            case points > 300000 && points <350000: tiers=35; break;
+            case points > 350000 && points <400000: tiers=36; break;
+            case points > 400000 && points <450000: tiers=37; break;
+            case points > 450000 && points <500000: tiers=38; break;
+
+            }
+        
+        break;
+        case tiers == 53:  
+        
+            switch(true){
+            case points > 500000 && points <600000: tiers=39; break;
+            case points > 600000 && points <700000: tiers=40; break;
+            case points > 700000 && points <800000: tiers=41; break;
+            case points > 800000 && points <900000: tiers=42; break;
+            case points > 900000 && points <1000000: tiers=43; break;
+            case points > 1000000 && points <1100000: tiers=44; break;
+            case points > 1100000 && points <1200000: tiers=45; break;
+            case points > 1200000 && points <1300000: tiers=46; break;
+            case points > 1300000 && points <1400000: tiers=47; break;
+            case points > 1400000 && points <1500000: tiers=48; break;
+            case points > 1500000 && points <1600000: tiers=48; break;
+            case points > 1600000 && points <1700000: tiers=49; break;
+            case points > 1700000 && points <1800000: tiers=50; break;
+            case points > 1800000 && points <1900000: tiers=51; break;
+            case points > 1900000 && points <2000000: tiers=52; break;
+            }
+        
+        break;
+        
+    }
+
+    
+    points_digit= Math.trunc(points).toString().length;
+    console.log("Points digit =" + points_digit);
+    console.log("tiers =" + tiers);
+
+
+    switch(true){
+        case points_digit < 3: rounder=1; break;
+        case points_digit < 4: rounder=10; break;
+        case points_digit < 5: rounder=100; break;
+        case points_digit < 6: rounder=1000; break;
+        case points_digit < 9: rounder=10000; break;
+        //case points_digit < 9: rounder=100000; break;
+       // case points_digit < 9: rounder=1000000; break;
+
+
+    }
+
+    console.log("Rounded points:" + points);
+
+
+
+    for (var x = 0; x <= tiers; x++) {
+        //Get the name for each textbox 
+        var poi_nam= sku + '_txt_poi_' + x;
+        var pay_nam= sku + '_txt_pay_' + x;
+     
+
+        switch(true){
+            case x <= 6: tierpoints=x * 1000; break;
+            case x <=18: tierpoints=tierpoints + 2000; break; 
+            case x <=22: tierpoints=tierpoints + 5000; break;
+            case x <=27: tierpoints=tierpoints + 10000; break;
+            case x <=32: tierpoints=tierpoints + 20000; break;
+            case x <=38: tierpoints=tierpoints + 50000; break;
+            case x <=53: tierpoints=tierpoints + 100000; break;
+        }
+
+
+        pay= Math.round((points-tierpoints)*newvpp*1.1);
+
+        if(x==tiers){
+           points= Math.round(points/rounder)*rounder;
+            tierpoints= points;
+            pay=0;
+        }
+        
+        // Set values on text fields  
+        document.getElementById(poi_nam).value=tierpoints;
+        document.getElementById(pay_nam).value=pay; 
+
+        //console.log(tierpoints + " " + Math.round(pay) + " " + x);
+        //console.log();
+        
+              
+    }
+
+    console.log("tiers" + tiers);
+    console.log("X=" + x);
+   
+  return tiers;
+}
+  ///////////////  End function to calculate points increment per tier
+
 
 ///////////////   Function to calculate pay increment////////////
 function Pay_Increment(rrp){
@@ -186,7 +374,6 @@ function ro_limits(pay_ini,tiers,newrrp,fixer){
     limit = point_tier_array.indexOf(Number( point_low));
 
 return [point_low,limit]
-
 
 }
 
@@ -269,10 +456,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
     var pv=0.003030;
     //If RO option is selected 
     var chk_ro = document.getElementById(sku + '_chk_ro').checked;
-
-
-
-        
+       
         if(chk_ro){            
            // tier_rounder=500; 
             var ro_12= sku + '_ro_12_' + key;
@@ -521,9 +705,7 @@ function Tiers_Change(tiers,inc,top_tier,bottom_tier){
 
         console.log("tier_gap_1 closest " + closest);
    }
-
-  
-   
+ 
     // Select the tier change with closest tier gap value to the highest increment or the tier change with the lowest tier gap ( Indicated above when to choose the closest or lowest tier gap)
     console.log({low});
     for (var i = 0; i <= y ; i++) {
@@ -594,7 +776,9 @@ return tier_change + "," + bot_tier + "," + tier_gap ;
 function Clear_Offer(sku){
     var points;
     var pay;
-    var tiers= document.getElementById(sku + '_hid_tie').value;
+    //var tiers= document.getElementById(sku + '_hid_tie').value;
+    var tiers = document.getElementById('tiers_count').value + 1;
+
     for (var i = 0; i < tiers; i++) {
 
         var poi_nam= sku + '_txt_poi_' + i;
@@ -620,6 +804,7 @@ function Clear_Offer(sku){
 
 
 
+
 ///////////////   Function to create the offer////////////
 function Create_Offer(sku,type){
   var points;
@@ -628,7 +813,7 @@ function Create_Offer(sku,type){
   var tiers= document.getElementById(sku + '_hid_tie').value;
   //pv = point value in $
   var pv=0.002828;
-  //Obtain new RRp from text box
+  //Obtain new RRP from text box
   var newrrp = document.getElementById(sku + '_txt_new_rrp').value;
   //Obtain top and bottom tiers
   var top_bottom= Top_Bottom_Tiers(newrrp,tiers,sku,type);

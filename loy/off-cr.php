@@ -206,9 +206,8 @@
                                 <div class="collapse show multi-collapse" id="multiCollapseExample<?php echo $z+1?>">
                                 <div class="card-body">
                                     <?php 
-
+                                        $rrp = get_trend("rrp",$sku);                                    
                                         if($a=="new"){
-                                            $rrp = get_trend("rrp_new",$sku);
                                             $pricing=get_trend("closest_price",$sku,$last_date,$rrp);                                          
                                             $count_tiers= count(explode(",",$pricing));
                                         }
@@ -221,7 +220,7 @@
                                             if($a=="new")  {
                                             multi_pricing($pricing,$sku,$a); 
                                             }else{
-                                            multi_pricing(get_trend("loy_price",$sku,$last_date),$sku);
+                                            multi_pricing(get_trend("loy_price_new",$sku,$last_date),$sku);
                                             }                                  
                                         }                                       
                                         echo "</td></tr></table>";
@@ -254,8 +253,8 @@
                                         ?>
                                         <h6 class="m-0 font-weight-bold text-primary offer_text"><?php echo $text; ?> </h6>
                                         
-                                        <input id="<?php echo $sku;?>_txt_new_rrp" class="txt_new_rrp" type="text" size="10px" placeholder=" RRP" value="<?php 
-                                        if($a=="new"){echo $rrp;} 
+                                        <input id="<?php echo $sku;?>_txt_new_rrp" onkeypress="if(event.key == 'Enter') {Price_Flat_Live_Vpp(<?php echo $sku;?>)}" class="txt_new_rrp" type="text" size="10px" placeholder=" RRP" value="<?php 
+                                      //  if($a=="new"){echo $rrp;} 
                                         if($stat){
                                         $rrp_saved= get_trend("rrp_saved",$sku,$stat);
                                         $ro_saved= get_trend("ro_saved",$sku,$stat);
@@ -265,6 +264,7 @@
                                         
                                         
                                         ?>">
+                                        <input id="<?php echo $sku;?>_txt_vpp"  onkeypress="if(event.key == 'Enter') {Price_Flat_Live_Vpp(<?php echo $sku;?>)}" class="txt_vpp" type="text" size="10px" placeholder="VPP" value="0.00245">
                                         
                                         <div id="rrp_update">
                                         <input type="checkbox" class="chk_rrp" title="Update RRP for offer report" checked <?php if($ro== "[12, 24]"){ echo "checked ";}?> id="<?php echo $sku; ?>_chk_rrp" value="ro">
@@ -299,9 +299,11 @@
                                             <div class="dropdown-header"></div>
                                             <?php 
                                             if($a=="new"){
-                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Pricing</a>";
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Price_Flat_Live_Vpp(".$sku.",\"".$a."\")'>Create Pricing</a>";
                                             }else{
-                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Offer</a>";                                                    
+                                           // echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Create_Offer(".$sku.",\"".$a."\")'>Create Offer</a>";  
+                                            echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Price_Flat_Live_Vpp(".$sku.",\"".$a."\")'>Create Pricing</a>";
+                                                  
                                             }
                                             if($previous_offer){
                                             //$pre=extract_pricing($previous_offer);
@@ -309,12 +311,12 @@
                                             }
                                             if($a!="new"){
 
-                                                echo "<a class='dropdown-item' href='javascript:void(0)' onClick='javascript:Closest_Offers(".$sku.")'>Closest Offer</a>"; 
+                                              //  echo "<a class='dropdown-item' href='javascript:void(0)' onClick='javascript:Closest_Offers(".$sku.")'>Closest Offer</a>"; 
                                                 }
 
                                             if($pricing){
                                                 $pre=extract_pricing($pricing);
-                                                echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Closest Pricing</a>"; 
+                                                //echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Previous_Offer(\"".$pre."\",".$sku.")'>Closest Pricing</a>"; 
                                             }
                                             echo "<a class='dropdown-item' href= 'javascript:void(0)' onClick='javascript:Clear_Offer(".$sku.")'>Clear Offer</a>";
                                             ?>
@@ -329,7 +331,7 @@
                                     <?php 
                                     
                                     if($a=="new"){
-                                    multi_boxes($pricing,$sku);
+                                    multi_boxes($rrp,$sku);
                                     echo "<a href= 'javascript:void(0)' onClick='javascript:Add_Boxes(".$sku.")' title='Add Tier'>+</a> &nbsp;&nbsp;";
                                     echo "<span title='# tiers' id ='".$sku."_tier_counter' class='span_count'>$count_tiers</span>";
                                     echo "<a href= 'javascript:void(0)' onClick='javascript:Remove_Boxes(".$sku.")' title='Remove Tier'> -</a>";
@@ -340,7 +342,9 @@
                                         if($stat){
                                             multi_boxes(get_trend("saved_price",$sku,$stat),$sku,$stat);
                                         }else{
-                                            multi_boxes(get_trend("loy_price",$sku,$last_date),$sku);
+                                            //multi_boxes(get_trend("loy_price_new",$sku,$last_date),$sku);
+                                           // echo $rrp;
+                                            multi_boxes($rrp,$sku);
                                         }
                                     } 
                                     
@@ -627,7 +631,7 @@ function Save_Price(target){
   document.getElementById('hid_type').value = "update";
   console.log({type});
 
-  }
+}
 
   function getDateTime() {
         var now     = new Date(); 

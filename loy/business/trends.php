@@ -15,12 +15,14 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_rrp="select rrp from products_last where sku='$sku' and segment = 'LOYALTY_CON';";
     $sql_outright="select count(sku) from products_last where ro = '[]' and segment='LOYALTY_CON';"; 
     $sql_name="select name,sku from products_last where sku='$sku' limit 1;";
+    $sql_vpp="select vpp from price_tiers where sku='$sku' limit 1;";
     $sql_name_new="select name,orin from product_pricing where orin='$sku' limit 1;";
     $sql_sku="select sku from products_last where sku='$sku' or name ='$sku' limit 1;";
     $sql_ro_sku="select ro from products_last where sku='$sku' and segment ='LOYALTY_CON';";
     $sql_rrp_acc="select rrp from products_last where sku='$sku' and segment ='ACCESSORIES_CON';";
     $sql_ro_acc_sku="select ro from products_last where sku='$sku' and segment ='ACCESSORIES_CON';";
     $sql_loy_price="select price from products_last where sku='$sku' and segment ='LOYALTY_CON';";
+    $sql_loy_price_new="select price from products_new_pricing where sku='$sku';";
     $sql_category="select category from products_last where sku='$sku' limit 1;";
     $sql_family="select family from products_last where sku='$sku' limit 1;";
     $sql_family_products="select distinct sku,name from products_last where family='$date';";
