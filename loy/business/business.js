@@ -464,7 +464,7 @@ function Check_Price(sku,key,tiers,type,pv_top){
             
             if(key!=0){
                 //Validate if checking price comes from create offer(multi tiers) or for a single tier
-                if(tiers && newrrp){
+                if(tiers){
                     payment= Pay_Increment(newrrp); 
                     pay_ini= payment[0];
                     pay_inc= payment[1];
