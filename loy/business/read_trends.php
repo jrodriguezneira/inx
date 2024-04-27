@@ -24,17 +24,17 @@ $tier = explode(',',$price);
 $tiers=count($tier);
 $i=1;
     if($tiers>1){
-        foreach( array_reverse($tier) as $key => $element) {
+        foreach( $tier as $key => $element) {
             if ($key === array_key_first($tier)){
                 $element = substr($element, 2);
-                $element = substr($element, 0, -2);                 
+                $element = substr($element, 0, -1);                 
             }
             if ($key === array_key_last($tier)){
-                $element = substr($element, 2);
-                $element = substr($element, 0, -1);                   
+                $element = substr($element, 1);
+                $element = substr($element, 0, -2);                   
             }
             if ( $key !== array_key_first($tier) && $key !== array_key_last($tier)){
-                    $element = substr($element, 2);
+                    $element = substr($element, 1);
                     $element = substr($element, 0, -1);
             }                                    
         $tierx.= $element.",";
@@ -47,17 +47,19 @@ return $tier_array;
 }
 ////////////////////// End Ordered price-points tiers array separated by comma////////////////////////////
 
-
-
-
 ////////////////////// Present price-points tiers as table////////////////////////////
 function multi_pricing($price,$sku=null,$new=null){
-
+   
+    //echo $price;
     $tier_points=extract_pricing($price);
     //Divide string by ,
     $tier = explode(',',$tier_points);   
+    //echo count($tier);
     $prod_pricing =  get_trend("product_pricing",$sku); 
+   // echo $tier_points;
     $pricex = explode("-",$prod_pricing);
+    $vpp =  get_trend("vpp",$sku); 
+   
 
         foreach($pricex as $key=>$pri){
             switch ($key){
@@ -73,9 +75,13 @@ function multi_pricing($price,$sku=null,$new=null){
         }
         if($inv){
         $fwac= $inv +(($rrpex-$dbp)*$ext);
+        }else{
+        $inv=0;    
         }
         //echo "fwac= ". $fwac . " invp= " . $invp ." rrpex= ". $rrpex. " dbp=  " . $dbp . " ext= " . $ext;
     
+
+
     echo "<table width='100%'><tr><td>";
         echo "<table>";
                 echo "<tr><td>Retail Price of Device(RRP)</td><td id='".$sku."_rrp'> $rrp  </td></tr>";
@@ -85,10 +91,14 @@ function multi_pricing($price,$sku=null,$new=null){
                 echo "<tr><td>Supplier Investment (ex GST)</td><td> <input onchange='javascript:Check_Rebate(".$sku.")' id='".$sku."_txt_reb' style='width:70px;height:22px;' type='text' value='".$reb."'></td></tr>";  
                 echo "<tr><td>WAC</td><td id='".$sku."_wac'> $inv </td></tr>";
                 echo "<tr><td>Fully Loaded WAC</td><td title='(Invoice Price(ex GST) + (RRPexGST-DBP)*Ext)'><input id='".$sku."_fwac' class='txt_fwac' style='width:70px;height:22px;' type='text' value='".$fwac."'> </td></tr>";                  
+                echo "<tr><td>VPP</td><td> $vpp </td></tr>";
         echo "</table>";
     echo "</td><td>";
      
         echo "<table border=0 cellpadding=3 cellspacing=3>";
+
+
+
         if(!isset($new)){
         ?>
 
@@ -108,11 +118,15 @@ function multi_pricing($price,$sku=null,$new=null){
                 $tier_price = explode('-',$price);
                 echo "<tr><td class='cell_price'>".(int)substr($tier_price[0], 2)."</td><td class='cell_price'>".(int)substr($tier_price[1], 0,-2)."</td></tr>"; 
             }else{
+               // if($new=="new"){
+                $tiers=count($tier);
+                //for ($x = 0; $x <= $tiers; $x++) {
+               // }else{
+                //$tierx = explode(',',$tier);
                 foreach( $tier as $key=>$element) {
+               // }
                 echo "<tr>";
-                $tier_price = explode('-',$element);
-                $points= (int)$tier_price[0];
-                $pay= (int)$tier_price[1];
+    
                 if($new=="new"){
                 $points =".";  
                 $pay =" ";
@@ -121,12 +135,13 @@ function multi_pricing($price,$sku=null,$new=null){
                 $per=" ";
                 }
                 if(!isset($new)){
+                   
+                $pointspay=explode('-',$element); 
+                $points=$pointspay[0]; 
+                $pay=$pointspay[1]; 
 
-                 // Calculate pricing margins
-                $valu = round((($points*0.0025) + ($pay/1.1)),2);
-                $mar = round(($valu - $inv),2);
-                $per =round(((($rrp-$pay)/$points)/(1.1)),6);
-                //Set pricing margin values
+               // $mar = round(($valu - $inv),2);
+
                 }
                 echo "<td class='cell_price'>".$points."</td><td class='cell_price'>".$pay."</td>
                     <td class='cell_price'>".$valu."</td><td class='cell_price'>".$mar."</td>
