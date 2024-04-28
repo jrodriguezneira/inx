@@ -19,11 +19,11 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Gaming", "Home & Internet", "Ipads & Tablets", "Watches & Wearables", "Technology & IoT", "Headphones & Speakers", "Cases & Portection", "Mobiles"],
+    labels: ["Home & Media", "Home Office & Internet","Gaming", "Ipads & Tablets", "Watches & Wearables", "Headphones & Speakers", "Technology & IoT", "Cases & Protection", "Mobiles & Plans"],
     datasets: [{
       data: [<?php echo $cat;?>],
-      backgroundColor: ['lime', '#1cc88a', '#3634cc','#4763df', '#1cc12a', '#36b76c','#4993df', '#f6c23e'],
-      hoverBackgroundColor: ['lime', '#17a673', '#2c9faf', '#2e59d9', '#17a673', '#2c9faf', '#2e59d9', '#17a673'],
+      backgroundColor: ['lime', '#1cc88a', '#3634cc','#4763df', '#1cc12a', '#36b76c','#4993df', '#f6c23e', '#3634cc'],
+      hoverBackgroundColor: ['lime', '#17a673', '#2c9faf', '#2e59d9', '#17a673', '#2c9faf', '#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)", 
     }],
   },
