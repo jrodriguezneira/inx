@@ -51,8 +51,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">August 10, 2021</div>
-                                        <span class="font-weight-bold">This report is updated daily</span>
+                                        <div class="small text-gray-500"><?php echo date('d-m-Y');?></div>
+                                        <span class="text-black-500"> Offers without stock: <?php echo $off_oos=get_trend("offer_oos");?></span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">August 10, 2021</div>
+                                        <div class="small text-gray-500"><?php echo date('d-m-Y');?></div>
                                         New products have been added
                                     </div>
                                 </a>
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">August 10, 2021</div>
+                                        <div class="small text-gray-500"><?php echo date('d-m-Y');?></div>
                                         New Hot offers available
                                     </div>
                                 </a>
@@ -100,14 +100,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
+                                    ivity Log
+                                </a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

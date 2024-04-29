@@ -74,6 +74,47 @@ function create_new_pricing(){
         echo $price;
         //$status="1";
         $date_report = date('Y-m-d H:i:s');
+        $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
+        values ('$sku','$date_report',\"$price\",$vpp)";
+        //echo $sql1;
+               if(mysqli_query($con, $sql1)){
+                   echo "Records inserted successfully.";
+               } else{
+                       echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+               }
+     }     
+	    
+}
+
+function validate_new_pricing(){
+
+    include '../data/db_connection.php';
+
+    $sql="SELECT sku,price from products_new_pricing order by price desc;";
+
+      $result= mysqli_query($con,$sql);
+      $row_cnt = mysqli_num_rows($result);
+       while($data = mysqli_fetch_array($result)){
+        
+                  $sku = $data[0]; 
+                  $points = $data[1];
+        echo $sku." | ";   
+        $price = substr($points, 2, (stripos("$points","-0'")-2));
+        $len= (strlen($price) - strrpos($price,"'"));
+        $price2 = substr($price, -$len);
+        if(substr($price2,0,1)=="'"){
+        $price=substr($price2,1);
+        }
+        echo $price." | ";
+        $price2 = stripos("$points","$price");
+        $price3 = strrpos("$points","$price");
+        echo $price2."- ".$price3." | ";
+        if($price2 != $price3){
+        echo " Different ";
+        }
+        echo "<br>";
+        //$status="1";
+        //$date_report = date('Y-m-d H:i:s');
         // $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
         // values ('$sku','$date_report',\"$price\",$vpp)";
         // //echo $sql1;
@@ -250,8 +291,9 @@ function pricing_tiers($rrp,$vpp){
     return $tier_pricing;
 }
 //create_new_pricing();
-delete_old_data();
+//delete_old_data();
 //obtain_VPP();
 //phpinfo();
+validate_new_pricing();
 
 ?>
