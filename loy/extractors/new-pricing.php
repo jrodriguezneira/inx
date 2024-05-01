@@ -21,9 +21,9 @@ function obtain_VPP(){
         $price=substr($price2,1);
         }
 
-        $vpp= round((($rrp*1.1)/$price),5);
+        $vpp= round((($rrp/1.1)/$price),6);
         
-        //echo $sku." - ".$rrp." - ".$price."<br>";
+        //echo $sku." - ".$rrp." - ".$price." - ". $vpp."<br>";
 
          $sql1="insert into price_tiers(sku,rrp,top_tier,vpp) 
         values ('$sku',$rrp,'$price',$vpp)";
@@ -33,7 +33,7 @@ function obtain_VPP(){
                } else{
                        echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
                }     
-     }  
+      }  
 
 }
 
@@ -58,8 +58,8 @@ function create_new_pricing(){
 
     include '../data/db_connection.php';
 
-    $sql="select distinct T1.sku,T1.rrp,T2.vpp from products_last as T1 inner join price_tiers as T2  on T1.`sku` =T2.`sku` where T1.sku='100252424' and segment='LOYALTY_CON' order by sku 
-    ";
+    $sql="select distinct T1.sku,T1.rrp,T2.vpp from products_last as T1 inner join price_tiers as T2  on T1.`sku` =T2.`sku` where segment='LOYALTY_CON' order by sku 
+    limit 200 offset 1600";
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -113,16 +113,7 @@ function validate_new_pricing(){
         echo " Different ";
         }
         echo "<br>";
-        //$status="1";
-        //$date_report = date('Y-m-d H:i:s');
-        // $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
-        // values ('$sku','$date_report',\"$price\",$vpp)";
-        // //echo $sql1;
-        //        if(mysqli_query($con, $sql1)){
-        //            echo "Records inserted successfully.";
-        //        } else{
-        //                echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
-        //        }
+       
      }     
 	    
 }
