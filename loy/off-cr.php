@@ -208,8 +208,9 @@
                                     <?php 
                                         $rrp = get_trend("rrp",$sku);                                    
                                         if($a=="new"){
-                                            $pricing=get_trend("closest_price",$sku,$last_date,$rrp);                                          
-                                            $count_tiers= count(explode(",",$pricing));
+                                           // $pricing=get_trend("closest_price",$sku,$last_date,$rrp);                                          
+                                          //  $count_tiers= count(explode(",",$pricing));
+                                          $rrp = get_trend("rrp_new",$sku); 
                                         }
                                                                 
                                        
@@ -331,6 +332,7 @@
                                     <?php 
                                     
                                     if($a=="new"){
+                                      //  echo $a;
                                     multi_boxes($rrp,$sku);
                                     echo "<a href= 'javascript:void(0)' onClick='javascript:Add_Boxes(".$sku.")' title='Add Tier'>+</a> &nbsp;&nbsp;";
                                     echo "<span title='# tiers' id ='".$sku."_tier_counter' class='span_count'>$count_tiers</span>";
