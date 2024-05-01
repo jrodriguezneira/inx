@@ -134,6 +134,7 @@ return $tier_count;
 
 ////////////////////// Present price-points tiers as table for new offer////////////////////////////
 function multi_boxes($price,$sku,$stat=null){ 
+   // echo $price;
     
     if($stat){
     $tier_points = $price;
@@ -141,6 +142,7 @@ function multi_boxes($price,$sku,$stat=null){
     }else{
     $tier_points=extract_pricing($price);
     }
+  //  echo $tier_points;
     //Divide string by comma to get points pay tiers
     $tier = explode(',',$tier_points);
      //Create table to insert price points tiers

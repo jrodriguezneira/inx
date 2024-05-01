@@ -13,6 +13,7 @@ function get_trend($parameter, $sku=null,$date=null,$rrp=null){
     $sql_ro="select count(sku) from products_last where ro <> '[]' and segment='LOYALTY_CON';";
     $sql_oos="select count(sku) from products_last where stock = 'Out of Stock' and segment='LOYALTY_CON';";
     $sql_rrp="select rrp from products_last where sku='$sku' and segment = 'LOYALTY_CON';";
+    $sql_rrp_new="select rrp from promotions where sku='$sku';";
     $sql_outright="select count(sku) from products_last where ro = '[]' and segment='LOYALTY_CON';"; 
     $sql_name="select name,sku from products_last where sku='$sku' limit 1;";
     $sql_vpp="select vpp from price_tiers where sku='$sku' limit 1;";
