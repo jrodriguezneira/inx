@@ -60,6 +60,14 @@
                     </div>
 
                     <!-- Content Row -->
+
+                    <?php
+                      //Export productc to excel file
+                      if(isset($_GET['rep'])){           
+                        include 'extractors/offer-to-file.php'; 
+                        create_new_pricing_file();
+                      }
+                    ?>
                    
 
                     <!-- Content Row -->
@@ -82,8 +90,7 @@
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
                                             <a class="dropdown-item" href="#"></a>
-                                            <a class="dropdown-item" href="#"></a>
-                                            </div>
+                                            <a id="excel" class="dropdown-item" href="newprice.php?rep=excel">Export Pricing(xls)</a>                                              </div>
                                     </div>
                                 </div>
                                 <!-- Card Body content goes here -->
