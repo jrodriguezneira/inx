@@ -5,7 +5,7 @@
 function obtain_VPP(){
     include '../data/db_connection.php';
 
-    $sql="select distinct sku,rrp,price from products_last where segment='LOYALTY_CON' order by rrp desc";
+    $sql="select distinct T1.sku,T2.std_rrp_inc_gst,T1.price from products_last as T1 inner join product_pricing as T2 on T1.sku=T2.orin where T1.segment='LOYALTY_CON' order by T2.std_rrp_inc_gst desc;";
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
        while($data = mysqli_fetch_array($result)){
@@ -21,7 +21,7 @@ function obtain_VPP(){
         $price=substr($price2,1);
         }
 
-        $vpp= round((($rrp/1.1)/$price),6);
+        $vpp= round((($rrp/1.1)/$price),10);
         
         //echo $sku." - ".$rrp." - ".$price." - ". $vpp."<br>";
 
@@ -58,8 +58,7 @@ function create_new_pricing(){
 
     include '../data/db_connection.php';
 
-    $sql="select distinct T1.sku,T1.rrp,T2.vpp from products_last as T1 inner join price_tiers as T2  on T1.`sku` =T2.`sku` where segment='LOYALTY_CON' order by sku 
-    limit 200 offset 1600";
+    $sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 400 offset 1600";
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -120,7 +119,9 @@ function validate_new_pricing(){
 
 function pricing_tiers($rrp,$vpp){
 
-
+    if($vpp==0){
+    $vpp=1;
+    }
     $points = $rrp/($vpp*1.1);
 
     switch ($points) {
