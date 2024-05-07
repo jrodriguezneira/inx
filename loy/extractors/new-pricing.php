@@ -25,6 +25,15 @@ function obtain_VPP(){
         
         //echo $sku." - ".$rrp." - ".$price." - ". $vpp."<br>";
 
+        $sql0="truncate table price_tiers";
+
+        if(mysqli_query($con, $sql0)){
+                   echo "Records deleted successfully<br>";
+               } else{
+                       echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
+               }     
+
+
          $sql1="insert into price_tiers(sku,rrp,top_tier,vpp) 
         values ('$sku',$rrp,'$price',$vpp)";
 
@@ -58,7 +67,7 @@ function create_new_pricing(){
 
     include '../data/db_connection.php';
 
-    $sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 400 offset 1600";
+    $sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 400 offset 0";
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -73,6 +82,16 @@ function create_new_pricing(){
         echo $price;
         //$status="1";
         $date_report = date('Y-m-d H:i:s');
+
+        $sql0="truncate table products_new_pricing";
+
+        if(mysqli_query($con, $sql0)){
+                   echo "Records deleted successfully<br>";
+               } else{
+                       echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
+               }     
+
+
         $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
         values ('$sku','$date_report',\"$price\",$vpp)";
         //echo $sql1;
@@ -89,7 +108,7 @@ function validate_new_pricing(){
 
     include '../data/db_connection.php';
 
-    $sql="SELECT sku,price from products_new_pricing order by price desc;";
+    $sql="SELECT sku,price from products_new_pricing order by price desc limit 1;";
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -282,10 +301,150 @@ function pricing_tiers($rrp,$vpp){
   }
     return $tier_pricing;
 }
+
+function Update_new_rrp_flow(){
+
+build_table_sales(build_excel_data("master-data.xlsx"),"master-data.xlsx");
+
+
+ }
+
+
+
 //create_new_pricing();
 //delete_old_data();
 //obtain_VPP();
 //phpinfo();
-validate_new_pricing();
+//validate_new_pricing();
+//Update_new_rrp_flow();
 
 ?>
+
+<form method="POST" action="new-pricing.php" enctype="multipart/form-data">
+
+    <div>
+
+      <span>Upload a File:</span>
+
+      <input type="file" name="uploadedFile" />
+
+    </div>
+
+    <input type="submit" name="uploadBtn" value="Upload the File" />
+
+  </form>
+
+</body>
+
+</html>
+
+
+<?php
+
+
+$message = ''; 
+
+if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload the File')
+
+{
+
+  if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
+
+  {
+
+    // uploaded file details
+
+    $fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
+
+    $fileName = $_FILES['uploadedFile']['name'];
+
+    $fileSize = $_FILES['uploadedFile']['size'];
+
+    $fileType = $_FILES['uploadedFile']['type'];
+
+    $fileNameCmps = explode(".", $fileName);
+
+    $fileExtension = strtolower(end($fileNameCmps));
+
+    // removing extra spaces
+
+    $newFileName = "master-file" . '.' . $fileExtension;
+
+    // file extensions allowed
+
+    $allowedfileExtensions = array('jpg', 'gif', 'png', 'zip', 'txt', 'xlsx', 'doc');
+
+    if (in_array($fileExtension, $allowedfileExtensions))
+
+    {
+
+      // directory where file will be moved
+
+      $uploadFileDir = "../files/"; //. $_FILES['uploadedFile']['name'];
+
+      $dest_path = $uploadFileDir . $newFileName;
+
+      echo $dest_path;
+
+      if(move_uploaded_file($fileTmpPath, $dest_path)) 
+
+      {
+
+        $message = 'File uploaded successfully.';
+
+      }
+
+      else 
+
+      {
+
+        $message = 'An error occurred while uploading the file to the destination directory. Ensure that the web server has access to write in the path directory.';
+
+      }
+
+    }
+
+    else
+
+    {
+
+      $message = 'Upload failed as the file type is not acceptable. The allowed file types are:' . implode(',', $allowedfileExtensions);
+
+    }
+
+  }
+
+  else
+
+  {
+
+    $message = 'Error occurred while uploading the file.<br>';
+
+    $message .= 'Error:' . $_FILES['uploadedFile']['error'];
+
+  }
+
+}
+
+echo $message;
+
+
+//header("Location: index.php");
+
+
+?>
+
+<a href="new-pricing.php?x=update"> Update master RRP </a>
+
+<?php
+//Export productc to excel file
+if(isset($_GET['x'])){           
+include 'file-master-to-db.php'; 
+build_table_sales(build_excel_data("../files/master-file.xlsx"),"../files/master-file.xlsx");}
+obtain_VPP();
+create_new_pricing();
+echo "RRP has been updated on master file"
+?>
+
+
+
