@@ -404,6 +404,7 @@ function create_stock_file($prod){
 function create_new_pricing_file(){
 
     $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
+    //include '../data/db_connection.php';
 
     $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T1.vpp,T1.price from products_new_pricing as T1 inner join products_last as 
     T2 on T1.sku=T2.sku inner join price_tiers as T3 on T2.sku=T3.sku;";
@@ -480,6 +481,126 @@ function create_new_pricing_file(){
     $writer = new Xlsx($spreadsheet);      
     // Save .xlsx file to the files directory 
     $filename="Pricing_".$currentDate.".xlsx";
+    $writer->save($filename);  
+    
+    ?>
+        <script>
+        //Obtain filename
+        var flname="<?php echo $filename;?>";
+        //Set filepath
+        var urlx= flname;
+        //Function to download the file
+        download(urlx , flname);
+        
+        </script>
+    <?php   
+}
+//  End Function to export pricing ////////////////////////////////////
+
+
+function create_current_pricing_file(){
+
+    $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
+    //include '../data/db_connection.php';
+
+    $sql="SELECT sku,name, GROUP_CONCAT(price ORDER BY price separator '|') as price FROM products_last where segment='LOYALTY_CON' or 
+    segment='LOYALTY_CON_DV' or segment='LOYALTY_SMB' group BY sku;";
+    
+    //echo $sql;
+
+    $result= mysqli_query($con,$sql);
+    $row_cnt = mysqli_num_rows($result);
+
+    // Creates New Spreadsheet 
+    $spreadsheet = new Spreadsheet(); 
+      
+    // Retrieve the current active worksheet 
+    $sheet = $spreadsheet->getActiveSheet(); 
+    // Set headers for shop format 
+    $sheet->setCellValue('A1', 'Sku');
+    $sheet->setCellValue('B1', 'Name');
+    $sheet->setCellValue('C1', 'Points');
+    $sheet->setCellValue('D1', 'Pay');
+    $sheet->setCellValue('E1', 'Validate');
+
+       
+        $row=0;
+        // Loop through skus
+        while($data = mysqli_fetch_array($result)){
+        
+        $price= explode("|",$data[2]);
+        
+        $con= trim(substr($price[0],1),"]");
+        $arrcon=explode(",",$con);
+        $dv=trim(substr($price[1],1),"]");
+        $arrdv=explode(",",$dv);
+        $smb= trim(substr($price[2],1),"]");
+        $arrsmb=explode(",",$smb);
+        
+        if($con==$dv && $dv==$smb){
+        $dif="Aligned";
+        }else{
+        $dif="Different";
+
+            if(sizeof($arrcon)==sizeof($arrdv) AND array_diff($arrcon,$arrdv)==array())
+            {
+            $dif="Aligned";
+            }else{
+            $dif="Different";
+            }
+            if(sizeof($arrcon)==sizeof($arrsmb) AND array_diff($arrcon,$arrsmb)==array())
+            {
+            $dif="Aligned";
+            }else{
+            $dif="Different";
+            }
+
+
+        }
+
+
+        if($dif=="Different"){
+
+        
+            //Obtain details for each sku       
+            $sheet->setCellValueByColumnAndRow(1,$row+2,$data[0]);
+            $sheet->getColumnDimension('A')->setWidth(15);
+            //Set Name
+            $sheet->setCellValueByColumnAndRow(2,$row+2,$data[1]);
+            $sheet->getColumnDimension('B')->setWidth(15);
+            //Set segments 
+        
+
+            $tier1 = explode(',',$con);
+            $tiers= count($tier1);
+            $key=0;     
+            foreach( $tier1 as $key=>$element) {
+                $j=3; //Column start
+                $tier_price = explode('-',$element); 
+                $points=substr($tier_price[0],1);
+                $pay=substr($tier_price[1],0,-1);
+              
+                    $sheet->setCellValueByColumnAndRow($j,$row + $key+2,$points);
+                    $sheet->setCellValueByColumnAndRow($j+1,$row + $key+2,$pay);
+                $key++;
+            }
+            //Set Validate
+            $sheet->setCellValueByColumnAndRow(5,$row+2,$dif);
+            $sheet->getColumnDimension('E')->setWidth(15);
+            
+
+
+            $row=$row+$key;
+        }
+
+    }
+    $currentDate = date("d_m_Y");
+    //$currentDate->format('Y-m-d H:i:s');
+    $sheet->setTitle("$currentDate");
+    // Write an .xlsx file  
+    $writer = new Xlsx($spreadsheet);      
+    // Save .xlsx file to the files directory 
+    $filename="Current_Pricing".$currentDate.".xlsx";
     $writer->save($filename);  
     
     ?>

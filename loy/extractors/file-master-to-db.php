@@ -51,6 +51,14 @@ function build_table_sales($array,$filenamex){
     include '../data/db_connection.php';
     $header=0;
 
+    $sql0="truncate table product_pricing";
+                
+                    if(mysqli_query($con, $sql0)){
+                        //echo "Records deleted successfully.";
+                    } else{
+                            echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
+                    }
+
     //$date= get_file_date($filenamex);
     foreach( $array as $key=>$value){
      
