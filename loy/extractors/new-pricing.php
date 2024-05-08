@@ -25,15 +25,6 @@ function obtain_VPP(){
         
         //echo $sku." - ".$rrp." - ".$price." - ". $vpp."<br>";
 
-        $sql0="truncate table price_tiers";
-
-        if(mysqli_query($con, $sql0)){
-                   echo "Records deleted successfully<br>";
-               } else{
-                       echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
-               }     
-
-
          $sql1="insert into price_tiers(sku,rrp,top_tier,vpp) 
         values ('$sku',$rrp,'$price',$vpp)";
 
@@ -67,7 +58,7 @@ function create_new_pricing(){
 
     include '../data/db_connection.php';
 
-    $sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 400 offset 0";
+    $sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 200 offset 1600";
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -79,17 +70,8 @@ function create_new_pricing(){
         //echo $sku;   
         $price=pricing_tiers($data[1],$vpp);
         $price = substr($price, 0, -1)."]";
-        echo $price;
         //$status="1";
         $date_report = date('Y-m-d H:i:s');
-
-        $sql0="truncate table products_new_pricing";
-
-        if(mysqli_query($con, $sql0)){
-                   echo "Records deleted successfully<br>";
-               } else{
-                       echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
-               }     
 
 
         $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
@@ -101,7 +83,14 @@ function create_new_pricing(){
                        echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
                }
      }     
-	    
+
+    //  $tiers= explode(",",$price);
+    //  echo $rrp;
+    //  foreach( $tiers as $key=>$element) {
+
+    //   echo $element."<br>";
+
+     //}
 }
 
 function validate_new_pricing(){
@@ -263,7 +252,7 @@ function pricing_tiers($rrp,$vpp){
         case $points_digit < 4: $rounder=10; break;
         case $points_digit < 5: $rounder=100; break;
         case $points_digit < 6: $rounder=1000; break;
-        case $points_digit < 8: $rounder=10000; break;
+        case $points_digit < 8: $rounder=1000; break;
        // case $points_digit < 8: $rounder=100000; break;
 
     }
@@ -289,9 +278,9 @@ function pricing_tiers($rrp,$vpp){
       $pay= round(($points-$tierpoints)*$vpp*1.1);
 
       if($x==$tier_count){
-        $points= round($points/$rounder)*$rounder;
-        //$points = round ($points, -3);
-        $tierpoints= $points;
+        // $points= round($points/$rounder)*$rounder;
+        // $points = round ($points, -3);
+         $tierpoints= round($points);
         $pay=0;
       }
 
@@ -311,7 +300,7 @@ build_table_sales(build_excel_data("master-data.xlsx"),"master-data.xlsx");
 
 
 
-//create_new_pricing();
+create_new_pricing();
 //delete_old_data();
 //obtain_VPP();
 //phpinfo();
@@ -439,11 +428,13 @@ echo $message;
 <?php
 //Export productc to excel file
 if(isset($_GET['x'])){           
-include 'file-master-to-db.php'; 
-build_table_sales(build_excel_data("../files/master-file.xlsx"),"../files/master-file.xlsx");}
-obtain_VPP();
-create_new_pricing();
-echo "RRP has been updated on master file"
+// include 'file-master-to-db.php'; 
+// build_table_sales(build_excel_data("../files/master-file.xlsx"),"../files/master-file.xlsx");
+}
+// obtain_VPP();
+// echo "New VPP has been updated";
+// create_new_pricing();
+// echo "New pricing has been created";
 ?>
 
 

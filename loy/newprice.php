@@ -105,6 +105,7 @@
                                         <th>Category</th>
                                         <th>RRP</th>
                                         <th>VPP</th>
+                                        <th>Max Points</th>
                                         
 
                                         
@@ -214,6 +215,9 @@ $(document).ready(function() {
       },
       {
         'data': 'vpp'
+      },
+      {
+        'data': 'topoints'
       }
     ],
     'order': [
