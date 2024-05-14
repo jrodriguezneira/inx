@@ -51,13 +51,13 @@ function build_table_sales($array,$filenamex){
     include '../data/db_connection.php';
     $header=0;
 
-    $sql0="truncate table product_pricing";
+//    // $sql0="truncate table product_pricing";
                 
-                    if(mysqli_query($con, $sql0)){
-                        //echo "Records deleted successfully.";
-                    } else{
-                            echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
-                    }
+//                     if(mysqli_query($con, $sql0)){
+//                         //echo "Records deleted successfully.";
+//                     } else{
+//                             echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
+//                     }
 
     //$date= get_file_date($filenamex);
     foreach( $array as $key=>$value){
@@ -98,7 +98,7 @@ function build_table_sales($array,$filenamex){
              values ('$solomon','$sku','$name','category',$cost,$cost,$rrp,$rrp_ex,0,0,0,0)";
                 
                     if(mysqli_query($con, $sql1)){
-                        //echo "Records inserted successfully.";
+                        echo "Records inserted successfully.";
                     } else{
                             echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
                     }
@@ -111,8 +111,75 @@ function build_table_sales($array,$filenamex){
         
     }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Get last file name
+
+////////////////////Temporary RRP table 
+
+function build_table_rrp($array,$filenamex){
+    include '../data/db_connection.php';
+    $header=0;
+
+   // $sql0="truncate table product_pricing";
+                
+                    // if(mysqli_query($con, $sql0)){
+                    //     //echo "Records deleted successfully.";
+                    // } else{
+                    //         echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
+                    // }
+
+    //$date= get_file_date($filenamex);
+    foreach( $array as $key=>$value){
+     
+        foreach($value as $key2=>$value2){
+           
+            switch($key2){
+            case 0:
+                $sku= $value2;
+                //echo $item."<br>";
+                break;
+            case 1:
+                $name= $value2;
+                break;
+            case 2:
+                $rrp= $value2;
+                break;          
+
+            }
+           // echo $value;
+        }
+
+            //Skip table header values
+            if($header>0){
+            //Insert product details into products table products
+
+            echo $sku." - ".$name." - ". $rrp."<br>";
+            // $stock_notice= str_replace('"',' ',$stock_notice);
+
+            $date_report = date('Y-m-d H:i:s');
+
+            // $rrp_ex=$rrp/1.1;
+                               
+            $sql1="insert into price_changes(sku,rrp,tier_index,tier_points,tier_pay,date_change) 
+             values ('$sku',$rrp,0,0,0,'$date_report')";
+                
+                    if(mysqli_query($con, $sql1)){
+                        //echo "Records inserted successfully.";
+                    } else{
+                            echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+                    }
+
+
+
+	        }
+
+            $header++;
+        
+    }
+}
+
+
+/////////////////////////////////////Get last file name//////////////////////////////////////////////////////////////////////////////////
 function get_file_name(){
 
     $files = scandir('../excel/', SCANDIR_SORT_DESCENDING);
@@ -189,6 +256,7 @@ function bulk_loader(){
 //build_excel_data();
 //bulk_loader();
 build_table_sales(build_excel_data("master-data.xlsx"),"master-data.xlsx");
+//build_table_rrp(build_excel_data("master-data.xlsx"),"master-data.xlsx");
 
 
 ?> 
