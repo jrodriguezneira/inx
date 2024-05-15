@@ -37,6 +37,42 @@ function obtain_VPP(){
 
 }
 
+function validate_one_tier_price(){
+  include '../data/db_connection.php';
+
+  $sql="select distinct T1.sku,T2.std_rrp_inc_gst,T1.price,T1.name from products_last as T1 inner join product_pricing as T2 on T1.sku=T2.orin where T1.segment='LOYALTY_CON' order by T2.std_rrp_inc_gst desc;";
+    $result= mysqli_query($con,$sql);
+    $row_cnt = mysqli_num_rows($result);
+     while($data = mysqli_fetch_array($result)){
+      
+                $sku = $data[0]; 
+                $rrp = $data[1];
+                $points= $data[2];
+                $name= $data[3];
+
+        
+      $price = explode(",",$points);
+      $tiers=count($price);
+
+        if($tiers<2){
+        echo $sku." - ".$rrp." - ".$points." - ".$name."<br>";
+
+
+        $sql1="update price_tiers set one_tier=1 where sku='$sku'";
+
+               if(mysqli_query($con, $sql1)){
+                   echo "Record updated successfully.";
+               } else{
+                       echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+               }
+
+
+        }
+
+      }
+
+}
+
 function delete_old_data(){
 
     include '../data/db_connection.php';
@@ -54,11 +90,12 @@ function delete_old_data(){
     }
 }
 
-function create_new_pricing(){
+function create_new_pricing($skup=null){
 
     include '../data/db_connection.php';
 
-    $sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 200 offset 1600";
+    $sql="select distinct sku,rrp,vpp from price_tiers where one_tier=1 order by sku";
+    
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -68,15 +105,27 @@ function create_new_pricing(){
                   $rrp = $data[1];
                   $vpp = $data[2];
         //echo $sku;   
-        $price=pricing_tiers($data[1],$vpp);
-        $price = substr($price, 0, -1)."]";
+       
+
+        $sql0="select price from products_last where sku='$sku' and segment ='LOYALTY_CON'";
+
+        $result0= mysqli_query($con,$sql0);
+        $row_cnt0 = mysqli_num_rows($result0);
+         while($datax = mysqli_fetch_array($result0)){
+          
+                    $price = $datax[0]; 
+         }
+
+
         //$status="1";
         $date_report = date('Y-m-d H:i:s');
 
+        //  // $price=pricing_tiers($data[1],$vpp);
+        // // $price = substr($price, 0, -1)."]";
+        
+          $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
+          values ('$sku','$date_report',\"$price\",$vpp)";
 
-        $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
-        values ('$sku','$date_report',\"$price\",$vpp)";
-        //echo $sql1;
                if(mysqli_query($con, $sql1)){
                    echo "Records inserted successfully.";
                } else{
@@ -93,11 +142,63 @@ function create_new_pricing(){
      //}
 }
 
+// function alter_rrp($skup=null){
+
+//   //include '../data/db_connection.php';
+
+//   if($skup){
+//     $sql="select sku,rrp from price_changes where sku='$skup'";
+//   }else{
+//   //$sql="select distinct sku,rrp,vpp from price_tiers order by sku limit 200 offset 1600";
+//   }
+//   //echo $sql;
+//     $result= mysqli_query($con,$sql);
+//     $row_cnt = mysqli_num_rows($result);
+//      while($data = mysqli_fetch_array($result)){
+      
+//                 $sku = $data[0]; 
+//                 $rrp = $data[1];
+//                 //$vpp = $data[2];
+//       //echo $sku;   
+//       // $price=pricing_tiers($data[1],$vpp);
+//       // $price = substr($price, 0, -1)."]";
+//       // //$status="1";
+//       // $date_report = date('Y-m-d H:i:s');
+
+//       if($skup){
+//         $sql1="update price_tiers set rrp =$rrp where sku='$sku'";
+//         echo $sql1;
+
+//       }else{
+      
+//         // $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
+//         // values ('$sku','$date_report',\"$price\",$vpp)";
+
+//       }
+
+//       //echo $sql1;
+//              if(mysqli_query($con, $sql1)){
+//                  echo "Records updated successfully.";
+//              } else{
+//                      echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+//              }
+//    }     
+
+//   //  $tiers= explode(",",$price);
+//   //  echo $rrp;
+//   //  foreach( $tiers as $key=>$element) {
+
+//   //   echo $element."<br>";
+
+//    //}
+// }
+
 function validate_new_pricing(){
 
     include '../data/db_connection.php';
 
-    $sql="SELECT sku,price from products_new_pricing order by price desc limit 1;";
+    $sql="SELECT distinct T1.sku,T1.price,T2.name from products_new_pricing as T1 inner join products_last as T2 on T1.sku= T2.sku 
+    where T2.name not like '%gift card%' and T2.name not like '%recharge%' order by T1.price desc;";
 
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
@@ -105,21 +206,81 @@ function validate_new_pricing(){
         
                   $sku = $data[0]; 
                   $points = $data[1];
-        echo $sku." | ";   
+                  $name= $data[2];
         $price = substr($points, 2, (stripos("$points","-0'")-2));
         $len= (strlen($price) - strrpos($price,"'"));
         $price2 = substr($price, -$len);
         if(substr($price2,0,1)=="'"){
         $price=substr($price2,1);
         }
-        echo $price." | ";
         $price2 = stripos("$points","$price");
         $price3 = strrpos("$points","$price");
-        echo $price2."- ".$price3." | ";
+        $price4=substr($points,1,($price3-3));
+        $price4 = "[". $price4."]";
         if($price2 != $price3){
-        echo " Different ";
+
+                    echo $sku." | ";   
+                    echo $name." | ";   
+                    // echo $price." | ";
+                     echo $price2."- ".$price3." | ";
+                    // echo $price4;
+                    echo " Different ";
+                    echo "<br>";
+
+                        //   $sql1="select distinct sku,rrp from products_last where sku='$sku' and segment='LOYALTY_CON'";
+                      
+                        // //echo $sql;
+                        //   $result1= mysqli_query($con,$sql1);
+                        //   $row_cnt = mysqli_num_rows($result1);
+                        //   while($data = mysqli_fetch_array($result1)){
+
+
+                        //     $sku = $data[0]; 
+                        //     $rrp = $data[1];
+
+                        //     echo $rrp." | ";   
+
+
+                        //     $sql2="update price_tiers set rrp =$rrp where sku='$sku'";
+                        //     if(mysqli_query($con, $sql2)){
+                        //         echo "Records updated successfully.";
+                        //     } else{
+                        //             echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+                        //     }
+                        //   }
+
+                      // $sql2="select sku,rrp from price_tiers  where sku='$sku'";
+                  
+                      // //echo $sql;
+                      //   $result2= mysqli_query($con,$sql2);
+                      //   $row_cnt = mysqli_num_rows($result2);
+                      //   while($data = mysqli_fetch_array($result2)){
+  
+  
+                      //     $sku = $data[0]; 
+                      //     $rrp = $data[1];
+  
+                      //     echo $rrp."<br>";   
+  
+  
+                          // $sql2="update price_tiers set rrp =$rrp where sku='$sku'";
+                          // if(mysqli_query($con, $sql2)){
+                          //     echo "Records updated successfully.";
+                          // } else{
+                          //         echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+                          // }
+        //}
+                    
+                  //   $sql1="update products_new_pricing set price =\"$price4\" where sku='$sku'";
+                  //  // echo $sql1;
+                  //          if(mysqli_query($con, $sql1)){
+                  //              echo "Records updated successfully.";
+                  //          } else{
+                  //                  echo "ERROR: Could not able to execute $sql1" . mysqli_error($con);
+                  //          }
+
+
         }
-        echo "<br>";
        
      }     
 	    
@@ -300,11 +461,12 @@ build_table_sales(build_excel_data("master-data.xlsx"),"master-data.xlsx");
 
 
 
-create_new_pricing();
+//create_new_pricing();
 //delete_old_data();
 //obtain_VPP();
+//validate_one_tier_price();
 //phpinfo();
-//validate_new_pricing();
+validate_new_pricing();
 //Update_new_rrp_flow();
 
 ?>

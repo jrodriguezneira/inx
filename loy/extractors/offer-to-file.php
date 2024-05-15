@@ -407,7 +407,7 @@ function create_new_pricing_file(){
     $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
     //include '../data/db_connection.php';
 
-    $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T1.vpp,T1.price from products_new_pricing as T1 inner join products_last as 
+    $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T3.vpp,T1.price from products_new_pricing as T1 inner join products_last as 
     T2 on T1.sku=T2.sku inner join price_tiers as T3 on T2.sku=T3.sku;";
     
     //echo $sql;
