@@ -314,7 +314,7 @@ function Price_Flat_Live_Vpp(sku,type=null){
         pay= Math.round((points-tierpoints)*newvpp*1.1);
 
         if(x==tiers){
-           points= Math.round(points/rounder)*rounder;
+         //  points= Math.round(points/rounder)*rounder;
             tierpoints= points;
             pay=0;
         }

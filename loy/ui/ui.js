@@ -258,39 +258,27 @@ function Paste_Products(){
         
         for (var i = 0; i < tiers.length-1; i++) {
 
-            var orin= 'orin_' + i;
-            var solomon= 'solomon_' + i;
+            var orin= 'sku_' + i;
             var name= 'name_' + i;
-            var invoice= 'invoice_' + i;
-            var dbp= 'dbp_' + i;
-            var rrpinc= 'rrpinc_' + i;
-            var rrpex= 'rrpex_' + i;
-            var rebate= 'rebate_' + i;
-            var launch= 'launch_' + i;
+            var rrpinc= 'rrpinc_' + i;      
+            var vpp= 'vpp_' + i; 
 
             var fields = tiers[i].split("\t");
             var orin_val = fields[0];
-            var solomon_val = fields[1];
-            var name_val = fields[2];
-            var invoice_val = fields[3];
-            var dbp_val = fields[4];
-            var rrpinc_val = fields[5];
-            var rrpex_val = fields[6];
-            var rebate_val = fields[7];
-            var launch_val = fields[8];
+            var name_val = fields[1];
+            var rrpinc_val = fields[2];
+            var vpp_val = fields[3];
+
+            console.log("Orin val "+ fields[0]);
+      
                  
             if(i>0){
             Add_Pricing_Boxes(i);
             }
                 document.getElementById(orin).value=orin_val;
-                document.getElementById(solomon).value=solomon_val;
-                document.getElementById(name).value=name_val;
-                document.getElementById(invoice).value=invoice_val;
-                document.getElementById(dbp).value=dbp_val;
+                document.getElementById(name).value=name_val;               
                 document.getElementById(rrpinc).value=rrpinc_val;
-                document.getElementById(rrpex).value=rrpex_val;
-                document.getElementById(rebate).value=rebate_val;
-                document.getElementById(launch).value=launch_val;
+                document.getElementById(vpp).value=vpp_val;
             }
             event.preventDefault();
             input.oncut = input.oncopy = function(event) {
@@ -314,27 +302,27 @@ function Add_Pricing_Boxes(row){
     var newRow = tbodyRef.insertRow();
     var newCell=[];
 
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 4; i++) {
         newCell[i] = newRow.insertCell();
         newCell[i].className="cell_new_price";
-    if(i==2)
+    if(i==1)
     {newCell[i].className="cell_new_price_name";}
     }
 
     var newinputbox=[];
     
-    var cells =["orin","solomon","name","invoice","dbp","rrpinc","rrpex","rebate","launch"];
+    var cells =["sku","name","rrpinc","vpp"];
 
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 4; i++) {
         //Append text box for points  to table
         newinputbox[i] = document.createElement("input");
         newinputbox[i].setAttribute("type", "text");
         newinputbox[i].setAttribute("id", cells[i] + "_" + row);
-        if(i!=2){newinputbox[i].style.width='100px';}
-        if(i==2){newinputbox[i].style.width='380px';}
+        if(i!=1){newinputbox[i].style.width='100px';}
+        if(i==1){newinputbox[i].style.width='380px';}
         newinputbox[i].style.height='22px'; 
     }
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 4; i++) {
     newCell[i].appendChild(newinputbox[i]);
     }
     // Verify boxes name array goes here

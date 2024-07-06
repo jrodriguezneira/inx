@@ -39,7 +39,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Products:</h6>                
-                        <a class="collapse-item" href="prod_all.php">Products </a>
+                        <a class="collapse-item" href="currentprice.php">Products </a>
                         <a class="collapse-item" href="newpro.php">New Products</a>
                         <a class="collapse-item" href="newprice.php">New Pricing</a>
                         <a class="collapse-item" href="prod_lau.php">Launches</a>

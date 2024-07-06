@@ -82,6 +82,9 @@
                             for ($x = 0; $x < $_GET['i']; $x++) {
                                 $row= $_GET['row'.$x];
                                 insert_trend("new_product", $row);
+                                //add url with skus on this line
+                                //    var url = 'off-cr.php?' + skus + 'q=' + dataTable.rows('.selected').data().length + '&a=new';
+
                             }
                         }                   
                     ?>
@@ -172,6 +175,8 @@
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
                                             <a id="export" class="dropdown-item" href="#">Save Products</a>
+                                            <a id="export1" class="dropdown-item" href="#">Create pricing</a>
+
                                             
                                             </div>
                                     </div>
@@ -185,36 +190,22 @@
                                     <thead>
                                         <tr>
                                    
-                                        <th title="Required">Orin *</th>
-                                        <th>Solomon</th>
-                                        <th title="Required">Name *</th>
-                                        <th title="Required">Invoice(ex GST) *</th>
-                                        <th>DBP(ex GST)</th>
-                                        <th title="Required">STD RRP(inc GST) *</th>
-                                        <th>STD RRP(ex GST)</th>
-                                        <th>Rebate</th>     
-                                        <th>Launch Date</th>                                                               
+                                        <th title="Required">SKU *</th>
+                                        <th title="Required">Name *</th>                                  
+                                        <th title="Required">RRP *</th>
+                                        <th>VPP</th>                                                                                                 
                                        
                                         </tr> 
                                     </thead>
                                     <tbody>
                                         <tr>
-                                        <td><input type="text" id="orin_0" class="cell_new_price"  onpaste='javascript:Paste_Products()'>   </td>
-                                        <td><input type="text" id="solomon_0" class="cell_new_price">   </td>
+                                        <td><input type="text" id="sku_0" class="cell_new_price"  onpaste='javascript:Paste_Products()'>   </td>
                                         <td><input type="text" id="name_0" class="cell_new_price_name">   </td>
-                                        <td><input type="text" id="invoice_0" class="cell_new_price">   </td>
-                                        <td><input type="text" id="dbp_0" class="cell_new_price">   </td>
                                         <td><input type="text" id="rrpinc_0" class="cell_new_price">   </td>
-                                        <td><input type="text" id="rrpex_0" class="cell_new_price">   </td>
-                                        <td><input type="text" id="rebate_0" class="cell_new_price">   </td>
-                                        <td><input type="text" id="launch_0" class="cell_new_price">   </td>
+                                        <td><input type="text" id="vpp_0" class="cell_new_price">   </td>
                                         </tr>
-                                    
-                                
                                 
                                     </tbody>
-
-                                  
 
                                     <?php ?>
 

@@ -5,7 +5,11 @@
 function obtain_VPP(){
     include '../data/db_connection.php';
 
-    $sql="select distinct T1.sku,T2.std_rrp_inc_gst,T1.price from products_last as T1 inner join product_pricing as T2 on T1.sku=T2.orin where T1.segment='LOYALTY_CON' order by T2.std_rrp_inc_gst desc;";
+    // $sql="select distinct T1.sku,T2.std_rrp_inc_gst,T1.price from products_last as T1 inner join product_pricing as T2 on T1.sku=T2.orin where T1.segment='LOYALTY_CON' 
+    // and T2.category='Hot Offer' order by T2.orin desc";
+
+      $sql="select orin,std_rrp_inc_gst,solomon from product_pricing where category='Hot Offer' and orin in (100250462,100250677,100252465,100252496,100252631,100250722,100155709,100250110,100250324,100252499,100248024,100252238,100250348,100248009,100248007,100248006,100250344,100252728,100252732,100252733,100252727,100252717,100252721,100252722,100252716,100252708,100253263,100253769,100253771,100250716,100250714,100250620,100250617,100250618,100252261,100252272,100251910,100247539,100247556,100250323,100250325,100250345,100250343,100250346,100252103,100250064,100248022,100252081,100250672,100250291,100250971,100250949,100250922,100250921,100252992,100252484,100248477,100252490,100252482,100252485,100252488,100252489,100252486,100252483,100250622,100252334,100252335,100252332,100252333,100252513,100251011,100252214,100252215,100250009,100245501,100252151,100253534,100252149) order by orin desc";
+
       $result= mysqli_query($con,$sql);
       $row_cnt = mysqli_num_rows($result);
        while($data = mysqli_fetch_array($result)){
@@ -14,20 +18,23 @@ function obtain_VPP(){
                   $rrp = $data[1];
                   $points= $data[2];
           
-        $price = substr($points, 2, (stripos("$points","-0'")-2));
-        $len= (strlen($price) - strrpos($price,"'"));
-        $price2 = substr($price, -$len);
-        if(substr($price2,0,1)=="'"){
-        $price=substr($price2,1);
-        }
+        // $price = substr($points, 2, (stripos("$points","-0'")-2));
+        // $len= (strlen($price) - strrpos($price,"'"));
+        // $price2 = substr($price, -$len);
+        // if(substr($price2,0,1)=="'"){
+        // $price=substr($price2,1);
+        // }
+        $price=$points;
 
         $vpp= round((($rrp/1.1)/$price),10);
         
         //echo $sku." - ".$rrp." - ".$price." - ". $vpp."<br>";
 
-         $sql1="insert into price_tiers(sku,rrp,top_tier,vpp) 
-        values ('$sku',$rrp,'$price',$vpp)";
+         $sql1="insert into price_tiers(sku,rrp,top_tier,vpp,one_tier) 
+        values ('$sku',$rrp,'$price',$vpp,2)";
 
+       //$sql1= "update price_tiers set top_tier=\"$price\",vpp=$vpp,rrp=$rrp,one_tier=2 where sku='$sku'";
+        echo $sql1;
         if(mysqli_query($con, $sql1)){
                    echo "Records inserted successfully<br>";
                } else{
@@ -94,7 +101,7 @@ function create_new_pricing($skup=null){
 
     include '../data/db_connection.php';
 
-    $sql="select distinct sku,rrp,vpp from price_tiers where one_tier=1 order by sku";
+    $sql="select distinct sku,rrp,vpp from price_tiers where one_tier=2 and sku in (100250462,100250677,100252465,100252496,100252631,100250722,100155709,100250110,100250324,100252499,100248024,100252238,100250348,100248009,100248007,100248006,100250344,100252728,100252732,100252733,100252727,100252717,100252721,100252722,100252716,100252708,100253263,100253769,100253771,100250716,100250714,100250620,100250617,100250618,100252261,100252272,100251910,100247539,100247556,100250323,100250325,100250345,100250343,100250346,100252103,100250064,100248022,100252081,100250672,100250291,100250971,100250949,100250922,100250921,100252992,100252484,100248477,100252490,100252482,100252485,100252488,100252489,100252486,100252483,100250622,100252334,100252335,100252332,100252333,100252513,100251011,100252214,100252215,100250009,100245501,100252151,100253534,100252149) ";
     
 
       $result= mysqli_query($con,$sql);
@@ -107,24 +114,26 @@ function create_new_pricing($skup=null){
         //echo $sku;   
        
 
-        $sql0="select price from products_last where sku='$sku' and segment ='LOYALTY_CON'";
+        // $sql0="select price from products_last where sku='$sku' and segment ='LOYALTY_CON'";
 
-        $result0= mysqli_query($con,$sql0);
-        $row_cnt0 = mysqli_num_rows($result0);
-         while($datax = mysqli_fetch_array($result0)){
+        // $result0= mysqli_query($con,$sql0);
+        // $row_cnt0 = mysqli_num_rows($result0);
+        //  while($datax = mysqli_fetch_array($result0)){
           
-                    $price = $datax[0]; 
-         }
+        //             $price = $datax[0]; 
+        //  }
 
 
         //$status="1";
         $date_report = date('Y-m-d H:i:s');
 
-        //  // $price=pricing_tiers($data[1],$vpp);
-        // // $price = substr($price, 0, -1)."]";
+         $price=pricing_tiers($data[1],$vpp);
+        $price = substr($price, 0, -1)."]";
+
+          $sql1="update products_new_pricing set offer_price=\"$price\",offer_vpp=$vpp where sku='$sku'";
         
-          $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
-          values ('$sku','$date_report',\"$price\",$vpp)";
+          //  $sql1="insert into products_new_pricing(sku,date_report,price,vpp) 
+          //  values ('$sku','$date_report',\"$price\",$vpp)";
 
                if(mysqli_query($con, $sql1)){
                    echo "Records inserted successfully.";
@@ -221,9 +230,10 @@ function validate_new_pricing(){
 
                     echo $sku." | ";   
                     echo $name." | ";   
-                    // echo $price." | ";
-                     echo $price2."- ".$price3." | ";
-                    // echo $price4;
+                    echo $price." | ";
+                    // echo $price2."- ".$price3." | ";
+                  //  echo $points." | ";
+                   //  echo $price4;
                     echo " Different ";
                     echo "<br>";
 
@@ -436,7 +446,7 @@ function pricing_tiers($rrp,$vpp){
       }
 
 
-      $pay= round(($points-$tierpoints)*$vpp*1.1);
+      $pay= round(($points-$tierpoints)*$vpp*1.1,2);
 
       if($x==$tier_count){
         // $points= round($points/$rounder)*$rounder;
@@ -459,14 +469,12 @@ build_table_sales(build_excel_data("master-data.xlsx"),"master-data.xlsx");
 
  }
 
-
-
-//create_new_pricing();
+create_new_pricing();
 //delete_old_data();
 //obtain_VPP();
 //validate_one_tier_price();
 //phpinfo();
-validate_new_pricing();
+//validate_new_pricing();
 //Update_new_rrp_flow();
 
 ?>

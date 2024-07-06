@@ -76,7 +76,7 @@ while($row = mysqli_fetch_array($result)){
 }
 
 $prod= $skux;
-echo $prod;
+//echo $prod;
 
     include 'extractors/offer-to-file.php'; 
     switch ($target) {
