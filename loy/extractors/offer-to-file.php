@@ -402,7 +402,7 @@ function create_stock_file($prod){
 // Function to export pricing ////////////////////////////////////
 function create_current_new_pricing_file(){
 
-    $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
+    $con=mysqli_connect("localhost","stagierv_insight","Painkiller789*","stagierv_insights");
 
     $sql= "select distinct sku,name,rrp, substring_index(substring(SUBSTRING_INDEX(price,',', 1),3),'-',1) as Top_Points,
     substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price
@@ -496,7 +496,7 @@ function create_current_new_pricing_file(){
 // Function to export pricing ////////////////////////////////////
 function create_new_pricing_file(){
 
-    $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
+    $con=mysqli_connect("localhost","stagierv_insight","Painkiller789*","stagierv_insights");
     //include '../data/db_connection.php';
 
     // $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T3.vpp,T1.price from products_new_pricing as T1 inner join products_last as 
@@ -616,7 +616,7 @@ function create_new_pricing_file(){
 
 function create_current_pricing_file(){
 
-    $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
+    $con=mysqli_connect("localhost","stagierv_insight","Painkiller789*","stagierv_insights");
     //include '../data/db_connection.php';
 
     $sql="SELECT sku,name, GROUP_CONCAT(price ORDER BY price separator '|') as price FROM products_last where segment='LOYALTY_CON' or 
