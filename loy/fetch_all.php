@@ -4,7 +4,7 @@ include('data/db_connection.php');
 
 $column = array("orin", "solomon", "namex", "invoice_ex_gst", "dbp_ex_gst", "std_rrp_inc_gst", "std_rrp_ex_gst", "rebate","stock");
 
-$query = "SELECT t1.sku as orin,t2.solomon, t1.`name` as namex,t2.invoice_ex_gst as invoice_ex_gst, t2.dbp_ex_gst as dbp_ex_gst,t2.std_rrp_inc_gst as std_rrp_inc_gst,
+$query = "SELECT t1.sku as orin,t2.solomon, t1.`name` as namex,t2.invoice_ex_gst as invoice_ex_gst, t2.dbp_ex_gst as dbp_ex_gst,t1.rrp as std_rrp_inc_gst,
 t2.std_rrp_ex_gst as std_rrp_ex_gst,t2.rebate as rebate, t1.stock as stock
 FROM products_last AS t1 LEFT JOIN product_pricing AS t2 ON t1.sku = t2.orin ";
 

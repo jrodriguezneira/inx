@@ -12,7 +12,7 @@ $query = "SELECT orin,solomon,`name`,invoice_ex_gst,dbp_ex_gst,std_rrp_inc_gst,s
 
 
  $query .= '
- WHERE category <> "exported" and orin not in (select sku from products_last where segment="LOYALTY_CON")
+ WHERE category = "new" and orin not in (select sku from products_last where segment="LOYALTY_CON")
 
  ';
 

@@ -51,15 +51,7 @@ function build_table_sales($array,$filenamex){
     include '../data/db_connection.php';
     $header=0;
 
-//    // $sql0="truncate table product_pricing";
-                
-//                     if(mysqli_query($con, $sql0)){
-//                         //echo "Records deleted successfully.";
-//                     } else{
-//                             echo "ERROR: Could not able to execute $sql0" . mysqli_error($con);
-//                     }
 
-    //$date= get_file_date($filenamex);
     foreach( $array as $key=>$value){
      
         foreach($value as $key2=>$value2){
@@ -94,8 +86,10 @@ function build_table_sales($array,$filenamex){
             // $stock_notice= str_replace('"',' ',$stock_notice);
             $rrp_ex=$rrp/1.1;
                                
-            $sql1="insert into product_pricing(solomon,orin,name,category,invoice_ex_gst,dbp_ex_gst,std_rrp_inc_gst,std_rrp_ex_gst,rebate,invoice_price,internal,external) 
-             values ('$solomon','$sku','$name','category',$cost,$cost,$rrp,$rrp_ex,0,0,0,0)";
+             $sql1="insert into product_pricing(solomon,orin,name,category,invoice_ex_gst,dbp_ex_gst,std_rrp_inc_gst,std_rrp_ex_gst,rebate,invoice_price,internal,external) 
+              values ('$solomon','$sku','$name','Hot Offer',$cost,$cost,$rrp,$rrp_ex,0,0,0,0)";
+
+             //$sql1="update product_pricing set solomon='$solomon',std_rrp_inc_gst=$rrp,std_rrp_ex_gst=$rrp_ex where orin='$sku'";
                 
                     if(mysqli_query($con, $sql1)){
                         echo "Records inserted successfully.";

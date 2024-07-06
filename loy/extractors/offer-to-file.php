@@ -400,6 +400,99 @@ function create_stock_file($prod){
     }
 //  End Function to create stock format file ////////////////////////////////////
 
+// Function to export pricing ////////////////////////////////////
+function create_current_new_pricing_file(){
+
+    $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
+
+    $sql= "select distinct sku,name,rrp, substring_index(substring(SUBSTRING_INDEX(price,',', 1),3),'-',1) as Top_Points,
+    substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price
+    from products_last;";
+
+    $result= mysqli_query($con,$sql);
+    $row_cnt = mysqli_num_rows($result);
+
+    // Creates New Spreadsheet 
+    $spreadsheet = new Spreadsheet(); 
+      
+    // Retrieve the current active worksheet 
+    $sheet = $spreadsheet->getActiveSheet(); 
+    // Set headers for shop format 
+    $sheet->setCellValue('A1', 'Sku');
+    $sheet->setCellValue('B1', 'Name');
+    $sheet->setCellValue('C1', 'RRP');
+    $sheet->setCellValue('D1', 'Top Points');
+    $sheet->setCellValue('E1', 'Top Pay');
+    $sheet->setCellValue('F1', 'Price');
+
+       
+        $row=0;
+        // Loop through skus
+    while($data = mysqli_fetch_array($result)){
+        
+        //Obtain details for each sku       
+        $sheet->setCellValueByColumnAndRow(1,$row+2,$data[0]);
+        $sheet->getColumnDimension('A')->setWidth(15);
+        //Set solomon
+        $sheet->setCellValueByColumnAndRow(2,$row+2,$data[1]);
+        $sheet->getColumnDimension('B')->setWidth(15);
+        //Set Name 
+        $sheet->setCellValueByColumnAndRow(3,$row+2,$data[2]); 
+        $sheet->getColumnDimension('C')->setWidth(50);
+        //Set Inovice 
+        $sheet->setCellValueByColumnAndRow(4,$row+2,$data[3]);
+        $sheet->getColumnDimension('D')->setWidth(15);
+        //Set DBP
+        $sheet->setCellValueByColumnAndRow(5,$row+2,$data[4]);
+        $sheet->getColumnDimension('E')->setWidth(15);
+        //Set RRP_Inc 
+        $sheet->setCellValueByColumnAndRow(6,$row+2,$data[5]); 
+        $sheet->getColumnDimension('F')->setWidth(15);
+
+
+        $tier1 = explode(',',$data[5]);
+        $tiers= count($tier1);
+        $key=0;     
+        foreach( $tier1 as $key=>$element) {
+            $j=6; //Column start
+            $tier_price = explode('-',$element); 
+            if($key==0){
+            $points=substr($tier_price[0],2);
+            }else{
+            $points=substr($tier_price[0],1);
+            }
+            $pay=substr($tier_price[1],0,-1);
+            if($key==$tiers-1){$pay=substr($tier_price[1],0,-2);}
+                $sheet->setCellValueByColumnAndRow($j,$row + $key+2,$points);
+                $sheet->setCellValueByColumnAndRow($j+1,$row + $key+2,$pay);
+            $key++;
+        }
+
+        $row=$row+$key;
+    }
+    $currentDate = date("d_m_Y");
+    //$currentDate->format('Y-m-d H:i:s');
+    $sheet->setTitle("$currentDate");
+    // Write an .xlsx file  
+    $writer = new Xlsx($spreadsheet);      
+    // Save .xlsx file to the files directory 
+    $filename="Pricing_".$currentDate.".xlsx";
+    $writer->save($filename);  
+    
+    ?>
+        <script>
+        //Obtain filename
+        var flname="<?php echo $filename;?>";
+        //Set filepath
+        var urlx= flname;
+        //Function to download the file
+        download(urlx , flname);
+        
+        </script>
+    <?php   
+}
+//  End Function to export pricing ////////////////////////////////////
+
 
 // Function to export pricing ////////////////////////////////////
 function create_new_pricing_file(){
@@ -407,8 +500,13 @@ function create_new_pricing_file(){
     $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
     //include '../data/db_connection.php';
 
-    $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T3.vpp,T1.price from products_new_pricing as T1 inner join products_last as 
-    T2 on T1.sku=T2.sku inner join price_tiers as T3 on T2.sku=T3.sku;";
+    // $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T3.vpp,T1.price from products_new_pricing as T1 inner join products_last as 
+    // T2 on T1.sku=T2.sku inner join price_tiers as T3 on T2.sku=T3.sku;";
+
+    $sql= "select distinct T1.sku,T2.name,T2.category,T3.rrp,T3.vpp,T1.price,T1.offer_price from products_new_pricing as T1 inner join products_last as 
+     T2 on T1.sku=T2.sku inner join price_tiers as T3 on T2.sku=T3.sku where T1.offer_price is not null";
+
+
     
     //echo $sql;
 
@@ -431,7 +529,7 @@ function create_new_pricing_file(){
        
         $row=0;
         // Loop through skus
-        while($data = mysqli_fetch_array($result)){
+    while($data = mysqli_fetch_array($result)){
         
         //Obtain details for each sku       
         $sheet->setCellValueByColumnAndRow(1,$row+2,$data[0]);
@@ -471,10 +569,28 @@ function create_new_pricing_file(){
             $key++;
         }
 
+        $tier2= explode(',',$data[6]);
+        $tiers2= count($tier2);
+        $key=0;     
+        foreach( $tier2 as $key=>$element) {
+            $j=8; //Column start
+            $tier_price = explode('-',$element); 
+            if($key==0){
+            $points=substr($tier_price[0],2);
+            }else{
+            $points=substr($tier_price[0],1);
+            }
+            $pay=substr($tier_price[1],0,-1);
+            if($key==$tiers2-1){$pay=0;}
+                $sheet->setCellValueByColumnAndRow($j,$row + $key+2,$points);
+                $sheet->setCellValueByColumnAndRow($j+1,$row + $key+2,$pay);
+            $key++;
+        }
+
 
 
         $row=$row+$key;
-        }
+    }
     $currentDate = date("d_m_Y");
     //$currentDate->format('Y-m-d H:i:s');
     $sheet->setTitle("$currentDate");
@@ -620,12 +736,13 @@ function create_current_pricing_file(){
 
 
 
+
 // Function to export catalog ////////////////////////////////////
 function create_catalog_file(){
 
     $con=mysqli_connect("192.254.236.136","stagierv_insight","Painkiller789*","stagierv_insights");
 
-    $sql= "SELECT t1.sku as orin,t2.solomon, t1.`name` as namex,t2.invoice_ex_gst as invoice_ex_gst, t2.dbp_ex_gst as dbp_ex_gst,t2.std_rrp_inc_gst as std_rrp_inc_gst,
+    $sql= "SELECT t1.sku as orin,t2.solomon, t1.`name` as namex,t2.invoice_ex_gst as invoice_ex_gst, t2.dbp_ex_gst as dbp_ex_gst,t1.rrp as std_rrp_inc_gst,
     t2.std_rrp_ex_gst as std_rrp_ex_gst,t2.rebate as rebate, t1.stock as stock
     FROM products_last AS t1 LEFT JOIN product_pricing AS t2 ON t1.sku = t2.orin WHERE t1.segment='LOYALTY_CON' ";
     //echo $sql;
@@ -880,7 +997,7 @@ function create_product_file($prod){
                 $fwac= (int)$tier[8];
                 $valu = round((((int)$tier_price[0]*0.0025) + ((int)$tier_price[1]/1.1)),2);
                 $mar = round(($valu - $fwac),2);
-                $per = round(((((int)$tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
+               // $per = round(((((int)$tier[11]-((int)$tier_price[1]))/((int)$tier_price[0]) )/(1.1)),6);
             
                 $sheet->setCellValueByColumnAndRow($j+6,$tot_tiers + $key+2,$valu);
                 $sheet->setCellValueByColumnAndRow($j+7,$tot_tiers + $key+2,$mar);
