@@ -60,6 +60,14 @@
                     </div>
 
                     <!-- Content Row -->
+
+                    <?php
+                      //Export productc to excel file
+                      if(isset($_GET['rep'])){           
+                        include 'extractors/offer-to-file.php'; 
+                        create_current_offers_pricing_file();
+                      }
+                    ?>
                    
 
                     <!-- Content Row -->
@@ -81,7 +89,7 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header"></div>
-                                            <a class="dropdown-item" href="#"></a>
+                                            <a class="dropdown-item" href="off.php?rep=excel">Excel Report</a>
                                             <a class="dropdown-item" href="#"></a>
                                             </div>
                                     </div>
