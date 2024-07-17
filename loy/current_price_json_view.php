@@ -2,7 +2,7 @@
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
 $sql="select distinct sku,name,rrp, substring_index(substring(SUBSTRING_INDEX(price,',', 1),3),'-',1) as Top_Points,
-substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price
+substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price,offer 
 from products_last ;";
 $response = array();
 $posts = array();
@@ -15,11 +15,18 @@ while($row=mysqli_fetch_array($result))
   $posts['rrp']=$row['rrp'];
   $posts['top']=$row['Top_Points'];
   $posts['pay']=$row['Top_Pay'];
+  $posts['offer']=$row['offer'];
   if(intval($posts['rrp'])==intval($posts['pay'])){
     $check="Aligned";
     }else{
     $check="Difference";
     }
+  if($posts['offer']=="Hot Offer"){
+    $check="Hot Offer";
+  }
+  if($posts['pay']==0){
+    $check="Points Only";
+  }
   $posts['check']=$check; 
   $posts['price']=$row['price']; 
   array_push($response, $posts);
