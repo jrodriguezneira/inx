@@ -406,7 +406,7 @@ function create_current_new_pricing_file(){
     $con=mysqli_connect("localhost","stagierv_insight","Painkiller789*","stagierv_insights");
 
     $sql= "select distinct sku,name,rrp, substring_index(substring(SUBSTRING_INDEX(price,',', 1),3),'-',1) as Top_Points,
-    substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price
+    substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price,offer
     from products_last;";
 
     $result= mysqli_query($con,$sql);
@@ -423,7 +423,11 @@ function create_current_new_pricing_file(){
     $sheet->setCellValue('C1', 'RRP');
     $sheet->setCellValue('D1', 'Top Points');
     $sheet->setCellValue('E1', 'Top Pay');
-    $sheet->setCellValue('F1', 'Price');
+    $sheet->setCellValue('F1', 'Points');
+    $sheet->setCellValue('G1', 'Pay');
+    $sheet->setCellValue('H1', 'Check');
+
+
 
        
         $row=0;
@@ -433,22 +437,37 @@ function create_current_new_pricing_file(){
         //Obtain details for each sku       
         $sheet->setCellValueByColumnAndRow(1,$row+2,$data[0]);
         $sheet->getColumnDimension('A')->setWidth(15);
-        //Set solomon
+        //Set Name
         $sheet->setCellValueByColumnAndRow(2,$row+2,$data[1]);
-        $sheet->getColumnDimension('B')->setWidth(15);
-        //Set Name 
+        $sheet->getColumnDimension('B')->setWidth(50);
+        //Set RRP 
         $sheet->setCellValueByColumnAndRow(3,$row+2,$data[2]); 
-        $sheet->getColumnDimension('C')->setWidth(50);
-        //Set Inovice 
+        $sheet->getColumnDimension('C')->setWidth(15);
+        //Set Top Points 
         $sheet->setCellValueByColumnAndRow(4,$row+2,$data[3]);
         $sheet->getColumnDimension('D')->setWidth(15);
-        //Set DBP
+        //Set Top Pay
         $sheet->setCellValueByColumnAndRow(5,$row+2,$data[4]);
         $sheet->getColumnDimension('E')->setWidth(15);
-        //Set RRP_Inc 
+        //Set Points & Tiers 6 -7 columns
         $sheet->setCellValueByColumnAndRow(6,$row+2,$data[5]); 
         $sheet->getColumnDimension('F')->setWidth(15);
 
+        if(intval($data[2])==intval($data[4])){
+            $check="Aligned";
+            }else{
+            $check="Difference";
+            }
+          if($data[6]=="Hot Offer"){
+            $check="Hot Offer";
+          }
+          if($data[4]==0){
+            $check="Points Only";
+          }
+
+        //Set Price Check 8 column
+        $sheet->setCellValueByColumnAndRow(8,$row+2,$check); 
+        $sheet->getColumnDimension('F')->setWidth(15);
 
         $tier1 = explode(',',$data[5]);
         $tiers= count($tier1);

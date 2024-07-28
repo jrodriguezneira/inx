@@ -101,7 +101,8 @@ function obtain_catalogue(){
 
     $con=mysqli_connect("localhost","stagierv_insight","Painkiller789*","stagierv_insights");
  
-    $sql="select sku from products_last where price='[1,0]'";
+    $sql="select sku from products_last 
+    where (LENGTH(price) - LENGTH(REPLACE(price, ',', '')) <2) or price='[1,0]'";
     
     $result= mysqli_query($con,$sql);
     $row_cnt = mysqli_num_rows($result);
