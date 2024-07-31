@@ -116,6 +116,12 @@ function obtain_catalogue(){
 
 
 obtain_catalogue();
+obtain_catalogue();
+obtain_catalogue();
+obtain_catalogue();
+obtain_catalogue();
+obtain_catalogue();
+
 
 
 

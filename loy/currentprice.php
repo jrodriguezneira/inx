@@ -104,7 +104,8 @@
                                         <th>RRP</th>
                                         <th>Top Points</th>
                                         <th>Pay Tier</th>
-                                        <th>Price Check</th>                               
+                                        <th>Price Check</th>       
+                                        <th>RO</th>                           
 
                                         </tr> 
                                     </thead>
@@ -215,6 +216,9 @@ $(document).ready(function() {
       },
       {
         'data': 'check'
+      },
+      {
+        'data': 'ro'
       }
     ],
     'order': [
