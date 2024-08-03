@@ -406,7 +406,7 @@ function create_current_new_pricing_file(){
     $con=mysqli_connect("localhost","stagierv_insight","Painkiller789*","stagierv_insights");
 
     $sql= "select distinct sku,name,rrp, substring_index(substring(SUBSTRING_INDEX(price,',', 1),3),'-',1) as Top_Points,
-    substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price,offer
+    substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price,offer,ro
     from products_last;";
 
     $result= mysqli_query($con,$sql);
@@ -426,8 +426,7 @@ function create_current_new_pricing_file(){
     $sheet->setCellValue('F1', 'Points');
     $sheet->setCellValue('G1', 'Pay');
     $sheet->setCellValue('H1', 'Check');
-
-
+    $sheet->setCellValue('I1', 'RO');
 
        
         $row=0;
@@ -467,7 +466,17 @@ function create_current_new_pricing_file(){
 
         //Set Price Check 8 column
         $sheet->setCellValueByColumnAndRow(8,$row+2,$check); 
-        $sheet->getColumnDimension('F')->setWidth(15);
+        $sheet->getColumnDimension('G')->setWidth(15);
+
+         //Set RO column
+         if($data[7]=="[12,24]"){
+            $ro="RO";
+          }
+          if($data[7]=="[]"){
+            $ro="Outright";
+          }
+         $sheet->setCellValueByColumnAndRow(9,$row+2,$ro); 
+         $sheet->getColumnDimension('H')->setWidth(15);
 
         $tier1 = explode(',',$data[5]);
         $tiers= count($tier1);
