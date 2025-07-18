@@ -50,7 +50,7 @@ var myBarChart = new Chart(ctx, {
   data: {
     labels: [<?php echo $mon;?>],
     datasets: [{
-      label: "Orders",
+      label: "Products",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
