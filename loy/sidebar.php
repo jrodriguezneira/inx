@@ -40,10 +40,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Products:</h6>                
                         <a class="collapse-item" href="currentprice.php">Products </a>
-                        <a class="collapse-item" href="newpro.php">New Products</a>
-                        <a class="collapse-item" href="newprice.php">New Pricing</a>
+                        <!-- <a class="collapse-item" href="newpro.php">New Products</a>
+                        <a class="collapse-item" href="newprice.php">New Pricing</a> -->
                         <a class="collapse-item" href="prod_lau.php">Launches</a>
                         <a class="collapse-item" href="eol.php">EOL</a>
+                        <a class="collapse-item" href="product_reels.php">Feature reel</a>
 
                       <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
                         <a class="collapse-item" href="pro.php">Products</a> -->
@@ -82,8 +83,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Offers:</h6>                
                         <a class="collapse-item" href="off.php">Active </a>
-                        <a class="collapse-item" href="off_his.php">History</a>
-                        <a class="collapse-item" href="off_his_char.php">Charts</a>
+                        <!-- <a class="collapse-item" href="off_his.php">History</a>
+                        <a class="collapse-item" href="off_his_char.php">Charts</a> -->
 
 
                       <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
