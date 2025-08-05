@@ -1,8 +1,10 @@
 <?php
 header('Content-Type: application/javascript');
 include '../data/db_connection.php'; 
-$sql="select count(distinct sku) as total,monthname(date_report) as months from products where segment='LOYALTY_CON' 
-and date_report >= date_sub(now(), interval 10 month) and day(date_report) =15 group by month(date_report) order by date_report asc;";
+// $sql="select count(distinct sku) as total,monthname(date_report) as months from products where segment='LOYALTY_CON' 
+// and date_report >= date_sub(now(), interval 10 month) and day(date_report) =15 group by month(date_report) order by date_report asc;";
+
+$sql="select total,months from products_x_month;";
 $result=mysqli_query($con,$sql);
 while($row=mysqli_fetch_array($result)) 
 { 
