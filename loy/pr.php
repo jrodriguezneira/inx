@@ -218,7 +218,7 @@
                                     
                                 <?php 
 
-                                if($hot_offer== "Hot Offer"){
+                                if($hot_offer== "Hot Offer"){ 
 
                                 multi_pricing(get_trend("old_price",$sku,$last_date));   
 

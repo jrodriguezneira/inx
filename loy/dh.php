@@ -313,7 +313,7 @@
                                 }
                                 ?>
                                 <p> <?php //echo $count; ?> Last products launched <a href="prod_lau.php">(View Products)<?php //echo $datex;?></a></p>
-                                <p> <?php //echo $count; ?> Week Sales  <a href="prod_sal.php">(Sample)</a></p>
+                                <!-- <p> <?php //echo $count; ?> Week Sales  <a href="prod_sal.php">(Sample)</a></p> -->
 
                                     
                                     
