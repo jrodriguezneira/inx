@@ -84,9 +84,10 @@ var myBarChartstock = new Chart(ctx, {
         maxBarThickness: 40,
       }],
       yAxes: [{
+        type: 'logarithmic',
         ticks: {
           min: 0,
-          max: 100,
+          max: 900,
           maxTicksLimit: 10,
           padding: 5,
           // Include a dollar sign in the ticks
