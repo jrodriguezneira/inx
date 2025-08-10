@@ -8,12 +8,12 @@ ORDER BY stock_count ASC";
 $result=mysqli_query($con,$sql);
 while($row=mysqli_fetch_array($result)) 
 { 
-$stats.=$row['in_stock_days'].",";
-$months.="\"".$row['total_products']."\",";
+$in_stock.=$row['in_stock_days'].",";
+$tot_prod.="\"".$row['total_products']."\",";
 }
-$cat=substr($stats, 0, -1); 
+$instock=substr($in_stock, 0, -1); 
 echo $cat;
-$mon=substr($months, 0, -1); 
+$totprod=substr($tot_prod, 0, -1); 
 ?>
 
 // Set new default font family and font color to mimic Bootstrap's default styling
@@ -50,13 +50,13 @@ var ctx = document.getElementById("myBarChartstock");
 var myBarChartstock = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: [<?php echo $mon;?>],
+    labels: [<?php echo $instock;?>],
     datasets: [{
       label: "In Stock(Days)",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [<?php echo $cat;?>],
+      data: [<?php echo $totprod;?>],
     }],
   },
   options: {
