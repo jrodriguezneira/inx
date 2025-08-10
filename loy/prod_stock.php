@@ -180,11 +180,7 @@
       <!-- Gantt Char scripts  scripts -->
       <script src="https://code.jscharting.com/latest/jscharting.js"></script> 
 
-         <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="charts/products-month_stock.php" ></script>
+ 
 
 <script>
 
@@ -296,6 +292,12 @@ $(document).ready(function() {
   });
 });
 </script>
+
+        <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="charts/products-month_stock.php" ></script>
 
     
 </body>
