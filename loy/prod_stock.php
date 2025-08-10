@@ -89,7 +89,7 @@
                                               <div class="tab-content">
                                                   <div class="tab-pane fade show active" id="bydate">
                                                     
-                                                  <canvas id="myBarChartstock"></canvas>
+                                                  <canvas id="myBarChartstock" height="400"></canvas>
 
 
                                                   </div>
