@@ -52,7 +52,7 @@ var myBarChartstock = new Chart(ctx, {
   data: {
     labels: [<?php echo $mon;?>],
     datasets: [{
-      label: "Products",
+      label: "In Stock(Days)",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
@@ -86,9 +86,9 @@ var myBarChartstock = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 31,
-          maxTicksLimit: 5,
-          padding: 10,
+          max: 30,
+          maxTicksLimit: 10,
+          padding: 5,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return ' ' + number_format(value);
