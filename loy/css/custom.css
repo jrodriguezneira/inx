@@ -13,6 +13,9 @@ text-align: right;
 .family{
 width:70%;
 }
+#myBarChartstock {
+  height: 400px !important;
+}
 .offer{
 color:#e74a3b !important;    
 }
