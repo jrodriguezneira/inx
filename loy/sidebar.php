@@ -93,6 +93,26 @@
                 </div>
 </li>
 
+<li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefour"
+                    aria-expanded="true" aria-controls="collapsefour">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Stock</span>
+                </a>
+                <div id="collapsefour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Stock:</h6>                
+                        <a class="collapse-item" href="prod_stock.php">Stock Availability </a>
+                        <!-- <a class="collapse-item" href="off_his.php">History</a>
+                        <a class="collapse-item" href="off_his_char.php">Charts</a> -->
+
+
+                      <!--  <a class="collapse-item" href="pro_pri.php">Product Pricing</a> 
+                        <a class="collapse-item" href="pro.php">Products</a> -->
+                    </div>
+                </div>
+</li>
+
 <!-- Divider -->
 <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
