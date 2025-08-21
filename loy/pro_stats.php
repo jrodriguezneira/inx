@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');   
 include 'data/db_connection.php'; 
-$sql_stats="select
+$sql="select
 (select count(sku) from products_last where segment='LOYALTY_CON') as prod,
 (select count(sku) from products_last where offer = 'Hot Offer' and segment='LOYALTY_CON') as off,
 (select count(sku) from products_last where ro = '[]' and segment='LOYALTY_CON') as outright,
