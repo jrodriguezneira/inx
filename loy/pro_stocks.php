@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 include 'data/db_connection.php'; 
 $sql="select 
-(select count(sku) as oos from products_last where stock = 'Out of Stock' and segment='LOYALTY_CON') as oos;
+(select count(sku) as oos from products_last where stock = 'Out of Stock' and segment='LOYALTY_CON') as oos, 
 (select count(sku) as ins from products_last where stock = 'In Stock' and segment='LOYALTY_CON') as ins";
 
 $response = array();
