@@ -13,8 +13,8 @@ $posts = array();
 $result=mysqli_query($con,$sql);
 while($row=mysqli_fetch_array($result)) 
 { 
-  $posts['months']=$row['months'];
-  $posts['total']=$row['total'];
+  $posts['x']=$row['months'];
+  $posts['y']=$row['total'];
 
   array_push($response, $posts);
 } 
