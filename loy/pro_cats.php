@@ -15,6 +15,7 @@ while($row=mysqli_fetch_array($result))
 { 
   $posts['x']=$row['category'];
   $posts['y']=$row['total'];
+  $posts['text']=$row['category'];
 
 
   array_push($response, $posts);
