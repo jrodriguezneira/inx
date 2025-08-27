@@ -1,5 +1,9 @@
 <?php
-header('Content-Type: application/json');   
+header('Content-Type: application/json');
+// Allow requests from React frontend (adjust domain/port as needed)
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");   
 include 'data/db_connection.php'; 
 $sql="select distinct sku,name,rrp, substring_index(substring(SUBSTRING_INDEX(price,',', 1),3),'-',1) as Top_Points,
 substring_index((substring_index((substring(price,-10)),'-',-1)),\"'\",1) as Top_Pay,price,offer,ro 
