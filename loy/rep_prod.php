@@ -1,5 +1,7 @@
 <?php
-
+// Tell browser it's a file, not HTML
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
 $allowed_origins = [
     "http://localhost:3000",
     "http://10.25.30.23:30080"
@@ -19,13 +21,11 @@ create_current_new_pricing_file();
 // $filePath = "/path/to/generated/report.csv";
 // $fileName = "report.csv";
 
-// Tell browser it's a file, not HTML
-header('Content-Description: File Transfer');
-header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename="' . basename($flname) . '"');
-header('Content-Transfer-Encoding: binary');
-readfile($flname);
-exit;
+
+// header('Content-Disposition: attachment; filename="' . basename($flname) . '"');
+// header('Content-Transfer-Encoding: binary');
+// readfile($flname);
+// exit;
 
 ?>
 
