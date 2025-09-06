@@ -1,4 +1,15 @@
-<?php include 'business/trends.php'; ?>
+<?php include 'business/trends.php'; 
+
+$allowed_origins = [
+    "http://localhost:3000",
+    "http://10.25.30.23:30080"
+];
+
+if (in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+}
+
+?>
 <?php include 'business/read_trends.php'; ?>
 
 <!DOCTYPE html>
